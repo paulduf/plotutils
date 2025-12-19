@@ -1,0 +1,10 @@
+# serializer version: 1
+# name: test_report_theme_registration
+  dict({
+    'background': 'transparent',
+    'view': dict({
+      'fill': 'transparent',
+      'stroke': 'transparent',
+    }),
+  })
+# ---
