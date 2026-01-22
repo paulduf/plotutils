@@ -19,25 +19,25 @@ def plot_grouped_histogram(
 
     Parameters
     ----------
-    data : dict[str, list[float]] or pl.DataFrame
+    - `data` : `dict[str, list[float]]` or pl.DataFrame
         Either a dictionary mapping group names to data arrays,
         or a polars DataFrame with value and group columns
-    n_bins : int
+    - `n_bins` : `int`
         Number of bins for histogram
-    width, height : int
+    - `width`, `height` : `int`
         Chart dimensions
-    x_title, y_title : str
+    - `x_title`, `y_title` : `str`
         Axis titles
-    opacity : float
+    - `opacity` : `float`
         Bar opacity
-    value_column : str
+    - `value_column` : `str`
         Name of the value column (only used when data is a DataFrame)
-    group_column : str
+    - `group_column` : `str`
         Name of the group column (only used when data is a DataFrame)
 
     Returns
     -------
-    alt.Chart
+    `alt.Chart`
         Altair chart object
     """
     # Convert input to DataFrame if needed
@@ -54,10 +54,9 @@ def plot_grouped_histogram(
             )
         df_combined = pl.concat(df_list)
     else:
-        df_combined = data.select([
-            pl.col(value_column).alias("value"),
-            pl.col(group_column).alias("group")
-        ])
+        df_combined = data.select(
+            [pl.col(value_column).alias("value"), pl.col(group_column).alias("group")]
+        )
 
     # Compute nice bin edges
     v_min_raw = df_combined["value"].min()
@@ -115,5 +114,3 @@ def plot_grouped_histogram(
     )
 
     return chart
-
-
