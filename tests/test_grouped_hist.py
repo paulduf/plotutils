@@ -6,18 +6,13 @@ from plotutils.hist import plot_grouped_histogram
 
 def test_plot_grouped_histogram_dict_input(snapshot, snapshot_svg):
     """Test plot_grouped_histogram with dict input (original example)."""
-    # Sample data from the original example
-    ice_normalized = [1.2, 2.3, 1.5, 3.1, 2.8, 1.9, 2.5, 3.3, 2.1, 1.7]
-    raw_measurements = [0.8, 1.5, 1.2, 2.1, 1.8, 1.3, 1.9, 2.3, 1.6, 1.1]
 
     chart = plot_grouped_histogram(
         data={
-            "ICE uncorrelated": ice_normalized,
-            "Distribution of simulated measurements (N=10)": raw_measurements,
+            "A": [1.2, 2.3, 1.5, 3.1, 2.8, 1.9, 2.5, 3.3, 2.1, 1.7],
+            "B": [0.8, 1.5, 1.2, 2.1, 1.8, 1.3, 1.9, 2.3, 1.6, 1.1],
         },
         n_bins=30,
-        x_title="Q (cp/PCR)",
-        y_title="Counts",
     )
 
     # Verify chart is created
@@ -36,10 +31,12 @@ def test_plot_grouped_histogram_dict_input(snapshot, snapshot_svg):
 def test_plot_grouped_histogram_dataframe_input(snapshot, snapshot_svg):
     """Test plot_grouped_histogram with polars DataFrame input."""
     # Create test data as DataFrame
-    df = pl.DataFrame({
-        "value": [1.2, 2.3, 1.5, 3.1, 2.8, 0.8, 1.5, 1.2, 2.1, 1.8],
-        "group": ["A", "A", "A", "A", "A", "B", "B", "B", "B", "B"]
-    })
+    df = pl.DataFrame(
+        {
+            "value": [1.2, 2.3, 1.5, 3.1, 2.8, 0.8, 1.5, 1.2, 2.1, 1.8],
+            "group": ["A", "A", "A", "A", "A", "B", "B", "B", "B", "B"],
+        }
+    )
 
     chart = plot_grouped_histogram(
         data=df,
@@ -47,7 +44,7 @@ def test_plot_grouped_histogram_dataframe_input(snapshot, snapshot_svg):
         x_title="Value",
         y_title="Count",
         value_column="value",
-        group_column="group"
+        group_column="group",
     )
 
     # Verify chart is created
@@ -65,10 +62,12 @@ def test_plot_grouped_histogram_dataframe_input(snapshot, snapshot_svg):
 
 def test_plot_grouped_histogram_custom_columns(snapshot, snapshot_svg):
     """Test plot_grouped_histogram with custom column names."""
-    df = pl.DataFrame({
-        "measurement": [1.0, 2.0, 3.0, 1.5, 2.5, 3.5],
-        "category": ["X", "X", "X", "Y", "Y", "Y"]
-    })
+    df = pl.DataFrame(
+        {
+            "measurement": [1.0, 2.0, 3.0, 1.5, 2.5, 3.5],
+            "category": ["X", "X", "X", "Y", "Y", "Y"],
+        }
+    )
 
     chart = plot_grouped_histogram(
         data=df,
@@ -77,7 +76,7 @@ def test_plot_grouped_histogram_custom_columns(snapshot, snapshot_svg):
         group_column="category",
         width=800,
         height=500,
-        opacity=0.8
+        opacity=0.8,
     )
 
     # Verify chart is created
@@ -97,7 +96,4 @@ def test_plot_grouped_histogram_custom_columns(snapshot, snapshot_svg):
 def test_plot_grouped_histogram_empty_data():
     """Test that function raises error with empty data."""
     with pytest.raises(ValueError, match="no valid values"):
-        plot_grouped_histogram(
-            data={"group1": []},
-            n_bins=10
-        )
+        plot_grouped_histogram(data={"group1": []}, n_bins=10)
