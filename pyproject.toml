@@ -14,5 +14,7 @@ dependencies = [
 dev = [
     "coverage>=7.13.0",
     "pytest>=9.0.2",
+    "pytest-cov>=6.0.0",
     "syrupy>=5.0.0",
+    "vl-convert-python>=1.8.0",
 ]
