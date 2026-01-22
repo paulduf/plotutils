@@ -18,25 +18,13 @@
       }),
     }),
     'data': dict({
-      'name': 'data-normalized',
+      'name': 'data-normalized-0',
     }),
     'datasets': dict({
-      'data-normalized': list([
+      'data-normalized-0': list([
         dict({
           'bin_label': 1,
           'bin_start': 1.0,
-          'count': 1,
-          'group': 'X',
-        }),
-        dict({
-          'bin_label': 2,
-          'bin_start': 2.0,
-          'count': 1,
-          'group': 'X',
-        }),
-        dict({
-          'bin_label': 3,
-          'bin_start': 3.0,
           'count': 1,
           'group': 'X',
         }),
@@ -48,9 +36,21 @@
         }),
         dict({
           'bin_label': 2,
+          'bin_start': 2.0,
+          'count': 1,
+          'group': 'X',
+        }),
+        dict({
+          'bin_label': 2,
           'bin_start': 2.4000000000000004,
           'count': 1,
           'group': 'Y',
+        }),
+        dict({
+          'bin_label': 3,
+          'bin_start': 3.0,
+          'count': 1,
+          'group': 'X',
         }),
         dict({
           'bin_label': 3,
@@ -127,40 +127,10 @@
       }),
     }),
     'data': dict({
-      'name': 'data-normalized',
+      'name': 'data-normalized-0',
     }),
     'datasets': dict({
-      'data-normalized': list([
-        dict({
-          'bin_label': 1,
-          'bin_start': 1.1,
-          'count': 1,
-          'group': 'A',
-        }),
-        dict({
-          'bin_label': 1,
-          'bin_start': 1.5,
-          'count': 1,
-          'group': 'A',
-        }),
-        dict({
-          'bin_label': 2,
-          'bin_start': 2.2,
-          'count': 1,
-          'group': 'A',
-        }),
-        dict({
-          'bin_label': 2,
-          'bin_start': 2.7,
-          'count': 1,
-          'group': 'A',
-        }),
-        dict({
-          'bin_label': 3,
-          'bin_start': 3.1000000000000005,
-          'count': 1,
-          'group': 'A',
-        }),
+      'data-normalized-0': list([
         dict({
           'bin_label': 0,
           'bin_start': 0.8,
@@ -171,7 +141,19 @@
           'bin_label': 1,
           'bin_start': 1.1,
           'count': 1,
+          'group': 'A',
+        }),
+        dict({
+          'bin_label': 1,
+          'bin_start': 1.1,
+          'count': 1,
           'group': 'B',
+        }),
+        dict({
+          'bin_label': 1,
+          'bin_start': 1.5,
+          'count': 1,
+          'group': 'A',
         }),
         dict({
           'bin_label': 1,
@@ -190,6 +172,24 @@
           'bin_start': 2.1,
           'count': 1,
           'group': 'B',
+        }),
+        dict({
+          'bin_label': 2,
+          'bin_start': 2.2,
+          'count': 1,
+          'group': 'A',
+        }),
+        dict({
+          'bin_label': 2,
+          'bin_start': 2.7,
+          'count': 1,
+          'group': 'A',
+        }),
+        dict({
+          'bin_label': 3,
+          'bin_start': 3.1000000000000005,
+          'count': 1,
+          'group': 'A',
         }),
       ]),
     }),
@@ -260,15 +260,21 @@
       }),
     }),
     'data': dict({
-      'name': 'data-normalized',
+      'name': 'data-normalized-0',
     }),
     'datasets': dict({
-      'data-normalized': list([
+      'data-normalized-0': list([
         dict({
           'bin_label': 0,
           'bin_start': 0.8,
           'count': 1,
           'group': 'Distribution of simulated measurements (N=10)',
+        }),
+        dict({
+          'bin_label': 1,
+          'bin_start': 1.1,
+          'count': 1,
+          'group': 'ICE uncorrelated',
         }),
         dict({
           'bin_label': 1,
@@ -290,9 +296,27 @@
         }),
         dict({
           'bin_label': 1,
+          'bin_start': 1.5,
+          'count': 1,
+          'group': 'ICE uncorrelated',
+        }),
+        dict({
+          'bin_label': 1,
           'bin_start': 1.6,
           'count': 1,
           'group': 'Distribution of simulated measurements (N=10)',
+        }),
+        dict({
+          'bin_label': 1,
+          'bin_start': 1.7000000000000002,
+          'count': 1,
+          'group': 'ICE uncorrelated',
+        }),
+        dict({
+          'bin_label': 1,
+          'bin_start': 1.8,
+          'count': 1,
+          'group': 'ICE uncorrelated',
         }),
         dict({
           'bin_label': 1,
@@ -308,39 +332,15 @@
         }),
         dict({
           'bin_label': 2,
-          'bin_start': 2.2,
-          'count': 1,
-          'group': 'Distribution of simulated measurements (N=10)',
-        }),
-        dict({
-          'bin_label': 1,
-          'bin_start': 1.1,
-          'count': 1,
-          'group': 'ICE uncorrelated',
-        }),
-        dict({
-          'bin_label': 1,
-          'bin_start': 1.5,
-          'count': 1,
-          'group': 'ICE uncorrelated',
-        }),
-        dict({
-          'bin_label': 1,
-          'bin_start': 1.7000000000000002,
-          'count': 1,
-          'group': 'ICE uncorrelated',
-        }),
-        dict({
-          'bin_label': 1,
-          'bin_start': 1.8,
+          'bin_start': 2.1,
           'count': 1,
           'group': 'ICE uncorrelated',
         }),
         dict({
           'bin_label': 2,
-          'bin_start': 2.1,
+          'bin_start': 2.2,
           'count': 1,
-          'group': 'ICE uncorrelated',
+          'group': 'Distribution of simulated measurements (N=10)',
         }),
         dict({
           'bin_label': 2,
