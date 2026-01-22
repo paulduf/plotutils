@@ -1,0 +1,47 @@
+name: Coverage
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install just
+        uses: extractions/setup-just@v2
+
+      - name: Install dependencies
+        run: |
+          uv sync --group dev
+          uv pip install -e .
+
+      - name: Run deploy (tests, coverage, badge)
+        run: just deploy
+
+      - name: Upload coverage report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html
+          path: htmlcov/
+
+      - name: Commit coverage badge
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .cccicd/badges/coverage.svg
+          git commit -m 'Update coverage badge' || echo 'No changes to commit'
+          git push || echo 'No changes to push'
