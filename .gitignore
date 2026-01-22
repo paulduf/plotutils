@@ -1,4 +1,6 @@
+# environment files
 __pycache__/
 *.egg-info
-
 uv.lock
+# docs-related
+_site
