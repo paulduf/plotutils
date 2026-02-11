@@ -18,7 +18,7 @@ Create scatter plots with error bars. Aggregates raw data automatically using Al
 
 ```python
 import polars as pl
-from plotutils.errorbar import plot_confidence_scatter
+from plotutils.uncertainty import plot_confidence_scatter
 
 df = pl.DataFrame({
     "x": [1.0] * 10 + [2.0] * 10 + [3.0] * 10,
@@ -33,15 +33,15 @@ chart = plot_confidence_scatter(
 
 #### With numeric x-axis and custom labels
 
-![Confidence Scatter with Labels](tests/__snapshots__/test_errorbar/test_plot_confidence_scatter_numeric_x_with_labels.svg)
+![Confidence Scatter with Labels](tests/__snapshots__/test_uncertainty/test_plot_confidence_scatter_numeric_x_with_labels.svg)
 
 #### With identity line
 
-![Confidence Scatter with Identity Line](tests/__snapshots__/test_errorbar/test_plot_confidence_scatter_with_identity_line.svg)
+![Confidence Scatter with Identity Line](tests/__snapshots__/test_uncertainty/test_plot_confidence_scatter_with_identity_line.svg)
 
 #### Basic categorical x-axis
 
-![Basic Confidence Scatter](tests/__snapshots__/test_errorbar/test_plot_confidence_scatter_basic.svg)
+![Basic Confidence Scatter](tests/__snapshots__/test_uncertainty/test_plot_confidence_scatter_basic.svg)
 
 ### `plot_grouped_histogram`
 
