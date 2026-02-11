@@ -6,7 +6,7 @@ Create scatter plots with error bars. Aggregates raw data automatically using Al
 
 ```python
 import polars as pl
-from plotutils.errorbar import plot_confidence_scatter
+from plotutils.uncertainty import plot_confidence_scatter
 
 df = pl.DataFrame({
     "x": [1.0] * 10 + [2.0] * 10 + [3.0] * 10,
@@ -21,4 +21,4 @@ chart = plot_confidence_scatter(
 
 ## Reference
 
-::: plotutils.errorbar.plot_confidence_scatter
+::: plotutils.uncertainty.plot_confidence_scatter

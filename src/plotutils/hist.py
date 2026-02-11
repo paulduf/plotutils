@@ -90,7 +90,9 @@ def plot_grouped_histogram(
         )
         .group_by(["bin_start", "group"])
         .agg(pl.len().alias("count"))
-        .sort("bin_start")
+        # Sort both columns for deterministic SVG rendering
+        # (polars group_by uses hash-based grouping with non-deterministic output order)
+        .sort("bin_start", "group")
         .with_columns([pl.col("bin_start").cast(pl.Int32).alias("bin_label")])
     )
 

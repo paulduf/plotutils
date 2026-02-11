@@ -1,6 +1,19 @@
+import altair as alt
 import pytest
 import vl_convert as vlc
 from syrupy.extensions.image import SVGImageSnapshotExtension
+
+
+@pytest.fixture(autouse=True)
+def _reset_altair_theme():
+    """Reset Altair theme to default before each test for deterministic SVG rendering.
+
+    Without this, test_theme.py enables a global theme that leaks into subsequent
+    tests, making SVG output depend on test execution order.
+    """
+    alt.theme.enable("default")
+    yield
+    alt.theme.enable("default")
 
 
 @pytest.fixture
@@ -51,5 +64,12 @@ def normalize_chart_dict(chart_dict: dict) -> dict:
 
 
 def chart_to_svg(chart) -> str:
-    """Convert an Altair chart to SVG string."""
+    """Convert an Altair chart to SVG string.
+
+    Note: SVG snapshot testing only works for charts with deterministic rendering.
+    Charts using mark_errorbar with extent="ci" (the default) are non-deterministic
+    because Vega computes confidence intervals via bootstrap resampling with an
+    unseeded RNG. This produces ~1-2px coordinate jitter between calls, even within
+    the same process. For those charts, test only the Vega-Lite dict snapshot.
+    """
     return vlc.vegalite_to_svg(chart.to_dict())
