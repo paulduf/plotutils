@@ -4,3 +4,4 @@ __pycache__/
 uv.lock
 # docs-related
 _site
+docs/img/

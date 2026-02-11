@@ -800,10 +800,18 @@
         'encoding': dict({
           'x': dict({
             'field': 'x',
+            'scale': dict({
+              'type': 'linear',
+              'zero': False,
+            }),
             'type': 'quantitative',
           }),
           'y': dict({
             'field': 'y',
+            'scale': dict({
+              'type': 'linear',
+              'zero': False,
+            }),
             'type': 'quantitative',
           }),
         }),
@@ -1916,6 +1924,1078 @@
       }),
     ]),
     'title': 'Deviations Title Test',
+    'width': 600,
+  })
+# ---
+# name: test_plot_predictions_errors_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'pred': 1.1,
+          'true': 1.0,
+        }),
+        dict({
+          'pred': 2.2,
+          'true': 2.0,
+        }),
+        dict({
+          'pred': 2.8,
+          'true': 3.0,
+        }),
+        dict({
+          'pred': 4.1,
+          'true': 4.0,
+        }),
+        dict({
+          'pred': 5.3,
+          'true': 5.0,
+        }),
+        dict({
+          'pred': 5.9,
+          'true': 6.0,
+        }),
+        dict({
+          'pred': 7.2,
+          'true': 7.0,
+        }),
+        dict({
+          'pred': 7.8,
+          'true': 8.0,
+        }),
+        dict({
+          'pred': 9.1,
+          'true': 9.0,
+        }),
+        dict({
+          'pred': 10.3,
+          'true': 10.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 0.814,
+          'y': 0.814,
+        }),
+        dict({
+          'x': 10.486,
+          'y': 10.486,
+        }),
+      ]),
+    }),
+    'height': 600,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0.814,
+                10.486,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0.814,
+                10.486,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'strokeDash': list([
+            5,
+            5,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'true',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'pred',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'true',
+            'scale': dict({
+              'domain': list([
+                0.814,
+                10.486,
+              ]),
+            }),
+            'title': 'true',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'pred',
+            'scale': dict({
+              'domain': list([
+                0.814,
+                10.486,
+              ]),
+            }),
+            'title': 'pred',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'steelblue',
+          'filled': True,
+          'opacity': 0.7,
+          'size': 60,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_predictions_errors_color_and_shape
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'model': 'A',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'model': 'A',
+          'pred': 2.2,
+          'split': 'test',
+          'true': 2.0,
+        }),
+        dict({
+          'model': 'A',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'model': 'A',
+          'pred': 5.9,
+          'split': 'test',
+          'true': 6.0,
+        }),
+        dict({
+          'model': 'B',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'model': 'B',
+          'pred': 4.1,
+          'split': 'test',
+          'true': 4.0,
+        }),
+        dict({
+          'model': 'B',
+          'pred': 7.2,
+          'split': 'train',
+          'true': 7.0,
+        }),
+        dict({
+          'model': 'B',
+          'pred': 7.8,
+          'split': 'test',
+          'true': 8.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 0.86,
+          'y': 0.86,
+        }),
+        dict({
+          'x': 8.14,
+          'y': 8.14,
+        }),
+      ]),
+    }),
+    'height': 600,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0.86,
+                8.14,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0.86,
+                8.14,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'strokeDash': list([
+            5,
+            5,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'model',
+            'type': 'nominal',
+          }),
+          'shape': dict({
+            'field': 'split',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'true',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'pred',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'model',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'split',
+              'type': 'nominal',
+            }),
+          ]),
+          'x': dict({
+            'field': 'true',
+            'scale': dict({
+              'domain': list([
+                0.86,
+                8.14,
+              ]),
+            }),
+            'title': 'true',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'pred',
+            'scale': dict({
+              'domain': list([
+                0.86,
+                8.14,
+              ]),
+            }),
+            'title': 'pred',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'filled': True,
+          'opacity': 0.7,
+          'size': 60,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_predictions_errors_custom_columns
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'actual': 1.0,
+          'forecast': 1.2,
+        }),
+        dict({
+          'actual': 2.0,
+          'forecast': 1.8,
+        }),
+        dict({
+          'actual': 3.0,
+          'forecast': 3.1,
+        }),
+        dict({
+          'actual': 4.0,
+          'forecast': 4.3,
+        }),
+        dict({
+          'actual': 5.0,
+          'forecast': 4.8,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 0.92,
+          'y': 0.92,
+        }),
+        dict({
+          'x': 5.08,
+          'y': 5.08,
+        }),
+      ]),
+    }),
+    'height': 600,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0.92,
+                5.08,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0.92,
+                5.08,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'strokeDash': list([
+            5,
+            5,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'actual',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'forecast',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'actual',
+            'scale': dict({
+              'domain': list([
+                0.92,
+                5.08,
+              ]),
+            }),
+            'title': 'Actual Value',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'forecast',
+            'scale': dict({
+              'domain': list([
+                0.92,
+                5.08,
+              ]),
+            }),
+            'title': 'Forecast Value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'steelblue',
+          'filled': True,
+          'opacity': 0.7,
+          'size': 60,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'title': 'Forecast Accuracy',
+    'width': 600,
+  })
+# ---
+# name: test_plot_predictions_errors_custom_styling
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'x': 0.918,
+          'y': 0.918,
+        }),
+        dict({
+          'x': 5.1819999999999995,
+          'y': 5.1819999999999995,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'pred': 1.1,
+          'true': 1.0,
+        }),
+        dict({
+          'pred': 1.8,
+          'true': 2.0,
+        }),
+        dict({
+          'pred': 3.2,
+          'true': 3.0,
+        }),
+        dict({
+          'pred': 3.9,
+          'true': 4.0,
+        }),
+        dict({
+          'pred': 5.1,
+          'true': 5.0,
+        }),
+      ]),
+    }),
+    'height': 800,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0.918,
+                5.1819999999999995,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0.918,
+                5.1819999999999995,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'strokeDash': list([
+            5,
+            5,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'true',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'pred',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'true',
+            'scale': dict({
+              'domain': list([
+                0.918,
+                5.1819999999999995,
+              ]),
+            }),
+            'title': 'true',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'pred',
+            'scale': dict({
+              'domain': list([
+                0.918,
+                5.1819999999999995,
+              ]),
+            }),
+            'title': 'pred',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'red',
+          'filled': True,
+          'opacity': 0.5,
+          'size': 100,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 800,
+  })
+# ---
+# name: test_plot_predictions_errors_shared_scale
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'x': 0.8200000000000001,
+          'y': 0.8200000000000001,
+        }),
+        dict({
+          'x': 10.18,
+          'y': 10.18,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'pred': 2.0,
+          'true': 1.0,
+        }),
+        dict({
+          'pred': 4.0,
+          'true': 2.0,
+        }),
+        dict({
+          'pred': 6.0,
+          'true': 3.0,
+        }),
+        dict({
+          'pred': 8.0,
+          'true': 4.0,
+        }),
+        dict({
+          'pred': 10.0,
+          'true': 5.0,
+        }),
+      ]),
+    }),
+    'height': 600,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0.8200000000000001,
+                10.18,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0.8200000000000001,
+                10.18,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'strokeDash': list([
+            5,
+            5,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'true',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'pred',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'true',
+            'scale': dict({
+              'domain': list([
+                0.8200000000000001,
+                10.18,
+              ]),
+            }),
+            'title': 'true',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'pred',
+            'scale': dict({
+              'domain': list([
+                0.8200000000000001,
+                10.18,
+              ]),
+            }),
+            'title': 'pred',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'steelblue',
+          'filled': True,
+          'opacity': 0.7,
+          'size': 60,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_predictions_errors_with_color
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'model': 'A',
+          'pred': 1.1,
+          'true': 1.0,
+        }),
+        dict({
+          'model': 'A',
+          'pred': 2.2,
+          'true': 2.0,
+        }),
+        dict({
+          'model': 'A',
+          'pred': 2.8,
+          'true': 3.0,
+        }),
+        dict({
+          'model': 'B',
+          'pred': 4.1,
+          'true': 4.0,
+        }),
+        dict({
+          'model': 'B',
+          'pred': 5.3,
+          'true': 5.0,
+        }),
+        dict({
+          'model': 'B',
+          'pred': 5.9,
+          'true': 6.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 0.9,
+          'y': 0.9,
+        }),
+        dict({
+          'x': 6.1,
+          'y': 6.1,
+        }),
+      ]),
+    }),
+    'height': 600,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'strokeDash': list([
+            5,
+            5,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'model',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'true',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'pred',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'model',
+              'type': 'nominal',
+            }),
+          ]),
+          'x': dict({
+            'field': 'true',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'title': 'true',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'pred',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'title': 'pred',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'filled': True,
+          'opacity': 0.7,
+          'size': 60,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_predictions_errors_with_shape
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'dataset': 'test',
+          'pred': 4.1,
+          'true': 4.0,
+        }),
+        dict({
+          'dataset': 'test',
+          'pred': 5.3,
+          'true': 5.0,
+        }),
+        dict({
+          'dataset': 'test',
+          'pred': 5.9,
+          'true': 6.0,
+        }),
+        dict({
+          'dataset': 'train',
+          'pred': 1.1,
+          'true': 1.0,
+        }),
+        dict({
+          'dataset': 'train',
+          'pred': 2.2,
+          'true': 2.0,
+        }),
+        dict({
+          'dataset': 'train',
+          'pred': 2.8,
+          'true': 3.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 0.9,
+          'y': 0.9,
+        }),
+        dict({
+          'x': 6.1,
+          'y': 6.1,
+        }),
+      ]),
+    }),
+    'height': 600,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'strokeDash': list([
+            5,
+            5,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'shape': dict({
+            'field': 'dataset',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'true',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'pred',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'dataset',
+              'type': 'nominal',
+            }),
+          ]),
+          'x': dict({
+            'field': 'true',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'title': 'true',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'pred',
+            'scale': dict({
+              'domain': list([
+                0.9,
+                6.1,
+              ]),
+            }),
+            'title': 'pred',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'steelblue',
+          'filled': True,
+          'opacity': 0.7,
+          'size': 60,
+          'type': 'point',
+        }),
+      }),
+    ]),
     'width': 600,
   })
 # ---
