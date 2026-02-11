@@ -31,9 +31,7 @@ chart = plot_grouped_histogram(
 )
 ```
 
-![Grouped Histogram](../test_plot_grouped_histogram_dict_input.svg)
-
-![Test](../../tests/__snapshots__/test_grouped_hist/test_plot_grouped_histogram_dict_input.svg)
+![Grouped Histogram](../img/test_plot_grouped_histogram_dict_input.svg)
 
 ## Reference
 

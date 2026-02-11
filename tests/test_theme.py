@@ -1,24 +1,17 @@
 import altair as alt
 import importlib
-import pytest
 
 import polars as pl
 
 
 def test_report_theme_registration(snapshot):
-    # Remove the theme if already registered (for test idempotency)
-    if "report_theme" in alt.theme.names():
-        alt.theme.enable("default")
-        alt.theme._names.remove("report_theme")
-
-    # Import the theme module (should register and enable the theme)
+    # Import the theme module (registers and enables the theme)
     importlib.import_module("plotutils.themes")
+    alt.theme.enable("report_theme")
 
     # Check that the theme is registered and enabled
-    assert "report_theme" in alt.theme.names(), (
-        "Theme 'report_theme' should be registered."
-    )
-    assert alt.theme.active == "report_theme", "Theme 'report_theme' should be active."
+    assert "report_theme" in alt.theme.names()
+    assert alt.theme.active == "report_theme"
 
     # Check that the theme config is applied to a chart
     df = pl.DataFrame({"x": [1, 2], "y": [3, 4]})

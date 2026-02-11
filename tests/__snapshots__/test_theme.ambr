@@ -1,7 +1,23 @@
 # serializer version: 1
 # name: test_report_theme_registration
   dict({
+    'axis': dict({
+      'labelFontSize': 12,
+      'titleFontSize': 14,
+    }),
     'background': 'transparent',
+    'header': dict({
+      'labelFontSize': 13,
+      'titleFontSize': 14,
+    }),
+    'legend': dict({
+      'labelFontSize': 12,
+      'titleFontSize': 14,
+    }),
+    'title': dict({
+      'anchor': 'start',
+      'fontSize': 18,
+    }),
     'view': dict({
       'fill': 'transparent',
       'stroke': 'transparent',
