@@ -1,0 +1,19 @@
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "ruff"
+name = "Ruff"
+entry = "ruff"
+args = ["check", "--fix"]
+files = '\.py$'
+language = "python"
+
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v5.0.0" # Use the latest stable version
+hooks = [
+    { id = "end-of-file-fixer", exclude = '\.svg$' },
+    { id = "trailing-whitespace" },
+    { id = "check-added-large-files" },
+]
