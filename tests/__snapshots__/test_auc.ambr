@@ -1,0 +1,801 @@
+# serializer version: 1
+# name: test_plot_roc_curve_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'sensitivity': 0.0,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.1,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.2,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.2,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.30000000000000004,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.4,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.4,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.5,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.6000000000000001,
+          'specificity': 0.6666666666666666,
+        }),
+        dict({
+          'sensitivity': 0.6000000000000001,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.7000000000000001,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 0.7000000000000001,
+          'specificity': 0.6666666666666666,
+        }),
+        dict({
+          'sensitivity': 0.8,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 0.9,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.0,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.0,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.1111111111111111,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.2222222222222222,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.3333333333333333,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.4444444444444444,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.5555555555555556,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 0.0,
+          'y': 1.0,
+        }),
+        dict({
+          'x': 1.0,
+          'y': 0.0,
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'opacity': 0.6,
+          'strokeDash': list([
+            4,
+            4,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'sensitivity',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'specificity',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'sensitivity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'title': 'Sensitivity',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'specificity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'title': 'Specificity',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'steelblue',
+          'type': 'line',
+        }),
+      }),
+    ]),
+    'title': 'ROC curve  (AUC = 0.767)',
+    'width': 400,
+  })
+# ---
+# name: test_plot_roc_curve_custom_title
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'sensitivity': 0.0,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.1,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.2,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.2,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.30000000000000004,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.4,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.4,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.5,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.6000000000000001,
+          'specificity': 0.6666666666666666,
+        }),
+        dict({
+          'sensitivity': 0.6000000000000001,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.7000000000000001,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 0.7000000000000001,
+          'specificity': 0.6666666666666666,
+        }),
+        dict({
+          'sensitivity': 0.8,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 0.9,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.0,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.0,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.1111111111111111,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.2222222222222222,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.3333333333333333,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.4444444444444444,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.5555555555555556,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 0.0,
+          'y': 1.0,
+        }),
+        dict({
+          'x': 1.0,
+          'y': 0.0,
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'opacity': 0.6,
+          'strokeDash': list([
+            4,
+            4,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'sensitivity',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'specificity',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'sensitivity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'title': 'Sensitivity',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'specificity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'title': 'Specificity',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'steelblue',
+          'type': 'line',
+        }),
+      }),
+    ]),
+    'title': 'My custom title',
+    'width': 400,
+  })
+# ---
+# name: test_plot_roc_curve_with_levels
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'level': '0.556',
+          'sensitivity': 1.0,
+          'specificity': 0.5555555555555556,
+          'target': '0.50',
+          'threshold': 0.28,
+        }),
+        dict({
+          'level': '0.778',
+          'sensitivity': 0.6000000000000001,
+          'specificity': 0.7777777777777777,
+          'target': '0.75',
+          'threshold': 0.6,
+        }),
+        dict({
+          'level': '1.000',
+          'sensitivity': 0.2,
+          'specificity': 1.0,
+          'target': '0.90',
+          'threshold': 0.88,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'level': '0.556',
+          'seg': 'h2',
+          'target': '0.50',
+          'threshold': 0.28,
+          'x': 0.0,
+          'y': 0.5555555555555556,
+        }),
+        dict({
+          'level': '0.556',
+          'seg': 'h2',
+          'target': '0.50',
+          'threshold': 0.28,
+          'x': 1.0,
+          'y': 0.5555555555555556,
+        }),
+        dict({
+          'level': '0.556',
+          'seg': 'v2',
+          'target': '0.50',
+          'threshold': 0.28,
+          'x': 1.0,
+          'y': 0.0,
+        }),
+        dict({
+          'level': '0.556',
+          'seg': 'v2',
+          'target': '0.50',
+          'threshold': 0.28,
+          'x': 1.0,
+          'y': 0.5555555555555556,
+        }),
+        dict({
+          'level': '0.778',
+          'seg': 'h1',
+          'target': '0.75',
+          'threshold': 0.6,
+          'x': 0.0,
+          'y': 0.7777777777777777,
+        }),
+        dict({
+          'level': '0.778',
+          'seg': 'h1',
+          'target': '0.75',
+          'threshold': 0.6,
+          'x': 0.6000000000000001,
+          'y': 0.7777777777777777,
+        }),
+        dict({
+          'level': '0.778',
+          'seg': 'v1',
+          'target': '0.75',
+          'threshold': 0.6,
+          'x': 0.6000000000000001,
+          'y': 0.0,
+        }),
+        dict({
+          'level': '0.778',
+          'seg': 'v1',
+          'target': '0.75',
+          'threshold': 0.6,
+          'x': 0.6000000000000001,
+          'y': 0.7777777777777777,
+        }),
+        dict({
+          'level': '1.000',
+          'seg': 'h0',
+          'target': '0.90',
+          'threshold': 0.88,
+          'x': 0.0,
+          'y': 1.0,
+        }),
+        dict({
+          'level': '1.000',
+          'seg': 'h0',
+          'target': '0.90',
+          'threshold': 0.88,
+          'x': 0.2,
+          'y': 1.0,
+        }),
+        dict({
+          'level': '1.000',
+          'seg': 'v0',
+          'target': '0.90',
+          'threshold': 0.88,
+          'x': 0.2,
+          'y': 0.0,
+        }),
+        dict({
+          'level': '1.000',
+          'seg': 'v0',
+          'target': '0.90',
+          'threshold': 0.88,
+          'x': 0.2,
+          'y': 1.0,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'sensitivity': 0.0,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.1,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.2,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.2,
+          'specificity': 1.0,
+        }),
+        dict({
+          'sensitivity': 0.30000000000000004,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.4,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.4,
+          'specificity': 0.8888888888888888,
+        }),
+        dict({
+          'sensitivity': 0.5,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.6000000000000001,
+          'specificity': 0.6666666666666666,
+        }),
+        dict({
+          'sensitivity': 0.6000000000000001,
+          'specificity': 0.7777777777777777,
+        }),
+        dict({
+          'sensitivity': 0.7000000000000001,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 0.7000000000000001,
+          'specificity': 0.6666666666666666,
+        }),
+        dict({
+          'sensitivity': 0.8,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 0.9,
+          'specificity': 0.5555555555555556,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.0,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.0,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.1111111111111111,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.2222222222222222,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.3333333333333333,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.4444444444444444,
+        }),
+        dict({
+          'sensitivity': 1.0,
+          'specificity': 0.5555555555555556,
+        }),
+      ]),
+      'data-normalized-3': list([
+        dict({
+          'x': 0.0,
+          'y': 1.0,
+        }),
+        dict({
+          'x': 1.0,
+          'y': 0.0,
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-3',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'gray',
+          'opacity': 0.6,
+          'strokeDash': list([
+            4,
+            4,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-2',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'sensitivity',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'specificity',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'sensitivity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'title': 'Sensitivity',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'specificity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'title': 'Specificity',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': 'steelblue',
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'level',
+            'title': 'Specificity',
+            'type': 'nominal',
+          }),
+          'detail': dict({
+            'field': 'seg',
+            'type': 'nominal',
+          }),
+          'x': dict({
+            'field': 'x',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'y',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'strokeDash': list([
+            5,
+            3,
+          ]),
+          'type': 'line',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'level',
+            'title': 'Specificity',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'target',
+              'title': 'Target specificity',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'level',
+              'title': 'Actual specificity',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'sensitivity',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'threshold',
+              'format': '.4g',
+              'title': 'Cutoff',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'sensitivity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'specificity',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'filled': True,
+          'size': 80,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'title': 'ROC curve  (AUC = 0.767)',
+    'width': 400,
+  })
+# ---

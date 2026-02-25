@@ -11,8 +11,12 @@ dependencies = [
 ]
 
 [dependency-groups]
+demos = [
+    "numpy>=2.0",
+]
 dev = [
     "coverage>=7.13.0",
+    "scikit-learn>=1.6",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.7.1",
     "mkdocstrings[python]>=1.0.1",
