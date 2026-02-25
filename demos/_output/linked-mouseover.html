@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@6.1.0"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@7"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "hconcat": [{"data": {"name": "data-61c4964d993c171542ac4ec75cf84a50"}, "mark": {"type": "circle", "size": 120}, "encoding": {"color": {"condition": {"param": "param_a330cbc1f1616b5a", "field": "category", "type": "nominal"}, "value": "lightgray"}, "tooltip": [{"field": "category", "type": "nominal"}, {"field": "value", "format": ".2f", "type": "quantitative"}], "x": {"field": "category", "title": "Category", "type": "nominal"}, "y": {"field": "value", "scale": {"zero": false}, "title": "Mean value", "type": "quantitative"}}, "height": 300, "name": "view_98f2dbc8a09fa157_0", "title": "Hover a category", "width": 250}, {"data": {"name": "data-b1b2c57dd5773b0c8f1a8986b3583c89"}, "mark": {"type": "line", "point": true}, "encoding": {"color": {"field": "category", "type": "nominal"}, "tooltip": [{"field": "category", "type": "nominal"}, {"field": "date", "type": "temporal"}, {"field": "value", "format": ".2f", "type": "quantitative"}], "x": {"field": "date", "title": "Date", "type": "temporal"}, "y": {"field": "value", "title": "Value", "type": "quantitative"}}, "height": 300, "title": "Time series (hovered category)", "transform": [{"filter": {"param": "param_a330cbc1f1616b5a"}}], "width": 400}], "params": [{"name": "param_a330cbc1f1616b5a", "select": {"type": "point", "fields": ["category"], "on": "mouseover"}, "views": ["view_98f2dbc8a09fa157_0"]}], "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-61c4964d993c171542ac4ec75cf84a50": [{"category": "Beta", "value": 10.31052532653215}, {"category": "Alpha", "value": -0.4246307934417341}, {"category": "Gamma", "value": 20.778753583583192}, {"category": "Delta", "value": 30.288866606348833}], "data-b1b2c57dd5773b0c8f1a8986b3583c89": [{"category": "Alpha", "date": "2024-01-01T00:00:00", "value": 0.914151239263294}, {"category": "Alpha", "date": "2024-02-01T00:00:00", "value": -3.1199523187214866}, {"category": "Alpha", "date": "2024-03-01T00:00:00", "value": 2.2513535874193717}, {"category": "Alpha", "date": "2024-04-01T00:00:00", "value": 2.8216941491736414}, {"category": "Alpha", "date": "2024-05-01T00:00:00", "value": -5.853105565961509}, {"category": "Alpha", "date": "2024-06-01T00:00:00", "value": -3.9065385205869543}, {"category": "Alpha", "date": "2024-07-01T00:00:00", "value": 0.3835212095018561}, {"category": "Alpha", "date": "2024-08-01T00:00:00", "value": -0.9487277770307466}, {"category": "Alpha", "date": "2024-09-01T00:00:00", "value": -0.050403472512866386}, {"category": "Alpha", "date": "2024-10-01T00:00:00", "value": -2.55913178272074}, {"category": "Alpha", "date": "2024-11-01T00:00:00", "value": 2.6381939245884856}, {"category": "Alpha", "date": "2024-12-01T00:00:00", "value": 2.333375806286845}, {"category": "Beta", "date": "2024-01-01T00:00:00", "value": 10.198092092683648}, {"category": "Beta", "date": "2024-02-01T00:00:00", "value": 13.381723620904099}, {"category": "Beta", "date": "2024-03-01T00:00:00", "value": 11.402528026756137}, {"category": "Beta", "date": "2024-04-01T00:00:00", "value": 7.422122611350286}, {"category": "Beta", "date": "2024-05-01T00:00:00", "value": 11.106252352247497}, {"category": "Beta", "date": "2024-06-01T00:00:00", "value": 7.123352197513004}, {"category": "Beta", "date": "2024-07-01T00:00:00", "value": 12.635350903921818}, {"category": "Beta", "date": "2024-08-01T00:00:00", "value": 9.850222267041241}, {"category": "Beta", "date": "2024-09-01T00:00:00", "value": 9.445412909364219}, {"category": "Beta", "date": "2024-10-01T00:00:00", "value": 7.957211366788176}, {"category": "Beta", "date": "2024-11-01T00:00:00", "value": 13.66762401602209}, {"category": "Beta", "date": "2024-12-01T00:00:00", "value": 9.536411553793593}, {"category": "Gamma", "date": "2024-01-01T00:00:00", "value": 18.715016533510678}, {"category": "Gamma", "date": "2024-02-01T00:00:00", "value": 18.94359934853531}, {"category": "Gamma", "date": "2024-03-01T00:00:00", "value": 21.596927556660045}, {"category": "Gamma", "date": "2024-04-01T00:00:00", "value": 21.096332193092234}, {"category": "Gamma", "date": "2024-05-01T00:00:00", "value": 21.238197834787965}, {"category": "Gamma", "date": "2024-06-01T00:00:00", "value": 21.29246300902365}, {"category": "Gamma", "date": "2024-07-01T00:00:00", "value": 26.424942802611383}, {"category": "Gamma", "date": "2024-08-01T00:00:00", "value": 18.780754950846152}, {"category": "Gamma", "date": "2024-09-01T00:00:00", "value": 18.463271812785386}, {"category": "Gamma", "date": "2024-10-01T00:00:00", "value": 17.558681815256367}, {"category": "Gamma", "date": "2024-11-01T00:00:00", "value": 21.847938267726487}, {"category": "Gamma", "date": "2024-12-01T00:00:00", "value": 23.386916878162676}, {"category": "Delta", "date": "2024-01-01T00:00:00", "value": 29.658157627035376}, {"category": "Delta", "date": "2024-02-01T00:00:00", "value": 27.479530569112416}, {"category": "Delta", "date": "2024-03-01T00:00:00", "value": 27.52655635292628}, {"category": "Delta", "date": "2024-04-01T00:00:00", "value": 31.951778363474105}, {"category": "Delta", "date": "2024-05-01T00:00:00", "value": 32.229762513610325}, {"category": "Delta", "date": "2024-06-01T00:00:00", "value": 31.629462804915583}, {"category": "Delta", "date": "2024-07-01T00:00:00", "value": 28.003470878133918}, {"category": "Delta", "date": "2024-08-01T00:00:00", "value": 30.69648396920016}, {"category": "Delta", "date": "2024-09-01T00:00:00", "value": 30.350057427422186}, {"category": "Delta", "date": "2024-10-01T00:00:00", "value": 30.65606579018704}, {"category": "Delta", "date": "2024-11-01T00:00:00", "value": 32.61428633384457}, {"category": "Delta", "date": "2024-12-01T00:00:00", "value": 30.670786646324046}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
