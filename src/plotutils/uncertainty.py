@@ -48,6 +48,42 @@ def _build_x_encodings(
     )
 
 
+def _build_identity_line(
+    val_min: float,
+    val_max: float,
+    color: str = "gray",
+    stroke_dash: list[int] | None = None,
+    scale: alt.Scale | None = None,
+) -> alt.Chart:
+    """Build a dashed y = x identity line between *val_min* and *val_max*.
+
+    Parameters
+    ----------
+    val_min, val_max : float
+        Endpoints of the identity line on both axes.
+    color : str
+        Stroke color of the line.
+    stroke_dash : list[int] or None
+        Dash pattern. Defaults to ``[5, 5]``.
+    scale : alt.Scale or None
+        Scale applied to both axes. When *None* the Altair default is used.
+
+    Returns
+    -------
+    alt.Chart
+        A single-layer line chart representing y = x.
+    """
+    if stroke_dash is None:
+        stroke_dash = [5, 5]
+    x_enc = alt.X("x:Q", scale=scale) if scale else alt.X("x:Q")
+    y_enc = alt.Y("y:Q", scale=scale) if scale else alt.Y("y:Q")
+    return (
+        alt.Chart(pl.DataFrame({"x": [val_min, val_max], "y": [val_min, val_max]}))
+        .mark_line(color=color, strokeDash=stroke_dash)
+        .encode(x=x_enc, y=y_enc)
+    )
+
+
 def plot_confidence_scatter(
     df: pl.DataFrame,
     x_col: str = "x",
@@ -142,13 +178,9 @@ def plot_confidence_scatter(
     if identity_line:
         y_min = float(df[y_col].min())  # type: ignore[arg-type]
         y_max = float(df[y_col].max())  # type: ignore[arg-type]
-
-        identity_layer = (
-            alt.Chart(pl.DataFrame({"x": [y_min, y_max], "y": [y_min, y_max]}))
-            .mark_line(color=identity_line_color, strokeDash=[5, 5])
-            .encode(x="x:Q", y="y:Q")
+        layers.insert(
+            0, _build_identity_line(y_min, y_max, color=identity_line_color, scale=_scale)
         )
-        layers.insert(0, identity_layer)
 
     chart = alt.layer(*layers).properties(width=width, height=height)
 
@@ -246,6 +278,136 @@ def plot_deviations(
         layers.append(level_lines)
 
     chart = alt.layer(*layers).properties(width=600, height=400)
+
+    if title:
+        chart = chart.properties(title=title)
+
+    return chart.configure_axis(
+        gridColor="gray", gridDash=[3, 3], gridOpacity=0.5
+    ).configure_view(strokeWidth=0)
+
+
+def plot_predictions_errors(
+    df: pl.DataFrame,
+    true_col: str = "true",
+    pred_col: str = "pred",
+    title: str = "",
+    width: int = 600,
+    height: int = 600,
+    x_title: str | None = None,
+    y_title: str | None = None,
+    point_color: str = "steelblue",
+    color_col: str | None = None,
+    shape_col: str | None = None,
+    identity_line_color: str = "gray",
+    point_size: int = 60,
+    point_opacity: float = 0.7,
+) -> alt.LayerChart:
+    """Create a prediction-vs-truth scatter plot with a y = x identity line.
+
+    Each point represents one observation. The x-axis shows the true
+    (ground-truth) value and the y-axis shows the predicted value. Both
+    axes share the same scale domain so the identity line is a true
+    diagonal. Points on the identity line represent perfect predictions.
+
+    Parameters
+    ----------
+    df : pl.DataFrame
+        Polars DataFrame with at least *true_col* and *pred_col* columns.
+    true_col : str
+        Column for true (ground-truth) values (x-axis).
+    pred_col : str
+        Column for predicted values (y-axis).
+    title : str
+        Plot title.
+    width, height : int
+        Chart dimensions. Default 600x600 (square) to reinforce equal
+        axis scaling.
+    x_title, y_title : str or None
+        Axis titles (defaults to column names).
+    point_color : str
+        Fixed color for all points. Ignored when *color_col* is set.
+    color_col : str or None
+        Column mapped to point color (nominal). When set, *point_color*
+        is ignored and Altair picks a categorical palette automatically.
+    shape_col : str or None
+        Column mapped to point shape (nominal). When set, each unique
+        value gets a distinct marker shape.
+    identity_line_color : str
+        Color of the y = x dashed identity line.
+    point_size : int
+        Size (area) of the scatter points.
+    point_opacity : float
+        Opacity of the scatter points (0.0 -- 1.0).
+
+    Returns
+    -------
+    alt.LayerChart
+        Altair layered chart with scatter points and identity line.
+    """
+    alt.data_transformers.disable_max_rows()
+
+    x_title = x_title or true_col
+    y_title = y_title or pred_col
+
+    # Sort for deterministic SVG rendering
+    sort_cols = [true_col, pred_col]
+    if color_col is not None:
+        sort_cols.append(color_col)
+    if shape_col is not None and shape_col not in sort_cols:
+        sort_cols.append(shape_col)
+    df = df.sort(*sort_cols)
+
+    # Shared scale: same domain for both axes, with 2% padding for visibility
+    raw_min = float(
+        min(df[true_col].min(), df[pred_col].min())  # type: ignore[arg-type]
+    )
+    raw_max = float(
+        max(df[true_col].max(), df[pred_col].max())  # type: ignore[arg-type]
+    )
+    pad = (raw_max - raw_min) * 0.02
+    global_min = raw_min - pad
+    global_max = raw_max + pad
+    shared_scale = alt.Scale(domain=[global_min, global_max])
+
+    # Encodings
+    x_enc = alt.X(f"{true_col}:Q", title=x_title, scale=shared_scale)
+    y_enc = alt.Y(f"{pred_col}:Q", title=y_title, scale=shared_scale)
+
+    encode_kwargs: dict = {"x": x_enc, "y": y_enc}
+
+    if color_col is not None:
+        encode_kwargs["color"] = alt.Color(f"{color_col}:N")
+
+    if shape_col is not None:
+        encode_kwargs["shape"] = alt.Shape(f"{shape_col}:N")
+
+    tooltip_cols = [f"{true_col}:Q", f"{pred_col}:Q"]
+    if color_col is not None:
+        tooltip_cols.append(f"{color_col}:N")
+    if shape_col is not None and shape_col != color_col:
+        tooltip_cols.append(f"{shape_col}:N")
+    encode_kwargs["tooltip"] = tooltip_cols
+
+    # Build scatter layer
+    mark_kwargs: dict = {
+        "filled": True,
+        "size": point_size,
+        "opacity": point_opacity,
+    }
+    if color_col is None:
+        mark_kwargs["color"] = point_color
+
+    points = alt.Chart(df).mark_point(**mark_kwargs).encode(**encode_kwargs)
+
+    # Identity line (always shown, behind points)
+    identity_layer = _build_identity_line(
+        global_min, global_max, color=identity_line_color, scale=shared_scale
+    )
+
+    layers: list[alt.Chart | alt.LayerChart] = [identity_layer, points]
+
+    chart = alt.layer(*layers).properties(width=width, height=height)
 
     if title:
         chart = chart.properties(title=title)

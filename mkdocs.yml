@@ -2,18 +2,19 @@ docs_dir: "docs"
 site_dir: _site
 site_name: Altair Plot Utils
 nav:
-  - Home: index.md
-  - Plots:
-      - Grouped Histogram: plots/grouped_histogram.md
-      - Error Bars: plots/error_bars.md
-      - ROC Curve & AUC: plots/auc.md
-  - Dev:
-      - Altair & Polars: dev/altair_polars_onboarding.md
-      - Tooling: dev/tooling_onboarding.md
+      - Home: index.md
+      - Plots:
+              - Grouped Histogram: plots/grouped_histogram.md
+              - Concatenation: plots/concat.md
+              - Error Bars: plots/error_bars.md
+              - ROC Curve & AUC: plots/auc.md
+      - Dev:
+              - Altair & Polars: dev/altair_polars_onboarding.md
+              - Tooling: dev/tooling_onboarding.md
 theme:
-  name: material
-  palette:
-    primary: light blue
+      name: material
+      palette:
+            primary: light blue
 plugins:
-  - search
-  - mkdocstrings
+      - search
+      - mkdocstrings

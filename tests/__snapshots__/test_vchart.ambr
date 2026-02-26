@@ -1,0 +1,3056 @@
+# serializer version: 1
+# name: test_hchart_predictions_errors_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 49.14,
+          'y': 49.14,
+        }),
+        dict({
+          'x': 93.86,
+          'y': 93.86,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'x': 0.9,
+          'y': 0.9,
+        }),
+        dict({
+          'x': 6.1,
+          'y': 6.1,
+        }),
+      ]),
+      'data-normalized-3': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+    }),
+    'hconcat': list([
+      dict({
+        'height': 600,
+        'layer': list([
+          dict({
+            'data': dict({
+              'name': 'data-normalized-2',
+            }),
+            'encoding': dict({
+              'x': dict({
+                'field': 'x',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'y',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'gray',
+              'strokeDash': list([
+                5,
+                5,
+              ]),
+              'type': 'line',
+            }),
+          }),
+          dict({
+            'data': dict({
+              'name': 'data-normalized-3',
+            }),
+            'encoding': dict({
+              'tooltip': list([
+                dict({
+                  'field': 'true',
+                  'type': 'quantitative',
+                }),
+                dict({
+                  'field': 'pred',
+                  'type': 'quantitative',
+                }),
+              ]),
+              'x': dict({
+                'field': 'true',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'title': 'true',
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'pred',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'title': 'pred',
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'steelblue',
+              'filled': True,
+              'opacity': 0.7,
+              'size': 60,
+              'type': 'point',
+            }),
+          }),
+        ]),
+        'title': list([
+          'train',
+        ]),
+        'width': 600,
+      }),
+      dict({
+        'height': 600,
+        'layer': list([
+          dict({
+            'data': dict({
+              'name': 'data-normalized-1',
+            }),
+            'encoding': dict({
+              'x': dict({
+                'field': 'x',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'y',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'gray',
+              'strokeDash': list([
+                5,
+                5,
+              ]),
+              'type': 'line',
+            }),
+          }),
+          dict({
+            'data': dict({
+              'name': 'data-normalized-0',
+            }),
+            'encoding': dict({
+              'tooltip': list([
+                dict({
+                  'field': 'true',
+                  'type': 'quantitative',
+                }),
+                dict({
+                  'field': 'pred',
+                  'type': 'quantitative',
+                }),
+              ]),
+              'x': dict({
+                'field': 'true',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'title': 'true',
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'pred',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'title': 'pred',
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'steelblue',
+              'filled': True,
+              'opacity': 0.7,
+              'size': 60,
+              'type': 'point',
+            }),
+          }),
+        ]),
+        'title': list([
+          'test',
+        ]),
+        'width': 600,
+      }),
+    ]),
+  })
+# ---
+# name: test_hchart_predictions_errors_three_splits
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'background': 'transparent',
+      'header': dict({
+        'labelFontSize': 13,
+        'titleFontSize': 14,
+      }),
+      'legend': dict({
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'title': dict({
+        'anchor': 'start',
+        'fontSize': 18,
+      }),
+      'view': dict({
+        'fill': 'transparent',
+        'stroke': 'transparent',
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'x': 49.4,
+          'y': 49.4,
+        }),
+        dict({
+          'x': 80.6,
+          'y': 80.6,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'pred': 78.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'x': 0.94,
+          'y': 0.94,
+        }),
+        dict({
+          'x': 4.06,
+          'y': 4.06,
+        }),
+      ]),
+      'data-normalized-3': list([
+        dict({
+          'pred': 11.0,
+          'split': 'val',
+          'true': 10.0,
+        }),
+        dict({
+          'pred': 19.0,
+          'split': 'val',
+          'true': 20.0,
+        }),
+        dict({
+          'pred': 31.0,
+          'split': 'val',
+          'true': 30.0,
+        }),
+        dict({
+          'pred': 39.0,
+          'split': 'val',
+          'true': 40.0,
+        }),
+      ]),
+      'data-normalized-4': list([
+        dict({
+          'x': 9.4,
+          'y': 9.4,
+        }),
+        dict({
+          'x': 40.6,
+          'y': 40.6,
+        }),
+      ]),
+      'data-normalized-5': list([
+        dict({
+          'pred': 1.2,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'pred': 1.8,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'pred': 3.2,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'pred': 3.9,
+          'split': 'train',
+          'true': 4.0,
+        }),
+      ]),
+    }),
+    'hconcat': list([
+      dict({
+        'height': 300,
+        'layer': list([
+          dict({
+            'data': dict({
+              'name': 'data-normalized-2',
+            }),
+            'encoding': dict({
+              'x': dict({
+                'field': 'x',
+                'scale': dict({
+                  'domain': list([
+                    0.94,
+                    4.06,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'y',
+                'scale': dict({
+                  'domain': list([
+                    0.94,
+                    4.06,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'gray',
+              'strokeDash': list([
+                5,
+                5,
+              ]),
+              'type': 'line',
+            }),
+          }),
+          dict({
+            'data': dict({
+              'name': 'data-normalized-5',
+            }),
+            'encoding': dict({
+              'tooltip': list([
+                dict({
+                  'field': 'true',
+                  'type': 'quantitative',
+                }),
+                dict({
+                  'field': 'pred',
+                  'type': 'quantitative',
+                }),
+              ]),
+              'x': dict({
+                'field': 'true',
+                'scale': dict({
+                  'domain': list([
+                    0.94,
+                    4.06,
+                  ]),
+                }),
+                'title': 'true',
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'pred',
+                'scale': dict({
+                  'domain': list([
+                    0.94,
+                    4.06,
+                  ]),
+                }),
+                'title': 'pred',
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'steelblue',
+              'filled': True,
+              'opacity': 0.7,
+              'size': 60,
+              'type': 'point',
+            }),
+          }),
+        ]),
+        'title': list([
+          'train',
+        ]),
+        'width': 300,
+      }),
+      dict({
+        'height': 300,
+        'layer': list([
+          dict({
+            'data': dict({
+              'name': 'data-normalized-4',
+            }),
+            'encoding': dict({
+              'x': dict({
+                'field': 'x',
+                'scale': dict({
+                  'domain': list([
+                    9.4,
+                    40.6,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'y',
+                'scale': dict({
+                  'domain': list([
+                    9.4,
+                    40.6,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'gray',
+              'strokeDash': list([
+                5,
+                5,
+              ]),
+              'type': 'line',
+            }),
+          }),
+          dict({
+            'data': dict({
+              'name': 'data-normalized-3',
+            }),
+            'encoding': dict({
+              'tooltip': list([
+                dict({
+                  'field': 'true',
+                  'type': 'quantitative',
+                }),
+                dict({
+                  'field': 'pred',
+                  'type': 'quantitative',
+                }),
+              ]),
+              'x': dict({
+                'field': 'true',
+                'scale': dict({
+                  'domain': list([
+                    9.4,
+                    40.6,
+                  ]),
+                }),
+                'title': 'true',
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'pred',
+                'scale': dict({
+                  'domain': list([
+                    9.4,
+                    40.6,
+                  ]),
+                }),
+                'title': 'pred',
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'steelblue',
+              'filled': True,
+              'opacity': 0.7,
+              'size': 60,
+              'type': 'point',
+            }),
+          }),
+        ]),
+        'title': list([
+          'val',
+        ]),
+        'width': 300,
+      }),
+      dict({
+        'height': 300,
+        'layer': list([
+          dict({
+            'data': dict({
+              'name': 'data-normalized-0',
+            }),
+            'encoding': dict({
+              'x': dict({
+                'field': 'x',
+                'scale': dict({
+                  'domain': list([
+                    49.4,
+                    80.6,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'y',
+                'scale': dict({
+                  'domain': list([
+                    49.4,
+                    80.6,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'gray',
+              'strokeDash': list([
+                5,
+                5,
+              ]),
+              'type': 'line',
+            }),
+          }),
+          dict({
+            'data': dict({
+              'name': 'data-normalized-1',
+            }),
+            'encoding': dict({
+              'tooltip': list([
+                dict({
+                  'field': 'true',
+                  'type': 'quantitative',
+                }),
+                dict({
+                  'field': 'pred',
+                  'type': 'quantitative',
+                }),
+              ]),
+              'x': dict({
+                'field': 'true',
+                'scale': dict({
+                  'domain': list([
+                    49.4,
+                    80.6,
+                  ]),
+                }),
+                'title': 'true',
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'pred',
+                'scale': dict({
+                  'domain': list([
+                    49.4,
+                    80.6,
+                  ]),
+                }),
+                'title': 'pred',
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'steelblue',
+              'filled': True,
+              'opacity': 0.7,
+              'size': 60,
+              'type': 'point',
+            }),
+          }),
+        ]),
+        'title': list([
+          'test',
+        ]),
+        'width': 300,
+      }),
+    ]),
+  })
+# ---
+# name: test_hchart_with_row_facet
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'background': 'transparent',
+      'header': dict({
+        'labelFontSize': 13,
+        'titleFontSize': 14,
+      }),
+      'legend': dict({
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'title': dict({
+        'anchor': 'start',
+        'fontSize': 18,
+      }),
+      'view': dict({
+        'fill': 'transparent',
+        'stroke': 'transparent',
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 49.14,
+          'y': 49.14,
+        }),
+        dict({
+          'x': 93.86,
+          'y': 93.86,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'x': 0.9,
+          'y': 0.9,
+        }),
+        dict({
+          'x': 6.1,
+          'y': 6.1,
+        }),
+      ]),
+      'data-normalized-3': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+      'data-normalized-4': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-5': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+    }),
+    'hconcat': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-5',
+        }),
+        'facet': dict({
+          'row': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+        }),
+        'spec': dict({
+          'height': 600,
+          'layer': list([
+            dict({
+              'data': dict({
+                'name': 'data-normalized-2',
+              }),
+              'encoding': dict({
+                'x': dict({
+                  'field': 'x',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'y',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'color': 'gray',
+                'strokeDash': list([
+                  5,
+                  5,
+                ]),
+                'type': 'line',
+              }),
+            }),
+            dict({
+              'data': dict({
+                'name': 'data-normalized-3',
+              }),
+              'encoding': dict({
+                'color': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'shape': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'tooltip': list([
+                  dict({
+                    'field': 'true',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'pred',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'model',
+                    'type': 'nominal',
+                  }),
+                ]),
+                'x': dict({
+                  'field': 'true',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'title': 'true',
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'pred',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'title': 'pred',
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'filled': True,
+                'opacity': 0.7,
+                'size': 60,
+                'type': 'point',
+              }),
+            }),
+          ]),
+          'title': list([
+            'train',
+          ]),
+          'width': 600,
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-4',
+        }),
+        'facet': dict({
+          'row': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+        }),
+        'spec': dict({
+          'height': 600,
+          'layer': list([
+            dict({
+              'data': dict({
+                'name': 'data-normalized-1',
+              }),
+              'encoding': dict({
+                'x': dict({
+                  'field': 'x',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'y',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'color': 'gray',
+                'strokeDash': list([
+                  5,
+                  5,
+                ]),
+                'type': 'line',
+              }),
+            }),
+            dict({
+              'data': dict({
+                'name': 'data-normalized-0',
+              }),
+              'encoding': dict({
+                'color': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'shape': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'tooltip': list([
+                  dict({
+                    'field': 'true',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'pred',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'model',
+                    'type': 'nominal',
+                  }),
+                ]),
+                'x': dict({
+                  'field': 'true',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'title': 'true',
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'pred',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'title': 'pred',
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'filled': True,
+                'opacity': 0.7,
+                'size': 60,
+                'type': 'point',
+              }),
+            }),
+          ]),
+          'title': list([
+            'test',
+          ]),
+          'width': 600,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_hchart_with_row_facet_color_only
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 49.14,
+          'y': 49.14,
+        }),
+        dict({
+          'x': 93.86,
+          'y': 93.86,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'x': 0.9,
+          'y': 0.9,
+        }),
+        dict({
+          'x': 6.1,
+          'y': 6.1,
+        }),
+      ]),
+      'data-normalized-3': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+      'data-normalized-4': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-5': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+    }),
+    'hconcat': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-5',
+        }),
+        'facet': dict({
+          'row': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+        }),
+        'spec': dict({
+          'height': 600,
+          'layer': list([
+            dict({
+              'data': dict({
+                'name': 'data-normalized-2',
+              }),
+              'encoding': dict({
+                'x': dict({
+                  'field': 'x',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'y',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'color': 'gray',
+                'strokeDash': list([
+                  5,
+                  5,
+                ]),
+                'type': 'line',
+              }),
+            }),
+            dict({
+              'data': dict({
+                'name': 'data-normalized-3',
+              }),
+              'encoding': dict({
+                'color': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'tooltip': list([
+                  dict({
+                    'field': 'true',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'pred',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'model',
+                    'type': 'nominal',
+                  }),
+                ]),
+                'x': dict({
+                  'field': 'true',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'title': 'true',
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'pred',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'title': 'pred',
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'filled': True,
+                'opacity': 0.7,
+                'size': 60,
+                'type': 'point',
+              }),
+            }),
+          ]),
+          'title': list([
+            'train',
+          ]),
+          'width': 600,
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-4',
+        }),
+        'facet': dict({
+          'row': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+        }),
+        'spec': dict({
+          'height': 600,
+          'layer': list([
+            dict({
+              'data': dict({
+                'name': 'data-normalized-1',
+              }),
+              'encoding': dict({
+                'x': dict({
+                  'field': 'x',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'y',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'color': 'gray',
+                'strokeDash': list([
+                  5,
+                  5,
+                ]),
+                'type': 'line',
+              }),
+            }),
+            dict({
+              'data': dict({
+                'name': 'data-normalized-0',
+              }),
+              'encoding': dict({
+                'color': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'tooltip': list([
+                  dict({
+                    'field': 'true',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'pred',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'model',
+                    'type': 'nominal',
+                  }),
+                ]),
+                'x': dict({
+                  'field': 'true',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'title': 'true',
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'pred',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'title': 'pred',
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'filled': True,
+                'opacity': 0.7,
+                'size': 60,
+                'type': 'point',
+              }),
+            }),
+          ]),
+          'title': list([
+            'test',
+          ]),
+          'width': 600,
+        }),
+      }),
+    ]),
+  })
+# ---
+# name: test_vchart_predictions_errors_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 49.14,
+          'y': 49.14,
+        }),
+        dict({
+          'x': 93.86,
+          'y': 93.86,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'x': 0.9,
+          'y': 0.9,
+        }),
+        dict({
+          'x': 6.1,
+          'y': 6.1,
+        }),
+      ]),
+      'data-normalized-3': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+    }),
+    'vconcat': list([
+      dict({
+        'height': 600,
+        'layer': list([
+          dict({
+            'data': dict({
+              'name': 'data-normalized-2',
+            }),
+            'encoding': dict({
+              'x': dict({
+                'field': 'x',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'y',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'gray',
+              'strokeDash': list([
+                5,
+                5,
+              ]),
+              'type': 'line',
+            }),
+          }),
+          dict({
+            'data': dict({
+              'name': 'data-normalized-3',
+            }),
+            'encoding': dict({
+              'tooltip': list([
+                dict({
+                  'field': 'true',
+                  'type': 'quantitative',
+                }),
+                dict({
+                  'field': 'pred',
+                  'type': 'quantitative',
+                }),
+              ]),
+              'x': dict({
+                'field': 'true',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'title': 'true',
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'pred',
+                'scale': dict({
+                  'domain': list([
+                    0.9,
+                    6.1,
+                  ]),
+                }),
+                'title': 'pred',
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'steelblue',
+              'filled': True,
+              'opacity': 0.7,
+              'size': 60,
+              'type': 'point',
+            }),
+          }),
+        ]),
+        'title': list([
+          'train',
+        ]),
+        'width': 600,
+      }),
+      dict({
+        'height': 600,
+        'layer': list([
+          dict({
+            'data': dict({
+              'name': 'data-normalized-1',
+            }),
+            'encoding': dict({
+              'x': dict({
+                'field': 'x',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'y',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'gray',
+              'strokeDash': list([
+                5,
+                5,
+              ]),
+              'type': 'line',
+            }),
+          }),
+          dict({
+            'data': dict({
+              'name': 'data-normalized-0',
+            }),
+            'encoding': dict({
+              'tooltip': list([
+                dict({
+                  'field': 'true',
+                  'type': 'quantitative',
+                }),
+                dict({
+                  'field': 'pred',
+                  'type': 'quantitative',
+                }),
+              ]),
+              'x': dict({
+                'field': 'true',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'title': 'true',
+                'type': 'quantitative',
+              }),
+              'y': dict({
+                'field': 'pred',
+                'scale': dict({
+                  'domain': list([
+                    49.14,
+                    93.86,
+                  ]),
+                }),
+                'title': 'pred',
+                'type': 'quantitative',
+              }),
+            }),
+            'mark': dict({
+              'color': 'steelblue',
+              'filled': True,
+              'opacity': 0.7,
+              'size': 60,
+              'type': 'point',
+            }),
+          }),
+        ]),
+        'title': list([
+          'test',
+        ]),
+        'width': 600,
+      }),
+    ]),
+  })
+# ---
+# name: test_vchart_with_column_facet
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'background': 'transparent',
+      'header': dict({
+        'labelFontSize': 13,
+        'titleFontSize': 14,
+      }),
+      'legend': dict({
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'title': dict({
+        'anchor': 'start',
+        'fontSize': 18,
+      }),
+      'view': dict({
+        'fill': 'transparent',
+        'stroke': 'transparent',
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          'x': 49.14,
+          'y': 49.14,
+        }),
+        dict({
+          'x': 93.86,
+          'y': 93.86,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'x': 0.9,
+          'y': 0.9,
+        }),
+        dict({
+          'x': 6.1,
+          'y': 6.1,
+        }),
+      ]),
+      'data-normalized-3': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+      'data-normalized-4': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 52.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 58.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 72.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 73.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 82.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 91.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 50.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 55.0,
+          'split': 'test',
+          'true': 60.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 75.0,
+          'split': 'test',
+          'true': 70.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 70.0,
+          'split': 'test',
+          'true': 75.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 84.0,
+          'split': 'test',
+          'true': 80.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 93.0,
+          'split': 'test',
+          'true': 90.0,
+        }),
+      ]),
+      'data-normalized-5': list([
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 1.1,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.3,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'linear',
+          'pred': 2.8,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 4.2,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.1,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'A',
+          'model': 'tree',
+          'pred': 5.8,
+          'split': 'train',
+          'true': 6.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.4,
+          'split': 'train',
+          'true': 1.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 1.7,
+          'split': 'train',
+          'true': 2.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'linear',
+          'pred': 3.5,
+          'split': 'train',
+          'true': 3.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 3.6,
+          'split': 'train',
+          'true': 4.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.3,
+          'split': 'train',
+          'true': 5.0,
+        }),
+        dict({
+          'group': 'B',
+          'model': 'tree',
+          'pred': 5.5,
+          'split': 'train',
+          'true': 6.0,
+        }),
+      ]),
+    }),
+    'vconcat': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-5',
+        }),
+        'facet': dict({
+          'column': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+        }),
+        'spec': dict({
+          'height': 600,
+          'layer': list([
+            dict({
+              'data': dict({
+                'name': 'data-normalized-2',
+              }),
+              'encoding': dict({
+                'x': dict({
+                  'field': 'x',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'y',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'color': 'gray',
+                'strokeDash': list([
+                  5,
+                  5,
+                ]),
+                'type': 'line',
+              }),
+            }),
+            dict({
+              'data': dict({
+                'name': 'data-normalized-3',
+              }),
+              'encoding': dict({
+                'color': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'shape': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'tooltip': list([
+                  dict({
+                    'field': 'true',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'pred',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'model',
+                    'type': 'nominal',
+                  }),
+                ]),
+                'x': dict({
+                  'field': 'true',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'title': 'true',
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'pred',
+                  'scale': dict({
+                    'domain': list([
+                      0.9,
+                      6.1,
+                    ]),
+                  }),
+                  'title': 'pred',
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'filled': True,
+                'opacity': 0.7,
+                'size': 60,
+                'type': 'point',
+              }),
+            }),
+          ]),
+          'title': list([
+            'train',
+          ]),
+          'width': 600,
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-4',
+        }),
+        'facet': dict({
+          'column': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+        }),
+        'spec': dict({
+          'height': 600,
+          'layer': list([
+            dict({
+              'data': dict({
+                'name': 'data-normalized-1',
+              }),
+              'encoding': dict({
+                'x': dict({
+                  'field': 'x',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'y',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'color': 'gray',
+                'strokeDash': list([
+                  5,
+                  5,
+                ]),
+                'type': 'line',
+              }),
+            }),
+            dict({
+              'data': dict({
+                'name': 'data-normalized-0',
+              }),
+              'encoding': dict({
+                'color': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'shape': dict({
+                  'field': 'model',
+                  'type': 'nominal',
+                }),
+                'tooltip': list([
+                  dict({
+                    'field': 'true',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'pred',
+                    'type': 'quantitative',
+                  }),
+                  dict({
+                    'field': 'model',
+                    'type': 'nominal',
+                  }),
+                ]),
+                'x': dict({
+                  'field': 'true',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'title': 'true',
+                  'type': 'quantitative',
+                }),
+                'y': dict({
+                  'field': 'pred',
+                  'scale': dict({
+                    'domain': list([
+                      49.14,
+                      93.86,
+                    ]),
+                  }),
+                  'title': 'pred',
+                  'type': 'quantitative',
+                }),
+              }),
+              'mark': dict({
+                'filled': True,
+                'opacity': 0.7,
+                'size': 60,
+                'type': 'point',
+              }),
+            }),
+          ]),
+          'title': list([
+            'test',
+          ]),
+          'width': 600,
+        }),
+      }),
+    ]),
+  })
+# ---
