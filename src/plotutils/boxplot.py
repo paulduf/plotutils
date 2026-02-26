@@ -28,6 +28,7 @@ def plot_bivariate_boxes(
     x_title: str | None = None,
     color_title: str | None = None,
     id_col: str | None = None,
+    missing_score_df: pl.DataFrame | None = None,
 ) -> alt.Chart | alt.LayerChart:
     """Doubly-grouped boxplot: score vs two binary outcomes.
 
@@ -61,6 +62,11 @@ def plot_bivariate_boxes(
         Optional column name containing patient / sample identifiers.  When
         provided, a transparent point layer is added on top of the boxes so
         that hovering over an individual data point reveals its ID.
+    missing_score_df : pl.DataFrame or None
+        Optional DataFrame of patients with missing scores (containing
+        ``label_x_col``, ``label_y_col``, and optionally ``id_col``).  When
+        provided, these patients are shown as cross marks at a fixed position
+        below the main chart area with a separator rule.
 
     Returns
     -------
@@ -73,7 +79,23 @@ def plot_bivariate_boxes(
         pl.col(label_y_col).cast(pl.Utf8),
     )
 
-    chart: alt.Chart | alt.LayerChart = (
+    # Build all layers flat to avoid nested-layer issues in Vega-Lite.
+    layers: list = []
+
+    if missing_score_df is not None and len(missing_score_df) > 0:
+        score_min = float(df_plot[score_col].min())  # type: ignore[arg-type]
+        score_max = float(df_plot[score_col].max())  # type: ignore[arg-type]
+        score_range = score_max - score_min
+        sentinel_y = score_min - 0.15 * score_range
+        sep_y = score_min - 0.05 * score_range
+
+        layers.append(
+            alt.Chart(pl.DataFrame({"y_sep": [sep_y]}))
+            .mark_rule(color="#aaa", strokeDash=[3, 3], strokeWidth=0.8)
+            .encode(y=alt.Y("y_sep:Q"))
+        )
+
+    box_layer = (
         alt.Chart(df_plot)
         .mark_boxplot()
         .encode(
@@ -86,11 +108,11 @@ def plot_bivariate_boxes(
             y=alt.Y(f"{score_col}:Q", title=y_title or score_col),
             color=alt.Color(f"{label_y_col}:N", title=color_title or label_y_col),
         )
-        .properties(width=width, height=height)
     )
+    layers.append(box_layer)
 
     if id_col is not None:
-        id_layer = (
+        layers.append(
             alt.Chart(df_plot)
             .mark_point(opacity=0, size=300, filled=True)
             .encode(
@@ -105,7 +127,41 @@ def plot_bivariate_boxes(
                 ],
             )
         )
-        chart = alt.layer(chart, id_layer)
+
+    if missing_score_df is not None and len(missing_score_df) > 0:
+        df_miss = missing_score_df.with_columns(
+            pl.col(label_x_col).cast(pl.Utf8),
+            pl.col(label_y_col).cast(pl.Utf8),
+            pl.lit(sentinel_y).alias("_miss_y"),
+        )
+        miss_tooltip = [
+            alt.Tooltip(f"{label_x_col}:N"),
+            alt.Tooltip(f"{label_y_col}:N"),
+        ]
+        if id_col is not None:
+            miss_tooltip.insert(0, alt.Tooltip(f"{id_col}:N", title="ID"))
+
+        layers.append(
+            alt.Chart(df_miss)
+            .mark_point(shape="cross", size=30, opacity=0.7, strokeWidth=2)
+            .encode(
+                x=alt.X(
+                    f"{label_x_col}:N",
+                    title=x_title or label_x_col,
+                    axis=alt.Axis(labelAngle=0),
+                ),
+                xOffset=alt.XOffset(f"{label_y_col}:N"),
+                y=alt.Y("_miss_y:Q", title=y_title or score_col),
+                color=alt.Color(f"{label_y_col}:N", title=color_title or label_y_col),
+                tooltip=miss_tooltip,
+            )
+        )
+
+    chart: alt.Chart | alt.LayerChart
+    if len(layers) == 1:
+        chart = layers[0].properties(width=width, height=height)
+    else:
+        chart = alt.layer(*layers).properties(width=width, height=height)
 
     if title:
         chart = chart.properties(title=title)
@@ -128,6 +184,7 @@ def plot_bivariate_strip(
     color_title: str | None = None,
     jitter_seed: int = 0,
     id_col: str | None = None,
+    missing_score_df: pl.DataFrame | None = None,
 ) -> alt.Chart:
     """Jittered strip plot: score vs two binary outcomes.
 
@@ -162,6 +219,11 @@ def plot_bivariate_strip(
     id_col : str or None
         Optional column name containing patient / sample identifiers.  When
         provided, the ID appears in the tooltip on mouseover.
+    missing_score_df : pl.DataFrame or None
+        Optional DataFrame of patients with missing scores (containing
+        ``label_x_col``, ``label_y_col``, and optionally ``id_col``).  When
+        provided, these patients are shown as cross marks at a fixed position
+        below the main chart area with a separator rule.
 
     Returns
     -------
@@ -204,7 +266,7 @@ def plot_bivariate_strip(
     if id_col is not None:
         tooltip.insert(0, alt.Tooltip(f"{id_col}:N", title="ID"))
 
-    chart = (
+    main_strip = (
         alt.Chart(df_plot)
         .mark_circle(opacity=0.45, size=18)
         .encode(
@@ -218,8 +280,69 @@ def plot_bivariate_strip(
             color=alt.Color(f"{label_y_col}:N", title=color_title or label_y_col),
             tooltip=tooltip,
         )
-        .properties(width=width, height=height)
     )
+
+    layers: list = [main_strip]
+
+    if missing_score_df is not None and len(missing_score_df) > 0:
+        score_min = float(df_plot[score_col].min())  # type: ignore[arg-type]
+        score_max = float(df_plot[score_col].max())  # type: ignore[arg-type]
+        score_range = score_max - score_min
+        sentinel_y = score_min - 0.15 * score_range
+        sep_y = score_min - 0.05 * score_range
+
+        miss_ly_list = missing_score_df[label_y_col].cast(pl.Utf8).to_list()
+        miss_rng = random.Random(jitter_seed + 1)
+        if n_ly <= 1:
+            miss_offsets = [miss_rng.uniform(-jitter_px, jitter_px) for _ in miss_ly_list]
+        else:
+            miss_offsets = [
+                (2 * ly_to_idx.get(ly, 0) / (n_ly - 1) - 1) * half_span_px
+                + miss_rng.uniform(-jitter_px, jitter_px)
+                for ly in miss_ly_list
+            ]
+
+        df_miss = missing_score_df.with_columns(
+            pl.col(label_x_col).cast(pl.Utf8),
+            pl.col(label_y_col).cast(pl.Utf8),
+            pl.lit(sentinel_y).alias("_miss_y"),
+            pl.Series("_x_offset", miss_offsets),
+        )
+
+        miss_tooltip = [
+            alt.Tooltip(f"{label_x_col}:N"),
+            alt.Tooltip(f"{label_y_col}:N"),
+        ]
+        if id_col is not None:
+            miss_tooltip.insert(0, alt.Tooltip(f"{id_col}:N", title="ID"))
+
+        miss_layer = (
+            alt.Chart(df_miss)
+            .mark_point(shape="cross", size=30, opacity=0.7, strokeWidth=2)
+            .encode(
+                x=alt.X(
+                    f"{label_x_col}:N",
+                    title=x_title or label_x_col,
+                    axis=alt.Axis(labelAngle=0),
+                ),
+                xOffset=alt.XOffset("_x_offset:Q"),
+                y=alt.Y("_miss_y:Q", title=y_title or score_col),
+                color=alt.Color(f"{label_y_col}:N", title=color_title or label_y_col),
+                tooltip=miss_tooltip,
+            )
+        )
+        sep_rule = (
+            alt.Chart(pl.DataFrame({"y_sep": [sep_y]}))
+            .mark_rule(color="#aaa", strokeDash=[3, 3], strokeWidth=0.8)
+            .encode(y=alt.Y("y_sep:Q"))
+        )
+        layers = [sep_rule, main_strip, miss_layer]
+
+    chart: alt.Chart | alt.LayerChart
+    if len(layers) == 1:
+        chart = layers[0].properties(width=width, height=height)
+    else:
+        chart = alt.layer(*layers).properties(width=width, height=height)
 
     if title:
         chart = chart.properties(title=title)

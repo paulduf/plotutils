@@ -39,15 +39,19 @@ parser.add_argument(
 )
 parser.add_argument(
     "--dataset",
-    choices=["synthetic", "diabetes"],
+    choices=["synthetic", "synthetic-missing", "diabetes"],
     default="synthetic",
-    help="Dataset: 'synthetic' (toy, 5 vars / 3 outcomes) or 'diabetes' (sklearn, "
-    "10 features / 3 progression quartile outcomes). Default: synthetic.",
+    help=(
+        "Dataset: 'synthetic' (toy, 5 vars / 3 outcomes), "
+        "'synthetic-missing' (same with introduced null patterns), or "
+        "'diabetes' (sklearn, 10 features / 3 progression quartile outcomes). "
+        "Default: synthetic."
+    ),
 )
 args = parser.parse_args()
 
 # ── 1. Dataset ────────────────────────────────────────────────────────────────
-if args.dataset == "synthetic":
+if args.dataset in ("synthetic", "synthetic-missing"):
     rng = np.random.default_rng(42)
     n = 400
 
@@ -75,6 +79,28 @@ if args.dataset == "synthetic":
         data[var] = score.tolist()
 
     df = pl.DataFrame(data)
+
+    if args.dataset == "synthetic-missing":
+        # ── Introduce random missing-data patterns (fixed seed for reproducibility) ──
+        miss_rng = np.random.default_rng(7)
+
+        # Each outcome gets an independently random number of missing patients (8–25).
+        for out in outcomes:
+            n_miss = int(miss_rng.integers(8, 26))
+            miss_idx = miss_rng.choice(n, size=n_miss, replace=False)
+            vals = df[out].to_list()
+            for i in miss_idx:
+                vals[i] = None
+            df = df.with_columns(pl.Series(out, vals, dtype=pl.Int64))
+
+        # Each variable gets an independently random number of missing scores (5–18).
+        for var in variables:
+            n_miss = int(miss_rng.integers(5, 19))
+            miss_idx = miss_rng.choice(n, size=n_miss, replace=False)
+            vals = df[var].to_list()
+            for i in miss_idx:
+                vals[i] = None
+            df = df.with_columns(pl.Series(var, vals, dtype=pl.Float64))
 
 else:  # diabetes
     from sklearn.datasets import load_diabetes  # type: ignore[import-untyped]
