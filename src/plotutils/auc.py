@@ -24,8 +24,8 @@ def _coerce_label(series: pl.Series) -> pl.Series:
         return series.cast(pl.Int8)
     if dtype.is_numeric():
         return series.cast(pl.Int8)
-    # Non-numeric: coerce via string representation.
-    uniq = sorted(series.cast(pl.String).unique().to_list())
+    # Non-numeric: coerce via string representation, ignoring nulls.
+    uniq = sorted(v for v in series.cast(pl.String).unique().to_list() if v is not None)
     if len(uniq) != 2:
         raise ValueError(
             f"label column must have exactly 2 unique values; got {uniq!r}"
@@ -603,11 +603,30 @@ class AUCReport:
     # ── Internal builders ──────────────────────────────────────────────────
 
     def _build_auc_df(self) -> pl.DataFrame:
+        n_total = len(self._df)
+        # Outcome-level missingness is the same for all variables.
+        outcome_missing: dict[str, int] = {
+            out: int(self._df[out].is_null().sum()) for out in self._outcomes
+        }
         rows = []
         for var in self._variables:
-            row: dict = {"variable": var}
+            n_score_missing = int(self._df[var].is_null().sum())
+            row: dict = {
+                "variable": var,
+                "n_total": n_total,
+                "n_score_missing": n_score_missing,
+            }
             for out in self._outcomes:
-                df_vo = self._df.select([var, out]).rename({var: "score", out: "label"})
+                # Drop rows where score OR outcome is null before ROC computation.
+                df_vo = (
+                    self._df.select([var, out])
+                    .rename({var: "score", out: "label"})
+                    .drop_nulls()
+                )
+                n_valid = len(df_vo)
+                row[f"n_valid_{out}"] = n_valid
+                row[f"n_outcome_missing_{out}"] = outcome_missing[out]
+
                 roc = _compute_roc(df_vo, "score", "label")
                 row[f"auc_{out}"] = round(_compute_auc(roc), 4)
                 # pAUC columns: one per specificity level, None if unreachable.
@@ -633,8 +652,10 @@ class AUCReport:
         for var in self._variables:
             for out in self._outcomes:
                 select_cols = [self._id_col, var, out] if self._id_col else [var, out]
-                df_vo = self._df.select(select_cols).rename(
-                    {var: "score", out: "label"}
+                df_vo = (
+                    self._df.select(select_cols)
+                    .rename({var: "score", out: "label"})
+                    .drop_nulls(subset=["score", "label"])
                 )
                 roc_check = _compute_roc(
                     df_vo.select(["score", "label"]), "score", "label"
@@ -663,13 +684,54 @@ class AUCReport:
         for var in self._variables:
             for out_x in self._outcomes:
                 for out_y in self._outcomes:
+                    if out_x == out_y:
+                        continue
+
+                    select_cols = [var, out_x, out_y]
+                    if self._id_col:
+                        select_cols.insert(0, self._id_col)
+
+                    rename_map = {var: "score", out_x: "label_x", out_y: "label_y"}
+                    df_full = (
+                        self._df.select(select_cols)
+                        .rename(rename_map)
+                        .with_columns(
+                            pl.col("label_x").cast(pl.Utf8),
+                            pl.col("label_y").cast(pl.Utf8),
+                        )
+                    )
+
+                    # Keep only rows where both outcomes are non-null for positioning.
+                    df_full = df_full.filter(
+                        pl.col("label_x").is_not_null()
+                        & pl.col("label_y").is_not_null()
+                    )
+                    # Patients with null score → separate layer.
+                    df_valid = df_full.filter(pl.col("score").is_not_null())
+                    df_missing = df_full.filter(
+                        pl.col("score").is_null()
+                        & pl.col("label_x").is_not_null()
+                        & pl.col("label_y").is_not_null()
+                    )
+
                     d: dict = {
-                        "score": self._df[var].to_list(),
-                        "label_x": self._df[out_x].to_list(),
-                        "label_y": self._df[out_y].to_list(),
+                        "score": df_valid["score"].to_list(),
+                        "label_x": df_valid["label_x"].to_list(),
+                        "label_y": df_valid["label_y"].to_list(),
                     }
                     if self._id_col:
-                        d[self._id_col] = self._df[self._id_col].to_list()
+                        d[self._id_col] = df_valid[self._id_col].to_list()
+
+                    missing_score_df: pl.DataFrame | None = None
+                    if len(df_missing) > 0:
+                        miss_d: dict = {
+                            "label_x": df_missing["label_x"].to_list(),
+                            "label_y": df_missing["label_y"].to_list(),
+                        }
+                        if self._id_col:
+                            miss_d[self._id_col] = df_missing[self._id_col].to_list()
+                        missing_score_df = pl.DataFrame(miss_d)
+
                     chart = self._plot_dist(
                         pl.DataFrame(d),
                         score_col="score",
@@ -682,16 +744,31 @@ class AUCReport:
                         y_title="score",
                         width=self._w,
                         height=self._h,
+                        missing_score_df=missing_score_df,
                     )
                     specs[f"{var}|{out_x}|{out_y}"] = json.loads(chart.to_json())
         return specs
 
     @staticmethod
-    def _auc_lookup(signal: str, outcomes: list[str]) -> str:
-        """Nested Vega ternary to pick the right AUC datum field by signal value."""
-        expr = f"datum.auc_{outcomes[-1]}"
+    def _auc_lookup(signal: str, outcomes: list[str], field: str = "auc_{out}") -> str:
+        """Nested Vega ternary to pick the right datum field by signal value.
+
+        Parameters
+        ----------
+        signal : str
+            Name of the Vega signal (e.g. ``"outcome_x"``).
+        outcomes : list[str]
+            All possible outcome values.
+        field : str
+            Field name template with ``{out}`` placeholder (e.g.
+            ``"auc_{out}"`` or ``"n_valid_{out}"``).
+        """
+        def _f(out: str) -> str:
+            return field.format(out=out)
+
+        expr = f"datum.{_f(outcomes[-1])}"
         for out in reversed(outcomes[:-1]):
-            expr = f"{signal} == '{out}' ? datum.auc_{out} : {expr}"
+            expr = f"{signal} == '{out}' ? datum.{_f(out)} : {expr}"
         return expr
 
     def _build_scatter(self) -> alt.Chart:
@@ -722,6 +799,25 @@ class AUCReport:
             .transform_calculate(
                 x_auc=self._auc_lookup("outcome_x", outcomes),
                 y_auc=self._auc_lookup("outcome_y", outcomes),
+                n_valid_x=self._auc_lookup("outcome_x", outcomes, "n_valid_{out}"),
+                n_valid_y=self._auc_lookup("outcome_y", outcomes, "n_valid_{out}"),
+                n_omiss_x=self._auc_lookup(
+                    "outcome_x", outcomes, "n_outcome_missing_{out}"
+                ),
+                n_omiss_y=self._auc_lookup(
+                    "outcome_y", outcomes, "n_outcome_missing_{out}"
+                ),
+            )
+            .transform_calculate(
+                _sz_x=(
+                    '"X: " + datum.n_valid_x + "/" + datum.n_total'
+                    ' + " (" + datum.n_omiss_x + " outcomes missing)"'
+                ),
+                _sz_y=(
+                    '"Y: " + datum.n_valid_y + "/" + datum.n_total'
+                    ' + " (" + datum.n_omiss_y + " outcomes missing)"'
+                ),
+                _sz_score='"Score missing: " + datum.n_score_missing',
             )
             .mark_point(filled=True)
             .encode(
@@ -745,6 +841,9 @@ class AUCReport:
                     alt.Tooltip("variable:N"),
                     alt.Tooltip("x_auc:Q", format=".3f", title="AUC (X)"),
                     alt.Tooltip("y_auc:Q", format=".3f", title="AUC (Y)"),
+                    alt.Tooltip("_sz_x:N", title="Sample size"),
+                    alt.Tooltip("_sz_y:N", title=""),
+                    alt.Tooltip("_sz_score:N", title=""),
                 ],
             )
             .add_params(click_sel, outcome_x, outcome_y)
