@@ -4,12 +4,13 @@
     '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
     'config': dict({
       'axis': dict({
-        'gridColor': 'gray',
+        'gridColor': '#444',
         'gridDash': list([
           3,
           3,
         ]),
-        'gridOpacity': 0.5,
+        'gridOpacity': 0.4,
+        'gridWidth': 0.75,
       }),
       'view': dict({
         'continuousHeight': 300,
@@ -132,12 +133,9 @@
           }),
         }),
         'mark': dict({
-          'color': 'gray',
-          'opacity': 0.6,
-          'strokeDash': list([
-            4,
-            4,
-          ]),
+          'color': '#444',
+          'opacity': 0.4,
+          'strokeWidth': 0.75,
           'type': 'line',
         }),
       }),
@@ -187,7 +185,10 @@
         }),
       }),
     ]),
-    'title': 'ROC curve  (AUC = 0.767)',
+    'title': dict({
+      'subtitle': 'ROC curve  (AUC = 0.767)',
+      'text': '',
+    }),
     'width': 400,
   })
 # ---
@@ -196,12 +197,13 @@
     '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
     'config': dict({
       'axis': dict({
-        'gridColor': 'gray',
+        'gridColor': '#444',
         'gridDash': list([
           3,
           3,
         ]),
-        'gridOpacity': 0.5,
+        'gridOpacity': 0.4,
+        'gridWidth': 0.75,
       }),
       'view': dict({
         'continuousHeight': 300,
@@ -324,12 +326,9 @@
           }),
         }),
         'mark': dict({
-          'color': 'gray',
-          'opacity': 0.6,
-          'strokeDash': list([
-            4,
-            4,
-          ]),
+          'color': '#444',
+          'opacity': 0.4,
+          'strokeWidth': 0.75,
           'type': 'line',
         }),
       }),
@@ -379,7 +378,10 @@
         }),
       }),
     ]),
-    'title': 'My custom title',
+    'title': dict({
+      'subtitle': 'ROC curve  (AUC = 0.767)',
+      'text': 'My custom title',
+    }),
     'width': 400,
   })
 # ---
@@ -388,12 +390,13 @@
     '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
     'config': dict({
       'axis': dict({
-        'gridColor': 'gray',
+        'gridColor': '#444',
         'gridDash': list([
           3,
           3,
         ]),
-        'gridOpacity': 0.5,
+        'gridOpacity': 0.4,
+        'gridWidth': 0.75,
       }),
       'view': dict({
         'continuousHeight': 300,
@@ -405,6 +408,7 @@
       'data-normalized-0': list([
         dict({
           'level': '0.556',
+          'pauc': 0.6888888888888889,
           'sensitivity': 1.0,
           'specificity': 0.5555555555555556,
           'target': '0.50',
@@ -412,6 +416,7 @@
         }),
         dict({
           'level': '0.778',
+          'pauc': 0.619047619047619,
           'sensitivity': 0.6000000000000001,
           'specificity': 0.7777777777777777,
           'target': '0.75',
@@ -419,6 +424,7 @@
         }),
         dict({
           'level': '1.000',
+          'pauc': 0.5789473684210527,
           'sensitivity': 0.2,
           'specificity': 1.0,
           'target': '0.90',
@@ -427,6 +433,14 @@
       ]),
       'data-normalized-1': list([
         dict({
+          'x1': 0.0,
+          'x2': 1.0,
+          'y1': 0.5,
+          'y2': 1.0,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
           'level': '0.556',
           'seg': 'h2',
           'target': '0.50',
@@ -523,7 +537,7 @@
           'y': 1.0,
         }),
       ]),
-      'data-normalized-2': list([
+      'data-normalized-3': list([
         dict({
           'sensitivity': 0.0,
           'specificity': 1.0,
@@ -609,7 +623,7 @@
           'specificity': 0.5555555555555556,
         }),
       ]),
-      'data-normalized-3': list([
+      'data-normalized-4': list([
         dict({
           'x': 0.0,
           'y': 1.0,
@@ -624,7 +638,45 @@
     'layer': list([
       dict({
         'data': dict({
-          'name': 'data-normalized-3',
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'field': 'x1',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'x2': dict({
+            'field': 'x2',
+          }),
+          'y': dict({
+            'field': 'y1',
+            'scale': dict({
+              'domain': list([
+                0,
+                1,
+              ]),
+            }),
+            'type': 'quantitative',
+          }),
+          'y2': dict({
+            'field': 'y2',
+          }),
+        }),
+        'mark': dict({
+          'color': '#006d2c',
+          'opacity': 0.08,
+          'type': 'rect',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-4',
         }),
         'encoding': dict({
           'x': dict({
@@ -637,18 +689,15 @@
           }),
         }),
         'mark': dict({
-          'color': 'gray',
-          'opacity': 0.6,
-          'strokeDash': list([
-            4,
-            4,
-          ]),
+          'color': '#444',
+          'opacity': 0.4,
+          'strokeWidth': 0.75,
           'type': 'line',
         }),
       }),
       dict({
         'data': dict({
-          'name': 'data-normalized-2',
+          'name': 'data-normalized-3',
         }),
         'encoding': dict({
           'tooltip': list([
@@ -693,11 +742,23 @@
       }),
       dict({
         'data': dict({
-          'name': 'data-normalized-1',
+          'name': 'data-normalized-2',
         }),
         'encoding': dict({
           'color': dict({
             'field': 'level',
+            'scale': dict({
+              'domain': list([
+                '1.000',
+                '0.778',
+                '0.556',
+              ]),
+              'range': list([
+                '#006d2c',
+                '#3a9851',
+                '#74c476',
+              ]),
+            }),
             'title': 'Specificity',
             'type': 'nominal',
           }),
@@ -741,6 +802,18 @@
         'encoding': dict({
           'color': dict({
             'field': 'level',
+            'scale': dict({
+              'domain': list([
+                '1.000',
+                '0.778',
+                '0.556',
+              ]),
+              'range': list([
+                '#006d2c',
+                '#3a9851',
+                '#74c476',
+              ]),
+            }),
             'title': 'Specificity',
             'type': 'nominal',
           }),
@@ -764,6 +837,12 @@
               'field': 'threshold',
               'format': '.4g',
               'title': 'Cutoff',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'pauc',
+              'format': '.3f',
+              'title': 'pAUC (McClish)',
               'type': 'quantitative',
             }),
           ]),
@@ -795,7 +874,10 @@
         }),
       }),
     ]),
-    'title': 'ROC curve  (AUC = 0.767)',
+    'title': dict({
+      'subtitle': 'ROC curve  (AUC = 0.767)',
+      'text': '',
+    }),
     'width': 400,
   })
 # ---
