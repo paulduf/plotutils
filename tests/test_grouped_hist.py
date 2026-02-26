@@ -4,7 +4,7 @@ from conftest import chart_to_svg, normalize_chart_dict
 from plotutils.hist import plot_grouped_histogram
 
 
-def test_plot_grouped_histogram_dict_input(snapshot, snapshot_svg):
+def test_plot_grouped_histogram_dict_input(report_theme, snapshot, snapshot_svg):
     """Test plot_grouped_histogram with dict input (original example)."""
 
     chart = plot_grouped_histogram(
