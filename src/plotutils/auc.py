@@ -696,23 +696,14 @@ class AUCReport:
                         self._df.select(select_cols)
                         .rename(rename_map)
                         .with_columns(
-                            pl.col("label_x").cast(pl.Utf8),
-                            pl.col("label_y").cast(pl.Utf8),
+                            pl.col("label_x").cast(pl.Utf8).fill_null("Missing"),
+                            pl.col("label_y").cast(pl.Utf8).fill_null("Missing"),
                         )
                     )
 
-                    # Keep only rows where both outcomes are non-null for positioning.
-                    df_full = df_full.filter(
-                        pl.col("label_x").is_not_null()
-                        & pl.col("label_y").is_not_null()
-                    )
                     # Patients with null score → separate layer.
                     df_valid = df_full.filter(pl.col("score").is_not_null())
-                    df_missing = df_full.filter(
-                        pl.col("score").is_null()
-                        & pl.col("label_x").is_not_null()
-                        & pl.col("label_y").is_not_null()
-                    )
+                    df_missing = df_full.filter(pl.col("score").is_null())
 
                     d: dict = {
                         "score": df_valid["score"].to_list(),
