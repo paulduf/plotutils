@@ -1,6 +1,11 @@
 import polars as pl
+import pytest
 from conftest import chart_to_svg, normalize_chart_dict
-from plotutils.uncertainty import plot_confidence_scatter, plot_deviations
+from plotutils.uncertainty import (
+    plot_confidence_scatter,
+    plot_deviations,
+    plot_predictions_errors,
+)
 
 
 def test_plot_confidence_scatter_basic(snapshot):
@@ -90,7 +95,7 @@ def test_plot_confidence_scatter_with_identity_line(snapshot):
     assert "<svg" in chart_to_svg(chart)
 
 
-def test_plot_confidence_scatter_stdev_extent(snapshot, snapshot_svg):
+def test_plot_confidence_scatter_stdev_extent(report_theme, snapshot, snapshot_svg):
     """Test confidence scatter plot with stdev extent."""
     df = pl.DataFrame({
         "x": ["A"] * 10 + ["B"] * 10,
@@ -129,7 +134,7 @@ def test_plot_confidence_scatter_numeric_x_with_labels(snapshot):
     assert "<svg" in chart_to_svg(chart)
 
 
-def test_plot_deviations_basic(snapshot, snapshot_svg):
+def test_plot_deviations_basic(report_theme, snapshot, snapshot_svg):
     """Test basic deviations plot: y - mean(y) per group, zero line."""
     df = pl.DataFrame({
         "category": ["Low"] * 10 + ["Medium"] * 10 + ["High"] * 10,
@@ -185,7 +190,7 @@ def test_plot_deviations_relative(snapshot, snapshot_svg):
     assert chart_to_svg(chart) == snapshot_svg
 
 
-def test_plot_deviations_with_levels(snapshot, snapshot_svg):
+def test_plot_deviations_with_levels(report_theme, snapshot, snapshot_svg):
     """Test deviations plot with add_levels: symmetric horizontal lines."""
     df = pl.DataFrame({
         "x": ["A"] * 10 + ["B"] * 10,
@@ -222,5 +227,146 @@ def test_plot_deviations_numeric_x_with_labels(snapshot, snapshot_svg):
     assert "layer" in chart_dict
     # Verify x-axis is quantitative with custom labels
     assert chart_dict["layer"][0]["encoding"]["x"]["type"] == "quantitative"
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
+# --- plot_predictions_errors tests ---
+
+
+def test_plot_predictions_errors_basic(report_theme, snapshot, snapshot_svg):
+    """Test basic prediction error plot with identity line."""
+    df = pl.DataFrame({
+        "true": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0],
+        "pred": [1.1, 2.2, 2.8, 4.1, 5.3, 5.9, 7.2, 7.8, 9.1, 10.3],
+    })
+
+    chart = plot_predictions_errors(df)
+    chart_dict = chart.to_dict()
+
+    assert "layer" in chart_dict
+    assert len(chart_dict["layer"]) == 2  # identity line + points
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
+def test_plot_predictions_errors_custom_columns(snapshot, snapshot_svg):
+    """Test prediction error plot with custom column names and title."""
+    df = pl.DataFrame({
+        "actual": [1.0, 2.0, 3.0, 4.0, 5.0],
+        "forecast": [1.2, 1.8, 3.1, 4.3, 4.8],
+    })
+
+    chart = plot_predictions_errors(
+        df,
+        true_col="actual",
+        pred_col="forecast",
+        title="Forecast Accuracy",
+        x_title="Actual Value",
+        y_title="Forecast Value",
+    )
+    chart_dict = chart.to_dict()
+
+    assert chart_dict["title"] == "Forecast Accuracy"
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
+def test_plot_predictions_errors_with_color(snapshot, snapshot_svg):
+    """Test prediction error plot with color column."""
+    df = pl.DataFrame({
+        "true": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0],
+        "pred": [1.1, 2.2, 2.8, 4.1, 5.3, 5.9],
+        "model": ["A", "A", "A", "B", "B", "B"],
+    })
+
+    chart = plot_predictions_errors(df, color_col="model")
+    chart_dict = chart.to_dict()
+
+    assert "layer" in chart_dict
+    points_layer = chart_dict["layer"][1]
+    assert "color" in points_layer["encoding"]
+    assert points_layer["encoding"]["color"]["field"] == "model"
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
+def test_plot_predictions_errors_with_shape(snapshot, snapshot_svg):
+    """Test prediction error plot with shape column."""
+    df = pl.DataFrame({
+        "true": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0],
+        "pred": [1.1, 2.2, 2.8, 4.1, 5.3, 5.9],
+        "dataset": ["train", "train", "train", "test", "test", "test"],
+    })
+
+    chart = plot_predictions_errors(df, shape_col="dataset")
+    chart_dict = chart.to_dict()
+
+    points_layer = chart_dict["layer"][1]
+    assert "shape" in points_layer["encoding"]
+    assert points_layer["encoding"]["shape"]["field"] == "dataset"
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
+def test_plot_predictions_errors_color_and_shape(report_theme, snapshot, snapshot_svg):
+    """Test prediction error plot with both color and shape columns."""
+    df = pl.DataFrame({
+        "true": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0],
+        "pred": [1.1, 2.2, 2.8, 4.1, 5.3, 5.9, 7.2, 7.8],
+        "model": ["A", "A", "B", "B", "A", "A", "B", "B"],
+        "split": ["train", "test", "train", "test", "train", "test", "train", "test"],
+    })
+
+    chart = plot_predictions_errors(df, color_col="model", shape_col="split")
+    chart_dict = chart.to_dict()
+
+    points_layer = chart_dict["layer"][1]
+    assert "color" in points_layer["encoding"]
+    assert "shape" in points_layer["encoding"]
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
+def test_plot_predictions_errors_shared_scale(snapshot, snapshot_svg):
+    """Test that both axes share the same scale domain."""
+    # true range [1, 5], pred range [2, 10] → shared domain with 2% padding
+    df = pl.DataFrame({
+        "true": [1.0, 2.0, 3.0, 4.0, 5.0],
+        "pred": [2.0, 4.0, 6.0, 8.0, 10.0],
+    })
+
+    chart = plot_predictions_errors(df)
+    chart_dict = chart.to_dict()
+
+    points_layer = chart_dict["layer"][1]
+    x_domain = points_layer["encoding"]["x"]["scale"]["domain"]
+    y_domain = points_layer["encoding"]["y"]["scale"]["domain"]
+    # raw range [1, 10], pad = 9 * 0.02 = 0.18
+    assert x_domain == pytest.approx([0.82, 10.18])
+    assert y_domain == pytest.approx([0.82, 10.18])
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
+def test_plot_predictions_errors_custom_styling(snapshot, snapshot_svg):
+    """Test prediction error plot with custom point color, size, and dimensions."""
+    df = pl.DataFrame({
+        "true": [1.0, 2.0, 3.0, 4.0, 5.0],
+        "pred": [1.1, 1.8, 3.2, 3.9, 5.1],
+    })
+
+    chart = plot_predictions_errors(
+        df,
+        width=800,
+        height=800,
+        point_color="red",
+        point_size=100,
+        point_opacity=0.5,
+    )
+    chart_dict = chart.to_dict()
+
+    assert chart_dict["width"] == 800
+    assert chart_dict["height"] == 800
     assert normalize_chart_dict(chart_dict) == snapshot
     assert chart_to_svg(chart) == snapshot_svg
