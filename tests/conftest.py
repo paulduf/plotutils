@@ -17,6 +17,15 @@ def _reset_altair_theme():
 
 
 @pytest.fixture
+def report_theme():
+    """Enable the custom report theme for tests that produce doc SVGs."""
+    import plotutils.themes  # noqa: F401 — registers the theme
+    alt.theme.enable("report_theme")
+    yield
+    alt.theme.enable("default")
+
+
+@pytest.fixture
 def snapshot_svg(snapshot):
     """Syrupy snapshot fixture configured for SVG files.
 
