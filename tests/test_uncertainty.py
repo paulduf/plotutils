@@ -95,7 +95,7 @@ def test_plot_confidence_scatter_with_identity_line(snapshot):
     assert "<svg" in chart_to_svg(chart)
 
 
-def test_plot_confidence_scatter_stdev_extent(snapshot, snapshot_svg):
+def test_plot_confidence_scatter_stdev_extent(report_theme, snapshot, snapshot_svg):
     """Test confidence scatter plot with stdev extent."""
     df = pl.DataFrame({
         "x": ["A"] * 10 + ["B"] * 10,
@@ -134,7 +134,7 @@ def test_plot_confidence_scatter_numeric_x_with_labels(snapshot):
     assert "<svg" in chart_to_svg(chart)
 
 
-def test_plot_deviations_basic(snapshot, snapshot_svg):
+def test_plot_deviations_basic(report_theme, snapshot, snapshot_svg):
     """Test basic deviations plot: y - mean(y) per group, zero line."""
     df = pl.DataFrame({
         "category": ["Low"] * 10 + ["Medium"] * 10 + ["High"] * 10,
@@ -190,7 +190,7 @@ def test_plot_deviations_relative(snapshot, snapshot_svg):
     assert chart_to_svg(chart) == snapshot_svg
 
 
-def test_plot_deviations_with_levels(snapshot, snapshot_svg):
+def test_plot_deviations_with_levels(report_theme, snapshot, snapshot_svg):
     """Test deviations plot with add_levels: symmetric horizontal lines."""
     df = pl.DataFrame({
         "x": ["A"] * 10 + ["B"] * 10,
@@ -234,7 +234,7 @@ def test_plot_deviations_numeric_x_with_labels(snapshot, snapshot_svg):
 # --- plot_predictions_errors tests ---
 
 
-def test_plot_predictions_errors_basic(snapshot, snapshot_svg):
+def test_plot_predictions_errors_basic(report_theme, snapshot, snapshot_svg):
     """Test basic prediction error plot with identity line."""
     df = pl.DataFrame({
         "true": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0],
@@ -309,7 +309,7 @@ def test_plot_predictions_errors_with_shape(snapshot, snapshot_svg):
     assert chart_to_svg(chart) == snapshot_svg
 
 
-def test_plot_predictions_errors_color_and_shape(snapshot, snapshot_svg):
+def test_plot_predictions_errors_color_and_shape(report_theme, snapshot, snapshot_svg):
     """Test prediction error plot with both color and shape columns."""
     df = pl.DataFrame({
         "true": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0],
