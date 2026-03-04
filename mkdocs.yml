@@ -9,13 +9,14 @@ nav:
       - Deviations: plots/deviations.md
       - Prediction Errors: plots/predictions_errors.md
       - Concatenation: plots/concat.md
+      - ROC Curve & AUC: plots/auc.md
   - Dev:
       - Altair & Polars: dev/altair_polars_onboarding.md
       - Tooling: dev/tooling_onboarding.md
 theme:
-  name: material
-  palette:
-    primary: light blue
+      name: material
+      palette:
+            primary: light blue
 plugins:
-  - search
-  - mkdocstrings
+      - search
+      - mkdocstrings
