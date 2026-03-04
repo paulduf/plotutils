@@ -36,6 +36,11 @@ deploy:
 docs-img:
     mkdir -p docs/img
     cp tests/__snapshots__/test_grouped_hist/test_plot_grouped_histogram_dict_input.svg docs/img/
+    cp tests/__snapshots__/test_uncertainty/test_plot_confidence_scatter_stdev_extent.svg docs/img/
+    cp tests/__snapshots__/test_uncertainty/test_plot_deviations_basic.svg docs/img/
+    cp tests/__snapshots__/test_uncertainty/test_plot_deviations_with_levels.svg docs/img/
+    cp tests/__snapshots__/test_uncertainty/test_plot_predictions_errors_basic.svg docs/img/
+    cp tests/__snapshots__/test_uncertainty/test_plot_predictions_errors_color_and_shape.svg docs/img/
     cp tests/__snapshots__/test_vchart/test_hchart_with_row_facet.svg docs/img/
     cp tests/__snapshots__/test_vchart/test_vchart_with_column_facet.svg docs/img/
     cp tests/__snapshots__/test_vchart/test_hchart_predictions_errors_three_splits.svg docs/img/

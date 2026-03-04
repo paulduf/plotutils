@@ -5,6 +5,9 @@ nav:
   - Home: index.md
   - Plots:
       - Grouped Histogram: plots/grouped_histogram.md
+      - Error Bars: plots/error_bars.md
+      - Deviations: plots/deviations.md
+      - Prediction Errors: plots/predictions_errors.md
       - Concatenation: plots/concat.md
   - Dev:
       - Altair & Polars: dev/altair_polars_onboarding.md
