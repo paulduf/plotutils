@@ -11,6 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  contents: read
   pages: write
   id-token: write
 
@@ -19,11 +20,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -51,6 +49,13 @@ jobs:
         with:
           path: _site/
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
