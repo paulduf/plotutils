@@ -10,13 +10,7 @@ standard ROC AUC.
 Hover the **intersection points** to see the target specificity, the actual specificity
 achieved, the corresponding sensitivity, and the **score cutoff** in the data.
 
-<iframe
-  src="../auc_chart.html"
-  width="100%"
-  height="520"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/auc_chart.html"
 
 ```python
 import polars as pl

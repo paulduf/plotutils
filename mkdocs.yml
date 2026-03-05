@@ -13,9 +13,17 @@ nav:
       - Parallel Coordinates: plots/parallel.md
       - Concatenation: plots/concat.md
       - ROC Curve & AUC: plots/auc.md
+      - AUC Report: plots/auc_report.md
   - Dev:
       - Altair & Polars: dev/altair_polars_onboarding.md
       - Tooling: dev/tooling_onboarding.md
+extra_javascript:
+      - https://cdn.jsdelivr.net/npm/vega@6
+      - https://cdn.jsdelivr.net/npm/vega-lite@6.1.0
+      - https://cdn.jsdelivr.net/npm/vega-embed@7
+markdown_extensions:
+      - pymdownx.snippets:
+            base_path: docs
 theme:
       name: material
       palette:

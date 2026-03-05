@@ -21,10 +21,8 @@ Usage
 
 import argparse
 
-import numpy as np
-import polars as pl
-
 from plotutils.auc import AUCReport
+from plotutils.datasets import load_binary_diabetes, load_synthetic
 
 OUTPUT = "demos/_output/linked-auc.html"
 
@@ -52,79 +50,11 @@ args = parser.parse_args()
 
 # ── 1. Dataset ────────────────────────────────────────────────────────────────
 if args.dataset in ("synthetic", "synthetic-missing"):
-    rng = np.random.default_rng(42)
-    n = 400
-
-    variables = [f"var_{i}" for i in range(5)]
-    outcomes = [f"outcome_{i}" for i in range(3)]
-
-    # Independent binary labels for each outcome
-    labels = {out: rng.integers(0, 2, size=n) for out in outcomes}
-
-    # One score per variable — a weighted sum of outcome labels plus noise.
-    # Each variable has a different affinity for each outcome (realistic biomarker
-    # setup: one measurement, multiple predictions).  Using a single score column
-    # per variable means every chart (ROC, distribution) shows the same values,
-    # so a patient found at a given threshold on the ROC can be located at the
-    # same y-position in the distribution chart.
-    strengths = rng.uniform(0.3, 1.5, size=(len(variables), len(outcomes)))
-
-    data: dict = {
-        "patient_id": [f"P{i + 1:03d}" for i in range(n)],
-        **{out: lbl.tolist() for out, lbl in labels.items()},
-    }
-    for i, var in enumerate(variables):
-        score = sum(strengths[i, j] * labels[out] for j, out in enumerate(outcomes))
-        score += rng.normal(0, 1.0, size=n)
-        data[var] = score.tolist()
-
-    df = pl.DataFrame(data)
-
-    if args.dataset == "synthetic-missing":
-        # ── Introduce random missing-data patterns (fixed seed for reproducibility) ──
-        miss_rng = np.random.default_rng(7)
-
-        # Each outcome gets an independently random number of missing patients (8–25).
-        for out in outcomes:
-            n_miss = int(miss_rng.integers(8, 26))
-            miss_idx = miss_rng.choice(n, size=n_miss, replace=False)
-            vals = df[out].to_list()
-            for i in miss_idx:
-                vals[i] = None
-            df = df.with_columns(pl.Series(out, vals, dtype=pl.Int64))
-
-        # Each variable gets an independently random number of missing scores (5–18).
-        for var in variables:
-            n_miss = int(miss_rng.integers(5, 19))
-            miss_idx = miss_rng.choice(n, size=n_miss, replace=False)
-            vals = df[var].to_list()
-            for i in miss_idx:
-                vals[i] = None
-            df = df.with_columns(pl.Series(var, vals, dtype=pl.Float64))
-
+    ds = load_synthetic(missing=args.dataset == "synthetic-missing")
 else:  # diabetes
-    from sklearn.datasets import load_diabetes  # type: ignore[import-untyped]
+    ds = load_binary_diabetes()
 
-    X, y = load_diabetes(return_X_y=True)
-    # Feature names are fixed for this dataset (age, sex, bmi, bp, s1–s6).
-    variables = ["age", "sex", "bmi", "bp", "s1", "s2", "s3", "s4", "s5", "s6"]
-    n = len(y)
-
-    # Binarise the continuous progression target at three quartile thresholds.
-    # Higher threshold → fewer positives (more stringent "high progression" label).
-    q25, q50, q75 = np.percentile(y, [25, 50, 75])
-    outcomes = ["prog_q75", "prog_q50", "prog_q25"]
-
-    data = {
-        "patient_id": [f"P{i + 1:03d}" for i in range(n)],
-        "prog_q75": (y > q75).astype(int).tolist(),
-        "prog_q50": (y > q50).astype(int).tolist(),
-        "prog_q25": (y > q25).astype(int).tolist(),
-    }
-    for j, var in enumerate(variables):
-        data[var] = X[:, j].tolist()
-
-    df = pl.DataFrame(data)
+df, variables, outcomes = ds.df, ds.variables, ds.outcomes
 
 # ── 2. Generate and save report ───────────────────────────────────────────────
 AUCReport(

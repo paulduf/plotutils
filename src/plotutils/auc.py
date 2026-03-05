@@ -885,6 +885,7 @@ class AUCReport:
   <style>
     body {{
       font-family: sans-serif;
+      margin: 0;
       padding: 20px 28px;
       background: #fafafa;
       color: #222;
@@ -894,7 +895,7 @@ class AUCReport:
 
     #grid {{
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
       gap: 20px;
       align-items: start;
@@ -917,8 +918,16 @@ class AUCReport:
       color: #bbb;
       font-size: 13px;
       box-sizing: border-box;
-      width: 370px;
       min-height: 320px;
+    }}
+
+    /* Prevent Vega canvases from overflowing their grid cell */
+    .vega-embed {{
+      width: 100%;
+    }}
+    .vega-embed canvas, .vega-embed svg {{
+      max-width: 100%;
+      height: auto;
     }}
   </style>
 </head>

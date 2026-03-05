@@ -45,6 +45,10 @@ docs-build: docs-img
 docs-serve: docs-img
     uv run mkdocs serve
 
+# Serve docs without regenerating charts (faster iteration on .md / .py changes)
+docs-serve-fast:
+    uv run mkdocs serve
+
 # Remove generated docs artifacts
 docs-clean:
     if exist docs\img rmdir /s /q docs\img

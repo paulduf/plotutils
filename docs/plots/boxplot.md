@@ -32,13 +32,7 @@ chart = plot_bivariate_boxes(
 )
 ```
 
-<iframe
-  src="../boxplot_boxes.html"
-  width="100%"
-  height="380"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/boxplot_boxes.html"
 
 ## Strip plot
 
@@ -54,13 +48,7 @@ chart = plot_bivariate_strip(
 )
 ```
 
-<iframe
-  src="../boxplot_strip.html"
-  width="100%"
-  height="380"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/boxplot_strip.html"
 
 ## Missing scores
 

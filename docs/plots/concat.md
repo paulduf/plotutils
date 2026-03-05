@@ -51,13 +51,7 @@ chart = hchart(
 )
 ```
 
-<iframe
-  src="../hchart_row_facet.html"
-  width="100%"
-  height="520"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/hchart_row_facet.html"
 
 ### Vertical concat + horizontal facet
 
@@ -75,13 +69,7 @@ chart = vchart(
 )
 ```
 
-<iframe
-  src="../vchart_column_facet.html"
-  width="100%"
-  height="520"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/vchart_column_facet.html"
 
 ### Three splits side by side
 
@@ -103,13 +91,7 @@ chart = hchart(
 )
 ```
 
-<iframe
-  src="../hchart_three_splits.html"
-  width="100%"
-  height="380"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/hchart_three_splits.html"
 
 ## Reference
 

@@ -21,13 +21,7 @@ df = pl.DataFrame({
 chart = plot_predictions_errors(df)
 ```
 
-<iframe
-  src="../predictions_errors_basic.html"
-  width="100%"
-  height="480"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/predictions_errors_basic.html"
 
 ## Color and shape encoding
 
@@ -45,13 +39,7 @@ df = pl.DataFrame({
 chart = plot_predictions_errors(df, color_col="model", shape_col="split")
 ```
 
-<iframe
-  src="../predictions_errors_color.html"
-  width="100%"
-  height="480"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/predictions_errors_color.html"
 
 ## Multi-panel comparison
 

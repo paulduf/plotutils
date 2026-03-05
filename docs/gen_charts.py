@@ -1,7 +1,14 @@
-"""Generate interactive HTML charts for documentation pages.
+"""Generate interactive HTML chart snippets for documentation pages.
 
 Run with:  uv run python docs/gen_charts.py
+
+Each Altair chart is saved as a small HTML snippet (a <div> + <script>
+calling vegaEmbed) that can be included directly in Markdown pages via
+pymdownx.snippets.  The Vega / Vega-Lite / Vega-Embed libraries are
+loaded once at the page level through ``extra_javascript`` in mkdocs.yml.
 """
+
+import json
 
 import polars as pl
 
@@ -20,8 +27,33 @@ OUT = "docs/plots"
 
 
 def _save(chart, name: str) -> None:
+    """Write an embeddable Vega-Lite snippet (div + script).
+
+    The Vega libraries are loaded at the bottom of the page by MkDocs, so
+    the inline ``<script>`` must wait until ``vegaEmbed`` is available.
+    We register a tiny ``DOMContentLoaded`` listener that polls for it.
+    """
+    stem = name.removesuffix(".html").replace(".", "_").replace("-", "_")
+    div_id = f"vis-{stem}"
+    spec_json = json.dumps(json.loads(chart.to_json()))
+    snippet = (
+        f'<div id="{div_id}"></div>\n'
+        f"<script>\n"
+        f"  (function() {{\n"
+        f"    function render() {{\n"
+        f'      vegaEmbed("#{div_id}", {spec_json}, {{"actions": false}});\n'
+        f"    }}\n"
+        f"    if (typeof vegaEmbed !== 'undefined') {{ render(); }}\n"
+        f"    else {{ document.addEventListener('DOMContentLoaded', function check() {{\n"
+        f"      if (typeof vegaEmbed !== 'undefined') render();\n"
+        f"      else setTimeout(check, 50);\n"
+        f"    }}); }}\n"
+        f"  }})();\n"
+        f"</script>\n"
+    )
     path = f"{OUT}/{name}"
-    chart.save(path)
+    with open(path, "w") as f:
+        f.write(snippet)
     print(f"  {name}")
 
 
@@ -266,6 +298,34 @@ def gen_auc_chart() -> None:
     _save(chart, "auc_chart.html")
 
 
+def gen_auc_reports() -> None:
+    from plotutils.auc import AUCReport
+    from plotutils.datasets import load_binary_diabetes, load_synthetic
+
+    # ── Synthetic ──────────────────────────────────────────────────────
+    ds = load_synthetic()
+    AUCReport(
+        ds.df, variables=ds.variables, outcomes=ds.outcomes, id_col="patient_id"
+    ).to_html(path=f"{OUT}/auc_report_synthetic.html")
+    print("  auc_report_synthetic.html")
+
+    # ── Synthetic with missing data ────────────────────────────────────
+    ds_miss = load_synthetic(missing=True)
+    AUCReport(
+        ds_miss.df, variables=ds_miss.variables, outcomes=ds_miss.outcomes,
+        id_col="patient_id",
+    ).to_html(path=f"{OUT}/auc_report_missing.html")
+    print("  auc_report_missing.html")
+
+    # ── Diabetes ───────────────────────────────────────────────────────
+    ds_diab = load_binary_diabetes()
+    AUCReport(
+        ds_diab.df, variables=ds_diab.variables, outcomes=ds_diab.outcomes,
+        id_col="patient_id",
+    ).to_html(path=f"{OUT}/auc_report_diabetes.html")
+    print("  auc_report_diabetes.html")
+
+
 if __name__ == "__main__":
     print("Generating interactive charts...")
     gen_grouped_histogram()
@@ -278,4 +338,5 @@ if __name__ == "__main__":
     gen_boxplot_charts()
     gen_parallel_charts()
     gen_auc_chart()
+    gen_auc_reports()
     print("Done.")

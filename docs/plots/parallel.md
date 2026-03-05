@@ -26,13 +26,7 @@ chart = plot_parallel_coordinates(
 )
 ```
 
-<iframe
-  src="../parallel_basic.html"
-  width="100%"
-  height="480"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/parallel_basic.html"
 
 ## Normalized
 
@@ -48,13 +42,7 @@ chart = plot_parallel_coordinates(
 )
 ```
 
-<iframe
-  src="../parallel_normalized.html"
-  width="100%"
-  height="480"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/parallel_normalized.html"
 
 ## Log transforms
 

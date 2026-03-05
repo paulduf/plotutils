@@ -31,13 +31,7 @@ chart = plot_grouped_histogram(
 )
 ```
 
-<iframe
-  src="../grouped_histogram.html"
-  width="100%"
-  height="480"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/grouped_histogram.html"
 
 ## Reference
 

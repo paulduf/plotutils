@@ -25,13 +25,7 @@ chart = plot_confidence_scatter(
 )
 ```
 
-<iframe
-  src="../confidence_scatter.html"
-  width="100%"
-  height="480"
-  style="border:none; overflow:hidden;"
-  scrolling="no">
-</iframe>
+--8<-- "plots/confidence_scatter.html"
 
 The `extent` parameter controls the error bar type:
 
