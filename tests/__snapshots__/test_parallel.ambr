@@ -1,0 +1,1715 @@
+# serializer version: 1
+# name: test_plot_parallel_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_axis': 'a',
+          '_index': 0,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 1,
+          '_value': 2.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 3,
+          '_value': 4.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 0,
+          '_value': 5.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 3,
+          '_value': 2.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 0,
+          '_value': 2.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 2,
+          '_value': 1.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 3,
+          '_value': 3.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'opacity': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 1.0,
+            }),
+            'value': 0.15,
+          }),
+          'strokeWidth': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 3,
+            }),
+            'value': 1,
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'title': None,
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'title': 'Value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'line',
+        }),
+        'name': 'view_359a2195c388e514_0',
+      }),
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0,
+          'size': 100,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'params': list([
+      dict({
+        'name': 'param_ec86b0ece07f1801',
+        'select': dict({
+          'fields': list([
+            '_index',
+          ]),
+          'nearest': True,
+          'on': 'pointerover',
+          'type': 'point',
+        }),
+        'views': list([
+          'view_359a2195c388e514_0',
+        ]),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_parallel_custom_title_and_size
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_axis': 'a',
+          '_index': 0,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 1,
+          '_value': 2.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 3,
+          '_value': 4.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 0,
+          '_value': 5.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 3,
+          '_value': 2.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 0,
+          '_value': 2.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 2,
+          '_value': 1.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 3,
+          '_value': 3.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+        }),
+      ]),
+    }),
+    'height': 500,
+    'layer': list([
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'opacity': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 1.0,
+            }),
+            'value': 0.15,
+          }),
+          'strokeWidth': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 3,
+            }),
+            'value': 1,
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'title': None,
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'title': 'Value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'line',
+        }),
+        'name': 'view_359a2195c388e514_0',
+      }),
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0,
+          'size': 100,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'params': list([
+      dict({
+        'name': 'param_ec86b0ece07f1801',
+        'select': dict({
+          'fields': list([
+            '_index',
+          ]),
+          'nearest': True,
+          'on': 'pointerover',
+          'type': 'point',
+        }),
+        'views': list([
+          'view_359a2195c388e514_0',
+        ]),
+      }),
+    ]),
+    'title': 'My Parallel Plot',
+    'width': 800,
+  })
+# ---
+# name: test_plot_parallel_normalized
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_axis': 'a',
+          '_index': 0,
+          '_value': 0.0,
+          'a': 0.0,
+          'b': 1.0,
+          'c': 0.25,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 1,
+          '_value': 0.25,
+          'a': 0.25,
+          'b': 0.75,
+          'c': 0.75,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 2,
+          '_value': 0.5,
+          'a': 0.5,
+          'b': 0.5,
+          'c': 0.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 3,
+          '_value': 0.75,
+          'a': 0.75,
+          'b': 0.25,
+          'c': 0.5,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 0.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 0,
+          '_value': 1.0,
+          'a': 0.0,
+          'b': 1.0,
+          'c': 0.25,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 1,
+          '_value': 0.75,
+          'a': 0.25,
+          'b': 0.75,
+          'c': 0.75,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 2,
+          '_value': 0.5,
+          'a': 0.5,
+          'b': 0.5,
+          'c': 0.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 3,
+          '_value': 0.25,
+          'a': 0.75,
+          'b': 0.25,
+          'c': 0.5,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 4,
+          '_value': 0.0,
+          'a': 1.0,
+          'b': 0.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 0,
+          '_value': 0.25,
+          'a': 0.0,
+          'b': 1.0,
+          'c': 0.25,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 1,
+          '_value': 0.75,
+          'a': 0.25,
+          'b': 0.75,
+          'c': 0.75,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 2,
+          '_value': 0.0,
+          'a': 0.5,
+          'b': 0.5,
+          'c': 0.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 3,
+          '_value': 0.5,
+          'a': 0.75,
+          'b': 0.25,
+          'c': 0.5,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 0.0,
+          'c': 1.0,
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'opacity': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 1.0,
+            }),
+            'value': 0.15,
+          }),
+          'strokeWidth': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 3,
+            }),
+            'value': 1,
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'title': None,
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'title': 'Normalized value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'line',
+        }),
+        'name': 'view_509926dd75becd79_0',
+      }),
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0,
+          'size': 100,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'params': list([
+      dict({
+        'name': 'param_ec86b0ece07f1801',
+        'select': dict({
+          'fields': list([
+            '_index',
+          ]),
+          'nearest': True,
+          'on': 'pointerover',
+          'type': 'point',
+        }),
+        'views': list([
+          'view_509926dd75becd79_0',
+        ]),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_parallel_with_color
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_axis': 'a',
+          '_index': 0,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 1,
+          '_value': 2.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+          'group': 'Y',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 3,
+          '_value': 4.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+          'group': 'Y',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 0,
+          '_value': 5.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+          'group': 'Y',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 3,
+          '_value': 2.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+          'group': 'Y',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 0,
+          '_value': 2.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+          'group': 'X',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 2,
+          '_value': 1.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+          'group': 'Y',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 3,
+          '_value': 3.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+          'group': 'Y',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+          'group': 'X',
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'encoding': dict({
+          'color': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'opacity': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 1.0,
+            }),
+            'value': 0.15,
+          }),
+          'strokeWidth': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 3,
+            }),
+            'value': 1,
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'group',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'title': None,
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'title': 'Value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'line',
+        }),
+        'name': 'view_07b7c4833ebffd31_0',
+      }),
+      dict({
+        'encoding': dict({
+          'color': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'group',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0,
+          'size': 100,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'params': list([
+      dict({
+        'name': 'param_ec86b0ece07f1801',
+        'select': dict({
+          'fields': list([
+            '_index',
+          ]),
+          'nearest': True,
+          'on': 'pointerover',
+          'type': 'point',
+        }),
+        'views': list([
+          'view_07b7c4833ebffd31_0',
+        ]),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_parallel_with_id
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_axis': 'a',
+          '_index': 0,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+          'group': 'X',
+          'sample_id': 's1',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 1,
+          '_value': 2.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+          'group': 'X',
+          'sample_id': 's2',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+          'group': 'Y',
+          'sample_id': 's3',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 3,
+          '_value': 4.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+          'group': 'Y',
+          'sample_id': 's4',
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+          'group': 'X',
+          'sample_id': 's5',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 0,
+          '_value': 5.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+          'group': 'X',
+          'sample_id': 's1',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+          'group': 'X',
+          'sample_id': 's2',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 2,
+          '_value': 3.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+          'group': 'Y',
+          'sample_id': 's3',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 3,
+          '_value': 2.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+          'group': 'Y',
+          'sample_id': 's4',
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+          'group': 'X',
+          'sample_id': 's5',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 0,
+          '_value': 2.0,
+          'a': 1.0,
+          'b': 5.0,
+          'c': 2.0,
+          'group': 'X',
+          'sample_id': 's1',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 1,
+          '_value': 4.0,
+          'a': 2.0,
+          'b': 4.0,
+          'c': 4.0,
+          'group': 'X',
+          'sample_id': 's2',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 2,
+          '_value': 1.0,
+          'a': 3.0,
+          'b': 3.0,
+          'c': 1.0,
+          'group': 'Y',
+          'sample_id': 's3',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 3,
+          '_value': 3.0,
+          'a': 4.0,
+          'b': 2.0,
+          'c': 3.0,
+          'group': 'Y',
+          'sample_id': 's4',
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 4,
+          '_value': 5.0,
+          'a': 5.0,
+          'b': 1.0,
+          'c': 5.0,
+          'group': 'X',
+          'sample_id': 's5',
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'encoding': dict({
+          'color': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'opacity': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 1.0,
+            }),
+            'value': 0.15,
+          }),
+          'strokeWidth': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 3,
+            }),
+            'value': 1,
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'sample_id',
+              'title': 'ID',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'group',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'title': None,
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'title': 'Value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'line',
+        }),
+        'name': 'view_aa5fe2e81684bc1b_0',
+      }),
+      dict({
+        'encoding': dict({
+          'color': dict({
+            'field': 'group',
+            'type': 'nominal',
+          }),
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'sample_id',
+              'title': 'ID',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'group',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0,
+          'size': 100,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'params': list([
+      dict({
+        'name': 'param_ec86b0ece07f1801',
+        'select': dict({
+          'fields': list([
+            '_index',
+          ]),
+          'nearest': True,
+          'on': 'pointerover',
+          'type': 'point',
+        }),
+        'views': list([
+          'view_aa5fe2e81684bc1b_0',
+        ]),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---
+# name: test_plot_parallel_with_transforms
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_axis': 'a',
+          '_index': 0,
+          '_value': 0.0,
+          'a': 0.0,
+          'b': 1.0,
+          'c': 0.25,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 1,
+          '_value': 0.25,
+          'a': 0.25,
+          'b': 0.8613531161467861,
+          'c': 0.75,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 2,
+          '_value': 0.5,
+          'a': 0.5,
+          'b': 0.6826061944859854,
+          'c': 0.0,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 3,
+          '_value': 0.75,
+          'a': 0.75,
+          'b': 0.43067655807339306,
+          'c': 0.5,
+        }),
+        dict({
+          '_axis': 'a',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 0.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 0,
+          '_value': 1.0,
+          'a': 0.0,
+          'b': 1.0,
+          'c': 0.25,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 1,
+          '_value': 0.8613531161467861,
+          'a': 0.25,
+          'b': 0.8613531161467861,
+          'c': 0.75,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 2,
+          '_value': 0.6826061944859854,
+          'a': 0.5,
+          'b': 0.6826061944859854,
+          'c': 0.0,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 3,
+          '_value': 0.43067655807339306,
+          'a': 0.75,
+          'b': 0.43067655807339306,
+          'c': 0.5,
+        }),
+        dict({
+          '_axis': 'b',
+          '_index': 4,
+          '_value': 0.0,
+          'a': 1.0,
+          'b': 0.0,
+          'c': 1.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 0,
+          '_value': 0.25,
+          'a': 0.0,
+          'b': 1.0,
+          'c': 0.25,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 1,
+          '_value': 0.75,
+          'a': 0.25,
+          'b': 0.8613531161467861,
+          'c': 0.75,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 2,
+          '_value': 0.0,
+          'a': 0.5,
+          'b': 0.6826061944859854,
+          'c': 0.0,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 3,
+          '_value': 0.5,
+          'a': 0.75,
+          'b': 0.43067655807339306,
+          'c': 0.5,
+        }),
+        dict({
+          '_axis': 'c',
+          '_index': 4,
+          '_value': 1.0,
+          'a': 1.0,
+          'b': 0.0,
+          'c': 1.0,
+        }),
+      ]),
+    }),
+    'height': 400,
+    'layer': list([
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'opacity': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 1.0,
+            }),
+            'value': 0.15,
+          }),
+          'strokeWidth': dict({
+            'condition': dict({
+              'param': 'param_ec86b0ece07f1801',
+              'value': 3,
+            }),
+            'value': 1,
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'title': None,
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'title': 'Normalized value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'line',
+        }),
+        'name': 'view_509926dd75becd79_0',
+      }),
+      dict({
+        'encoding': dict({
+          'detail': dict({
+            'field': '_index',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'a',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'b',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'c',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': '_axis',
+            'sort': list([
+              'a',
+              'b',
+              'c',
+            ]),
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_value',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0,
+          'size': 100,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'params': list([
+      dict({
+        'name': 'param_ec86b0ece07f1801',
+        'select': dict({
+          'fields': list([
+            '_index',
+          ]),
+          'nearest': True,
+          'on': 'pointerover',
+          'type': 'point',
+        }),
+        'views': list([
+          'view_509926dd75becd79_0',
+        ]),
+      }),
+    ]),
+    'width': 600,
+  })
+# ---

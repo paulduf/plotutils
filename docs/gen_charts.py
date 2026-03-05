@@ -6,6 +6,7 @@ Run with:  uv run python docs/gen_charts.py
 import polars as pl
 
 from plotutils.auc import plot_roc_curve
+from plotutils.parallel import plot_parallel_coordinates
 from plotutils.boxplot import plot_bivariate_boxes, plot_bivariate_strip
 from plotutils.concat import hchart, vchart
 from plotutils.hist import plot_grouped_histogram
@@ -215,6 +216,33 @@ def gen_boxplot_charts() -> None:
     )
 
 
+def gen_parallel_charts() -> None:
+    df = pl.DataFrame(
+        {
+            "sepal_length": [5.1, 4.9, 7.0, 6.3, 6.5, 5.8],
+            "sepal_width": [3.5, 3.0, 3.2, 3.3, 2.8, 2.7],
+            "petal_length": [1.4, 1.4, 4.7, 4.4, 4.6, 5.1],
+            "petal_width": [0.2, 0.2, 1.4, 1.3, 1.5, 1.9],
+            "species": [
+                "setosa", "setosa", "versicolor",
+                "versicolor", "virginica", "virginica",
+            ],
+        }
+    )
+    cols = ["sepal_length", "sepal_width", "petal_length", "petal_width"]
+
+    _save(
+        plot_parallel_coordinates(df, columns=cols, color_col="species"),
+        "parallel_basic.html",
+    )
+    _save(
+        plot_parallel_coordinates(
+            df, columns=cols, color_col="species", normalize=True
+        ),
+        "parallel_normalized.html",
+    )
+
+
 def gen_auc_chart() -> None:
     import numpy as np
 
@@ -248,5 +276,6 @@ if __name__ == "__main__":
     gen_predictions_errors_color()
     gen_concat_charts()
     gen_boxplot_charts()
+    gen_parallel_charts()
     gen_auc_chart()
     print("Done.")

@@ -5,4 +5,5 @@ uv.lock
 # docs-related
 _site
 docs/img/
+docs/plots/*.html
 **/_output/*
