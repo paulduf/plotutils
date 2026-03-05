@@ -31,7 +31,13 @@ chart = plot_grouped_histogram(
 )
 ```
 
-![Grouped Histogram](../img/test_plot_grouped_histogram_dict_input.svg)
+<iframe
+  src="../grouped_histogram.html"
+  width="100%"
+  height="480"
+  style="border:none; overflow:hidden;"
+  scrolling="no">
+</iframe>
 
 ## Reference
 

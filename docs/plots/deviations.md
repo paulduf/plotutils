@@ -18,7 +18,13 @@ df = pl.DataFrame({
 chart = plot_deviations(df, x_col="category", y_col="value")
 ```
 
-![Deviations basic](../img/test_plot_deviations_basic.svg)
+<iframe
+  src="../deviations_basic.html"
+  width="100%"
+  height="480"
+  style="border:none; overflow:hidden;"
+  scrolling="no">
+</iframe>
 
 Each point shows `y - mean(y)` for its group. The horizontal line at zero is the group mean reference.
 
@@ -52,7 +58,13 @@ chart = plot_deviations(
 )
 ```
 
-![Deviations with tolerance levels](../img/test_plot_deviations_with_levels.svg)
+<iframe
+  src="../deviations_levels.html"
+  width="100%"
+  height="480"
+  style="border:none; overflow:hidden;"
+  scrolling="no">
+</iframe>
 
 ## Reference
 

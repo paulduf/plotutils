@@ -14,31 +14,34 @@ def plot_grouped_histogram(
     value_column: str = "value",
     group_column: str = "group",
 ) -> alt.Chart:
-    """
-    Create a grouped (side-by-side) histogram using Altair.
+    """Create a grouped (side-by-side) histogram using Altair.
 
     Parameters
     ----------
-    - `data` : `dict[str, list[float]]` or pl.DataFrame
+    data : dict[str, list[float]] or pl.DataFrame
         Either a dictionary mapping group names to data arrays,
-        or a polars DataFrame with value and group columns
-    - `n_bins` : `int`
-        Number of bins for histogram
-    - `width`, `height` : `int`
-        Chart dimensions
-    - `x_title`, `y_title` : `str`
-        Axis titles
-    - `opacity` : `float`
-        Bar opacity
-    - `value_column` : `str`
-        Name of the value column (only used when data is a DataFrame)
-    - `group_column` : `str`
-        Name of the group column (only used when data is a DataFrame)
+        or a polars DataFrame with value and group columns.
+    n_bins : int
+        Number of bins for histogram.
+    width : int
+        Chart width in pixels.
+    height : int
+        Chart height in pixels.
+    x_title : str
+        X-axis title.
+    y_title : str
+        Y-axis title.
+    opacity : float
+        Bar opacity.
+    value_column : str
+        Name of the value column (only used when data is a DataFrame).
+    group_column : str
+        Name of the group column (only used when data is a DataFrame).
 
     Returns
     -------
-    `alt.Chart`
-        Altair chart object
+    alt.Chart
+        Altair chart object.
     """
     # Convert input to DataFrame if needed
     if isinstance(data, dict):

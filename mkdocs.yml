@@ -5,9 +5,11 @@ nav:
   - Home: index.md
   - Plots:
       - Grouped Histogram: plots/grouped_histogram.md
-      - Error Bars: plots/error_bars.md
-      - Deviations: plots/deviations.md
-      - Prediction Errors: plots/predictions_errors.md
+      - Uncertainty:
+          - Error Bars: plots/error_bars.md
+          - Deviations: plots/deviations.md
+          - Prediction Errors: plots/predictions_errors.md
+      - Boxplots & Strip Plots: plots/boxplot.md
       - Concatenation: plots/concat.md
       - ROC Curve & AUC: plots/auc.md
   - Dev:
@@ -19,4 +21,10 @@ theme:
             primary: light blue
 plugins:
       - search
-      - mkdocstrings
+      - mkdocstrings:
+          handlers:
+            python:
+              options:
+                docstring_style: numpy
+                show_root_heading: true
+                heading_level: 2

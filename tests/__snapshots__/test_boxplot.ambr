@@ -1,0 +1,1925 @@
+# serializer version: 1
+# name: test_plot_bivariate_boxes_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+      ]),
+    }),
+    'encoding': dict({
+      'color': dict({
+        'field': 'outcome_b',
+        'title': 'outcome_b',
+        'type': 'nominal',
+      }),
+      'x': dict({
+        'axis': dict({
+          'labelAngle': 0,
+        }),
+        'field': 'outcome_a',
+        'title': 'outcome_a',
+        'type': 'nominal',
+      }),
+      'xOffset': dict({
+        'field': 'outcome_b',
+        'type': 'nominal',
+      }),
+      'y': dict({
+        'field': 'score',
+        'title': 'score',
+        'type': 'quantitative',
+      }),
+    }),
+    'height': 300,
+    'mark': dict({
+      'type': 'boxplot',
+    }),
+    'width': 340,
+  })
+# ---
+# name: test_plot_bivariate_boxes_custom_titles
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+      ]),
+    }),
+    'encoding': dict({
+      'color': dict({
+        'field': 'outcome_b',
+        'title': 'Outcome B',
+        'type': 'nominal',
+      }),
+      'x': dict({
+        'axis': dict({
+          'labelAngle': 0,
+        }),
+        'field': 'outcome_a',
+        'title': 'Outcome A',
+        'type': 'nominal',
+      }),
+      'xOffset': dict({
+        'field': 'outcome_b',
+        'type': 'nominal',
+      }),
+      'y': dict({
+        'field': 'score',
+        'title': 'Score Value',
+        'type': 'quantitative',
+      }),
+    }),
+    'height': 400,
+    'mark': dict({
+      'type': 'boxplot',
+    }),
+    'title': 'Custom Title',
+    'width': 500,
+  })
+# ---
+# name: test_plot_bivariate_boxes_with_id
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+      ]),
+    }),
+    'height': 300,
+    'layer': list([
+      dict({
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': 'score',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'boxplot',
+        }),
+      }),
+      dict({
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'patient_id',
+              'title': 'ID',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'score',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'filled': True,
+          'opacity': 0,
+          'size': 300,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 340,
+  })
+# ---
+# name: test_plot_bivariate_boxes_with_missing
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'y_sep': 0.165,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          '_miss_y': 0.09500000000000001,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'M002',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M001',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M003',
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+      ]),
+    }),
+    'height': 300,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'y': dict({
+            'field': 'y_sep',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': '#aaa',
+          'strokeDash': list([
+            3,
+            3,
+          ]),
+          'strokeWidth': 0.8,
+          'type': 'rule',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-2',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': 'score',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'boxplot',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_miss_y',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0.7,
+          'shape': 'cross',
+          'size': 30,
+          'strokeWidth': 2,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 340,
+  })
+# ---
+# name: test_plot_bivariate_boxes_with_missing_and_id
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'y_sep': 0.165,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          '_miss_y': 0.09500000000000001,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'M002',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M001',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M003',
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+      ]),
+    }),
+    'height': 300,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'y': dict({
+            'field': 'y_sep',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': '#aaa',
+          'strokeDash': list([
+            3,
+            3,
+          ]),
+          'strokeWidth': 0.8,
+          'type': 'rule',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-2',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': 'score',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'type': 'boxplot',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-2',
+        }),
+        'encoding': dict({
+          'tooltip': list([
+            dict({
+              'field': 'patient_id',
+              'title': 'ID',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'score',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'filled': True,
+          'opacity': 0,
+          'size': 300,
+          'type': 'point',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'patient_id',
+              'title': 'ID',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'y': dict({
+            'field': '_miss_y',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0.7,
+          'shape': 'cross',
+          'size': 30,
+          'strokeWidth': 2,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 340,
+  })
+# ---
+# name: test_plot_bivariate_strip_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_x_offset': -18.375165495898514,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          '_x_offset': -17.753621834895014,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          '_x_offset': -16.3309220756942,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          '_x_offset': -14.934384018556536,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          '_x_offset': -13.832651447629564,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          '_x_offset': -11.388638358835765,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          '_x_offset': 13.88800213163183,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          '_x_offset': 14.672357358132981,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+        dict({
+          '_x_offset': 15.157846099160519,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          '_x_offset': 18.973180246486816,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          '_x_offset': 19.821905921350673,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          '_x_offset': 20.71358039273469,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+      ]),
+    }),
+    'encoding': dict({
+      'color': dict({
+        'field': 'outcome_b',
+        'title': 'outcome_b',
+        'type': 'nominal',
+      }),
+      'tooltip': list([
+        dict({
+          'field': 'outcome_a',
+          'type': 'nominal',
+        }),
+        dict({
+          'field': 'outcome_b',
+          'type': 'nominal',
+        }),
+        dict({
+          'field': 'score',
+          'format': '.3f',
+          'type': 'quantitative',
+        }),
+      ]),
+      'x': dict({
+        'axis': dict({
+          'labelAngle': 0,
+        }),
+        'field': 'outcome_a',
+        'title': 'outcome_a',
+        'type': 'nominal',
+      }),
+      'xOffset': dict({
+        'field': '_x_offset',
+        'type': 'quantitative',
+      }),
+      'y': dict({
+        'field': 'score',
+        'title': 'score',
+        'type': 'quantitative',
+      }),
+    }),
+    'height': 300,
+    'mark': dict({
+      'opacity': 0.45,
+      'size': 18,
+      'type': 'circle',
+    }),
+    'width': 340,
+  })
+# ---
+# name: test_plot_bivariate_strip_custom_titles
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_x_offset': -18.375165495898514,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          '_x_offset': -17.753621834895014,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          '_x_offset': -16.3309220756942,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          '_x_offset': -14.934384018556536,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          '_x_offset': -13.832651447629564,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          '_x_offset': -11.388638358835765,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          '_x_offset': 13.88800213163183,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          '_x_offset': 14.672357358132981,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+        dict({
+          '_x_offset': 15.157846099160519,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          '_x_offset': 18.973180246486816,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          '_x_offset': 19.821905921350673,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          '_x_offset': 20.71358039273469,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+      ]),
+    }),
+    'encoding': dict({
+      'color': dict({
+        'field': 'outcome_b',
+        'title': 'Outcome B',
+        'type': 'nominal',
+      }),
+      'tooltip': list([
+        dict({
+          'field': 'outcome_a',
+          'type': 'nominal',
+        }),
+        dict({
+          'field': 'outcome_b',
+          'type': 'nominal',
+        }),
+        dict({
+          'field': 'score',
+          'format': '.3f',
+          'type': 'quantitative',
+        }),
+      ]),
+      'x': dict({
+        'axis': dict({
+          'labelAngle': 0,
+        }),
+        'field': 'outcome_a',
+        'title': 'Outcome A',
+        'type': 'nominal',
+      }),
+      'xOffset': dict({
+        'field': '_x_offset',
+        'type': 'quantitative',
+      }),
+      'y': dict({
+        'field': 'score',
+        'title': 'Score Value',
+        'type': 'quantitative',
+      }),
+    }),
+    'height': 400,
+    'mark': dict({
+      'opacity': 0.45,
+      'size': 18,
+      'type': 'circle',
+    }),
+    'title': 'Strip Plot',
+    'width': 500,
+  })
+# ---
+# name: test_plot_bivariate_strip_with_id
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_x_offset': -18.375165495898514,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          '_x_offset': -17.753621834895014,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          '_x_offset': -16.3309220756942,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          '_x_offset': -14.934384018556536,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          '_x_offset': -13.832651447629564,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          '_x_offset': -11.388638358835765,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          '_x_offset': 13.88800213163183,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          '_x_offset': 14.672357358132981,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+        dict({
+          '_x_offset': 15.157846099160519,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          '_x_offset': 18.973180246486816,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          '_x_offset': 19.821905921350673,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          '_x_offset': 20.71358039273469,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+      ]),
+    }),
+    'encoding': dict({
+      'color': dict({
+        'field': 'outcome_b',
+        'title': 'outcome_b',
+        'type': 'nominal',
+      }),
+      'tooltip': list([
+        dict({
+          'field': 'patient_id',
+          'title': 'ID',
+          'type': 'nominal',
+        }),
+        dict({
+          'field': 'outcome_a',
+          'type': 'nominal',
+        }),
+        dict({
+          'field': 'outcome_b',
+          'type': 'nominal',
+        }),
+        dict({
+          'field': 'score',
+          'format': '.3f',
+          'type': 'quantitative',
+        }),
+      ]),
+      'x': dict({
+        'axis': dict({
+          'labelAngle': 0,
+        }),
+        'field': 'outcome_a',
+        'title': 'outcome_a',
+        'type': 'nominal',
+      }),
+      'xOffset': dict({
+        'field': '_x_offset',
+        'type': 'quantitative',
+      }),
+      'y': dict({
+        'field': 'score',
+        'title': 'score',
+        'type': 'quantitative',
+      }),
+    }),
+    'height': 300,
+    'mark': dict({
+      'opacity': 0.45,
+      'size': 18,
+      'type': 'circle',
+    }),
+    'width': 340,
+  })
+# ---
+# name: test_plot_bivariate_strip_with_missing
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'y_sep': 0.165,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          '_x_offset': -18.375165495898514,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          '_x_offset': -17.753621834895014,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          '_x_offset': -16.3309220756942,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          '_x_offset': -14.934384018556536,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          '_x_offset': -13.832651447629564,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          '_x_offset': -11.388638358835765,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          '_x_offset': 13.88800213163183,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          '_x_offset': 14.672357358132981,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+        dict({
+          '_x_offset': 15.157846099160519,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          '_x_offset': 18.973180246486816,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          '_x_offset': 19.821905921350673,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          '_x_offset': 20.71358039273469,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          '_miss_y': 0.09500000000000001,
+          '_x_offset': -20.118900582426384,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M001',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          '_x_offset': -11.307155334327403,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M003',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          '_x_offset': -10.135927682878743,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'M002',
+        }),
+      ]),
+    }),
+    'height': 300,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'y': dict({
+            'field': 'y_sep',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': '#aaa',
+          'strokeDash': list([
+            3,
+            3,
+          ]),
+          'strokeWidth': 0.8,
+          'type': 'rule',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'score',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': '_x_offset',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'score',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0.45,
+          'size': 18,
+          'type': 'circle',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-2',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': '_x_offset',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': '_miss_y',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0.7,
+          'shape': 'cross',
+          'size': 30,
+          'strokeWidth': 2,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 340,
+  })
+# ---
+# name: test_plot_bivariate_strip_with_missing_and_id
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+      }),
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'y_sep': 0.165,
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+          '_x_offset': -18.375165495898514,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P003',
+          'score': 0.7,
+        }),
+        dict({
+          '_x_offset': -17.753621834895014,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P007',
+          'score': 0.2,
+        }),
+        dict({
+          '_x_offset': -16.3309220756942,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P005',
+          'score': 0.3,
+        }),
+        dict({
+          '_x_offset': -14.934384018556536,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P011',
+          'score': 0.25,
+        }),
+        dict({
+          '_x_offset': -13.832651447629564,
+          'outcome_a': '0',
+          'outcome_b': '0',
+          'patient_id': 'P009',
+          'score': 0.65,
+        }),
+        dict({
+          '_x_offset': -11.388638358835765,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'P001',
+          'score': 0.6,
+        }),
+        dict({
+          '_x_offset': 13.88800213163183,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P002',
+          'score': 0.9,
+        }),
+        dict({
+          '_x_offset': 14.672357358132981,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P008',
+          'score': 0.85,
+        }),
+        dict({
+          '_x_offset': 15.157846099160519,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P004',
+          'score': 0.5,
+        }),
+        dict({
+          '_x_offset': 18.973180246486816,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P006',
+          'score': 0.4,
+        }),
+        dict({
+          '_x_offset': 19.821905921350673,
+          'outcome_a': '1',
+          'outcome_b': '1',
+          'patient_id': 'P000',
+          'score': 0.8,
+        }),
+        dict({
+          '_x_offset': 20.71358039273469,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'P010',
+          'score': 0.35,
+        }),
+      ]),
+      'data-normalized-2': list([
+        dict({
+          '_miss_y': 0.09500000000000001,
+          '_x_offset': -20.118900582426384,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M001',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          '_x_offset': -11.307155334327403,
+          'outcome_a': '1',
+          'outcome_b': '0',
+          'patient_id': 'M003',
+        }),
+        dict({
+          '_miss_y': 0.09500000000000001,
+          '_x_offset': -10.135927682878743,
+          'outcome_a': '0',
+          'outcome_b': '1',
+          'patient_id': 'M002',
+        }),
+      ]),
+    }),
+    'height': 300,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'y': dict({
+            'field': 'y_sep',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'color': '#aaa',
+          'strokeDash': list([
+            3,
+            3,
+          ]),
+          'strokeWidth': 0.8,
+          'type': 'rule',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'patient_id',
+              'title': 'ID',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'score',
+              'format': '.3f',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': '_x_offset',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'score',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0.45,
+          'size': 18,
+          'type': 'circle',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-2',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'outcome_b',
+            'title': 'outcome_b',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'patient_id',
+              'title': 'ID',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_a',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'outcome_b',
+              'type': 'nominal',
+            }),
+          ]),
+          'x': dict({
+            'axis': dict({
+              'labelAngle': 0,
+            }),
+            'field': 'outcome_a',
+            'title': 'outcome_a',
+            'type': 'nominal',
+          }),
+          'xOffset': dict({
+            'field': '_x_offset',
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': '_miss_y',
+            'title': 'score',
+            'type': 'quantitative',
+          }),
+        }),
+        'mark': dict({
+          'opacity': 0.7,
+          'shape': 'cross',
+          'size': 30,
+          'strokeWidth': 2,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 340,
+  })
+# ---
