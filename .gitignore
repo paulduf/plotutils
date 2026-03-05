@@ -2,6 +2,7 @@
 __pycache__/
 *.egg-info
 uv.lock
+.coverage
 # docs-related
 _site
 docs/img/
