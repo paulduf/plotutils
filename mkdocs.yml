@@ -10,6 +10,7 @@ nav:
           - Deviations: plots/deviations.md
           - Prediction Errors: plots/predictions_errors.md
       - Boxplots & Strip Plots: plots/boxplot.md
+      - Raincloud: plots/raincloud.md
       - Parallel Coordinates: plots/parallel.md
       - Concatenation: plots/concat.md
       - ROC Curve & AUC: plots/auc.md

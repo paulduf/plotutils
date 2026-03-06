@@ -13,6 +13,7 @@ import json
 import polars as pl
 
 from plotutils.auc import plot_roc_curve
+from plotutils.raincloud import plot_raincloud
 from plotutils.parallel import plot_parallel_coordinates
 from plotutils.boxplot import plot_bivariate_boxes, plot_bivariate_strip
 from plotutils.concat import hchart, vchart
@@ -326,6 +327,23 @@ def gen_auc_reports() -> None:
     print("  auc_report_diabetes.html")
 
 
+def gen_raincloud() -> None:
+    df = pl.DataFrame(
+        {
+            "group": ["A"] * 30 + ["B"] * 30 + ["C"] * 30,
+            "value": [
+                1.0 + i * 0.05 for i in range(30)
+            ] + [
+                2.0 + i * 0.06 for i in range(30)
+            ] + [
+                1.5 + i * 0.04 for i in range(30)
+            ],
+        }
+    )
+    chart = plot_raincloud(df, x_col="group", y_col="value")
+    _save(chart, "raincloud.html")
+
+
 if __name__ == "__main__":
     print("Generating interactive charts...")
     gen_grouped_histogram()
@@ -339,4 +357,5 @@ if __name__ == "__main__":
     gen_parallel_charts()
     gen_auc_chart()
     gen_auc_reports()
+    gen_raincloud()
     print("Done.")

@@ -1,0 +1,926 @@
+# serializer version: 1
+# name: test_plot_raincloud_basic
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_jitter': -0.10018242585757023,
+          'group': 'A',
+          'value': 1.02,
+        }),
+        dict({
+          '_jitter': -0.09907665397766421,
+          'group': 'B',
+          'value': 2.2,
+        }),
+        dict({
+          '_jitter': -0.07655412964368151,
+          'group': 'A',
+          'value': 0.75,
+        }),
+        dict({
+          '_jitter': -0.0698289052350575,
+          'group': 'A',
+          'value': 1.2,
+        }),
+        dict({
+          '_jitter': -0.06776207467756334,
+          'group': 'B',
+          'value': 2.6,
+        }),
+        dict({
+          '_jitter': -0.0662041232236011,
+          'group': 'B',
+          'value': 2.02,
+        }),
+        dict({
+          '_jitter': -0.06545186822296793,
+          'group': 'A',
+          'value': 0.7,
+        }),
+        dict({
+          '_jitter': -0.06290516488622337,
+          'group': 'B',
+          'value': 2.4,
+        }),
+        dict({
+          '_jitter': -0.05081744470940355,
+          'group': 'A',
+          'value': 1.3,
+        }),
+        dict({
+          '_jitter': -0.049530311917415054,
+          'group': 'B',
+          'value': 1.75,
+        }),
+        dict({
+          '_jitter': -0.04505600751976918,
+          'group': 'B',
+          'value': 2.1,
+        }),
+        dict({
+          '_jitter': -0.04155496076354941,
+          'group': 'A',
+          'value': 1.0,
+        }),
+        dict({
+          '_jitter': -0.03398572240392105,
+          'group': 'A',
+          'value': 0.9,
+        }),
+        dict({
+          '_jitter': -0.03234908152737524,
+          'group': 'A',
+          'value': 0.95,
+        }),
+        dict({
+          '_jitter': -0.029848137404285102,
+          'group': 'B',
+          'value': 2.0,
+        }),
+        dict({
+          '_jitter': -0.027944488292413527,
+          'group': 'A',
+          'value': 0.85,
+        }),
+        dict({
+          '_jitter': -0.02570783315263635,
+          'group': 'A',
+          'value': 1.15,
+        }),
+        dict({
+          '_jitter': -0.02268493650623081,
+          'group': 'B',
+          'value': 2.5,
+        }),
+        dict({
+          '_jitter': -0.01668339918978348,
+          'group': 'A',
+          'value': 1.25,
+        }),
+        dict({
+          '_jitter': -0.009543694480063017,
+          'group': 'B',
+          'value': 2.45,
+        }),
+        dict({
+          '_jitter': -0.008018108952850513,
+          'group': 'B',
+          'value': 1.85,
+        }),
+        dict({
+          '_jitter': -0.005956165554228652,
+          'group': 'B',
+          'value': 2.35,
+        }),
+        dict({
+          '_jitter': -0.0036060011392535676,
+          'group': 'A',
+          'value': 0.8,
+        }),
+        dict({
+          '_jitter': -0.0025329856824361507,
+          'group': 'B',
+          'value': 2.05,
+        }),
+        dict({
+          '_jitter': 0.004011652120530571,
+          'group': 'B',
+          'value': 1.7,
+        }),
+        dict({
+          '_jitter': 0.008959824363742845,
+          'group': 'A',
+          'value': 1.4,
+        }),
+        dict({
+          '_jitter': 0.009694387062455206,
+          'group': 'A',
+          'value': 1.5,
+        }),
+        dict({
+          '_jitter': 0.014412187279053785,
+          'group': 'B',
+          'value': 1.9,
+        }),
+        dict({
+          '_jitter': 0.018525178373032993,
+          'group': 'A',
+          'value': 1.1,
+        }),
+        dict({
+          '_jitter': 0.02761100025304999,
+          'group': 'B',
+          'value': 2.0,
+        }),
+        dict({
+          '_jitter': 0.03365149920126928,
+          'group': 'B',
+          'value': 2.55,
+        }),
+        dict({
+          '_jitter': 0.039823292014677554,
+          'group': 'A',
+          'value': 1.45,
+        }),
+        dict({
+          '_jitter': 0.04708577023403322,
+          'group': 'A',
+          'value': 1.0,
+        }),
+        dict({
+          '_jitter': 0.04966248517675986,
+          'group': 'A',
+          'value': 1.1,
+        }),
+        dict({
+          '_jitter': 0.0610718206538336,
+          'group': 'B',
+          'value': 1.8,
+        }),
+        dict({
+          '_jitter': 0.07518404412409685,
+          'group': 'B',
+          'value': 2.3,
+        }),
+        dict({
+          '_jitter': 0.08228358802913388,
+          'group': 'A',
+          'value': 1.05,
+        }),
+        dict({
+          '_jitter': 0.09021649659597704,
+          'group': 'B',
+          'value': 2.15,
+        }),
+        dict({
+          '_jitter': 0.1113788646035109,
+          'group': 'B',
+          'value': 1.6,
+        }),
+        dict({
+          '_jitter': 0.1202059666149285,
+          'group': 'A',
+          'value': 1.35,
+        }),
+      ]),
+    }),
+    'facet': dict({
+      'column': dict({
+        'field': 'group',
+        'type': 'nominal',
+      }),
+    }),
+    'resolve': dict({
+      'scale': dict({
+        'x': 'independent',
+        'y': 'shared',
+      }),
+    }),
+    'spec': dict({
+      'height': 300,
+      'layer': list([
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': 'group',
+              'type': 'nominal',
+            }),
+            'y': dict({
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'median': dict({
+              'color': 'black',
+            }),
+            'size': 20,
+            'ticks': True,
+            'type': 'boxplot',
+          }),
+        }),
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': 'density',
+              'type': 'quantitative',
+            }),
+            'y': dict({
+              'axis': dict({
+                'title': 'value',
+              }),
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'opacity': 0.5,
+            'orient': 'horizontal',
+            'type': 'area',
+          }),
+          'transform': list([
+            dict({
+              'as': list([
+                'value',
+                'density',
+              ]),
+              'density': 'value',
+              'groupby': list([
+                'group',
+              ]),
+            }),
+          ]),
+        }),
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': '_jitter',
+              'type': 'quantitative',
+            }),
+            'y': dict({
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'opacity': 0.5,
+            'size': 25,
+            'type': 'circle',
+          }),
+        }),
+      ]),
+      'width': 150,
+    }),
+  })
+# ---
+# name: test_plot_raincloud_custom_options
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_jitter': -0.10018242585757023,
+          'group': 'A',
+          'value': 1.02,
+        }),
+        dict({
+          '_jitter': -0.09907665397766421,
+          'group': 'B',
+          'value': 2.2,
+        }),
+        dict({
+          '_jitter': -0.07655412964368151,
+          'group': 'A',
+          'value': 0.75,
+        }),
+        dict({
+          '_jitter': -0.0698289052350575,
+          'group': 'A',
+          'value': 1.2,
+        }),
+        dict({
+          '_jitter': -0.06776207467756334,
+          'group': 'B',
+          'value': 2.6,
+        }),
+        dict({
+          '_jitter': -0.0662041232236011,
+          'group': 'B',
+          'value': 2.02,
+        }),
+        dict({
+          '_jitter': -0.06545186822296793,
+          'group': 'A',
+          'value': 0.7,
+        }),
+        dict({
+          '_jitter': -0.06290516488622337,
+          'group': 'B',
+          'value': 2.4,
+        }),
+        dict({
+          '_jitter': -0.05081744470940355,
+          'group': 'A',
+          'value': 1.3,
+        }),
+        dict({
+          '_jitter': -0.049530311917415054,
+          'group': 'B',
+          'value': 1.75,
+        }),
+        dict({
+          '_jitter': -0.04505600751976918,
+          'group': 'B',
+          'value': 2.1,
+        }),
+        dict({
+          '_jitter': -0.04155496076354941,
+          'group': 'A',
+          'value': 1.0,
+        }),
+        dict({
+          '_jitter': -0.03398572240392105,
+          'group': 'A',
+          'value': 0.9,
+        }),
+        dict({
+          '_jitter': -0.03234908152737524,
+          'group': 'A',
+          'value': 0.95,
+        }),
+        dict({
+          '_jitter': -0.029848137404285102,
+          'group': 'B',
+          'value': 2.0,
+        }),
+        dict({
+          '_jitter': -0.027944488292413527,
+          'group': 'A',
+          'value': 0.85,
+        }),
+        dict({
+          '_jitter': -0.02570783315263635,
+          'group': 'A',
+          'value': 1.15,
+        }),
+        dict({
+          '_jitter': -0.02268493650623081,
+          'group': 'B',
+          'value': 2.5,
+        }),
+        dict({
+          '_jitter': -0.01668339918978348,
+          'group': 'A',
+          'value': 1.25,
+        }),
+        dict({
+          '_jitter': -0.009543694480063017,
+          'group': 'B',
+          'value': 2.45,
+        }),
+        dict({
+          '_jitter': -0.008018108952850513,
+          'group': 'B',
+          'value': 1.85,
+        }),
+        dict({
+          '_jitter': -0.005956165554228652,
+          'group': 'B',
+          'value': 2.35,
+        }),
+        dict({
+          '_jitter': -0.0036060011392535676,
+          'group': 'A',
+          'value': 0.8,
+        }),
+        dict({
+          '_jitter': -0.0025329856824361507,
+          'group': 'B',
+          'value': 2.05,
+        }),
+        dict({
+          '_jitter': 0.004011652120530571,
+          'group': 'B',
+          'value': 1.7,
+        }),
+        dict({
+          '_jitter': 0.008959824363742845,
+          'group': 'A',
+          'value': 1.4,
+        }),
+        dict({
+          '_jitter': 0.009694387062455206,
+          'group': 'A',
+          'value': 1.5,
+        }),
+        dict({
+          '_jitter': 0.014412187279053785,
+          'group': 'B',
+          'value': 1.9,
+        }),
+        dict({
+          '_jitter': 0.018525178373032993,
+          'group': 'A',
+          'value': 1.1,
+        }),
+        dict({
+          '_jitter': 0.02761100025304999,
+          'group': 'B',
+          'value': 2.0,
+        }),
+        dict({
+          '_jitter': 0.03365149920126928,
+          'group': 'B',
+          'value': 2.55,
+        }),
+        dict({
+          '_jitter': 0.039823292014677554,
+          'group': 'A',
+          'value': 1.45,
+        }),
+        dict({
+          '_jitter': 0.04708577023403322,
+          'group': 'A',
+          'value': 1.0,
+        }),
+        dict({
+          '_jitter': 0.04966248517675986,
+          'group': 'A',
+          'value': 1.1,
+        }),
+        dict({
+          '_jitter': 0.0610718206538336,
+          'group': 'B',
+          'value': 1.8,
+        }),
+        dict({
+          '_jitter': 0.07518404412409685,
+          'group': 'B',
+          'value': 2.3,
+        }),
+        dict({
+          '_jitter': 0.08228358802913388,
+          'group': 'A',
+          'value': 1.05,
+        }),
+        dict({
+          '_jitter': 0.09021649659597704,
+          'group': 'B',
+          'value': 2.15,
+        }),
+        dict({
+          '_jitter': 0.1113788646035109,
+          'group': 'B',
+          'value': 1.6,
+        }),
+        dict({
+          '_jitter': 0.1202059666149285,
+          'group': 'A',
+          'value': 1.35,
+        }),
+      ]),
+    }),
+    'facet': dict({
+      'column': dict({
+        'field': 'group',
+        'type': 'nominal',
+      }),
+    }),
+    'resolve': dict({
+      'scale': dict({
+        'x': 'independent',
+        'y': 'shared',
+      }),
+    }),
+    'spec': dict({
+      'height': 400,
+      'layer': list([
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': 'group',
+              'type': 'nominal',
+            }),
+            'y': dict({
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'median': dict({
+              'color': 'black',
+            }),
+            'size': 20,
+            'ticks': True,
+            'type': 'boxplot',
+          }),
+        }),
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': 'density',
+              'type': 'quantitative',
+            }),
+            'y': dict({
+              'axis': dict({
+                'title': 'Measurement',
+              }),
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'opacity': 0.5,
+            'orient': 'horizontal',
+            'type': 'area',
+          }),
+          'transform': list([
+            dict({
+              'as': list([
+                'value',
+                'density',
+              ]),
+              'density': 'value',
+              'groupby': list([
+                'group',
+              ]),
+            }),
+          ]),
+        }),
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': '_jitter',
+              'type': 'quantitative',
+            }),
+            'y': dict({
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'opacity': 0.5,
+            'size': 25,
+            'type': 'circle',
+          }),
+        }),
+      ]),
+      'width': 200,
+    }),
+    'title': 'My Raincloud',
+  })
+# ---
+# name: test_plot_raincloud_uniform_jitter
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'view': dict({
+        'continuousHeight': 300,
+        'continuousWidth': 300,
+      }),
+    }),
+    'data': dict({
+      'name': 'data-normalized-0',
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          '_jitter': -97.19165996719622,
+          'group': 'B',
+          'value': 2.05,
+        }),
+        dict({
+          '_jitter': -79.85975838632683,
+          'group': 'B',
+          'value': 1.7,
+        }),
+        dict({
+          '_jitter': -49.898731727511894,
+          'group': 'A',
+          'value': 1.15,
+        }),
+        dict({
+          '_jitter': -48.21664994140733,
+          'group': 'A',
+          'value': 1.1,
+        }),
+        dict({
+          '_jitter': -47.90153792160812,
+          'group': 'B',
+          'value': 2.35,
+        }),
+        dict({
+          '_jitter': -43.63243112005924,
+          'group': 'A',
+          'value': 1.25,
+        }),
+        dict({
+          '_jitter': -39.33745478421451,
+          'group': 'A',
+          'value': 1.0,
+        }),
+        dict({
+          '_jitter': -37.970486136133474,
+          'group': 'B',
+          'value': 2.0,
+        }),
+        dict({
+          '_jitter': -20.235291555146247,
+          'group': 'B',
+          'value': 1.75,
+        }),
+        dict({
+          '_jitter': -19.01317250991714,
+          'group': 'A',
+          'value': 0.8,
+        }),
+        dict({
+          '_jitter': -15.885683833830996,
+          'group': 'A',
+          'value': 0.9,
+        }),
+        dict({
+          '_jitter': -13.165632909243257,
+          'group': 'B',
+          'value': 2.4,
+        }),
+        dict({
+          '_jitter': -5.571456909457325,
+          'group': 'B',
+          'value': 2.5,
+        }),
+        dict({
+          '_jitter': -4.680609169528836,
+          'group': 'A',
+          'value': 0.7,
+        }),
+        dict({
+          '_jitter': -4.5980446894566,
+          'group': 'B',
+          'value': 2.2,
+        }),
+        dict({
+          '_jitter': 0.9373711634780477,
+          'group': 'A',
+          'value': 0.95,
+        }),
+        dict({
+          '_jitter': 2.254944273721705,
+          'group': 'A',
+          'value': 1.3,
+        }),
+        dict({
+          '_jitter': 9.739860767117861,
+          'group': 'B',
+          'value': 1.85,
+        }),
+        dict({
+          '_jitter': 16.676407891006235,
+          'group': 'A',
+          'value': 1.5,
+        }),
+        dict({
+          '_jitter': 22.177394688760316,
+          'group': 'B',
+          'value': 2.0,
+        }),
+        dict({
+          '_jitter': 23.67379933506632,
+          'group': 'A',
+          'value': 0.85,
+        }),
+        dict({
+          '_jitter': 33.63064024637018,
+          'group': 'B',
+          'value': 2.02,
+        }),
+        dict({
+          '_jitter': 36.79678638308826,
+          'group': 'B',
+          'value': 2.1,
+        }),
+        dict({
+          '_jitter': 43.94093728079082,
+          'group': 'B',
+          'value': 2.45,
+        }),
+        dict({
+          '_jitter': 45.96634965202574,
+          'group': 'B',
+          'value': 2.3,
+        }),
+        dict({
+          '_jitter': 51.16084083144477,
+          'group': 'A',
+          'value': 1.05,
+        }),
+        dict({
+          '_jitter': 51.590880588060486,
+          'group': 'A',
+          'value': 1.2,
+        }),
+        dict({
+          '_jitter': 56.75971780695451,
+          'group': 'A',
+          'value': 1.4,
+        }),
+        dict({
+          '_jitter': 61.005565402604475,
+          'group': 'B',
+          'value': 2.15,
+        }),
+        dict({
+          '_jitter': 62.04344719931791,
+          'group': 'A',
+          'value': 1.45,
+        }),
+        dict({
+          '_jitter': 64.96899542964661,
+          'group': 'B',
+          'value': 2.55,
+        }),
+        dict({
+          '_jitter': 68.88437030500961,
+          'group': 'A',
+          'value': 1.0,
+        }),
+        dict({
+          '_jitter': 73.061985554328,
+          'group': 'B',
+          'value': 1.9,
+        }),
+        dict({
+          '_jitter': 79.7676575935987,
+          'group': 'B',
+          'value': 1.8,
+        }),
+        dict({
+          '_jitter': 80.43319008791653,
+          'group': 'A',
+          'value': 1.02,
+        }),
+        dict({
+          '_jitter': 81.62257703906704,
+          'group': 'A',
+          'value': 1.1,
+        }),
+        dict({
+          '_jitter': 81.94925119364802,
+          'group': 'A',
+          'value': 1.35,
+        }),
+        dict({
+          '_jitter': 82.60221064757965,
+          'group': 'B',
+          'value': 1.6,
+        }),
+        dict({
+          '_jitter': 93.32127355415176,
+          'group': 'B',
+          'value': 2.6,
+        }),
+        dict({
+          '_jitter': 96.55709520753061,
+          'group': 'A',
+          'value': 0.75,
+        }),
+      ]),
+    }),
+    'facet': dict({
+      'column': dict({
+        'field': 'group',
+        'type': 'nominal',
+      }),
+    }),
+    'resolve': dict({
+      'scale': dict({
+        'x': 'independent',
+        'y': 'shared',
+      }),
+    }),
+    'spec': dict({
+      'height': 300,
+      'layer': list([
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': 'group',
+              'type': 'nominal',
+            }),
+            'y': dict({
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'median': dict({
+              'color': 'black',
+            }),
+            'size': 20,
+            'ticks': True,
+            'type': 'boxplot',
+          }),
+        }),
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': 'density',
+              'type': 'quantitative',
+            }),
+            'y': dict({
+              'axis': dict({
+                'title': 'value',
+              }),
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'opacity': 0.5,
+            'orient': 'horizontal',
+            'type': 'area',
+          }),
+          'transform': list([
+            dict({
+              'as': list([
+                'value',
+                'density',
+              ]),
+              'density': 'value',
+              'groupby': list([
+                'group',
+              ]),
+            }),
+          ]),
+        }),
+        dict({
+          'encoding': dict({
+            'x': dict({
+              'axis': None,
+              'field': '_jitter',
+              'type': 'quantitative',
+            }),
+            'y': dict({
+              'field': 'value',
+              'type': 'quantitative',
+            }),
+          }),
+          'mark': dict({
+            'opacity': 0.5,
+            'size': 25,
+            'type': 'circle',
+          }),
+        }),
+      ]),
+      'width': 150,
+    }),
+  })
+# ---
