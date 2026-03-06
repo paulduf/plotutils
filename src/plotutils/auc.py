@@ -9,6 +9,10 @@ import altair as alt
 from plotutils.boxplot import plot_bivariate_boxes, plot_bivariate_strip
 
 
+class InsufficientClassesError(ValueError):
+    """Raised when a label column does not have exactly 2 unique classes."""
+
+
 def _coerce_label(series: pl.Series) -> pl.Series:
     """Return a 0/1 Int8 copy of *series*, accepting any binary input dtype.
 
@@ -27,7 +31,7 @@ def _coerce_label(series: pl.Series) -> pl.Series:
     # Non-numeric: coerce via string representation, ignoring nulls.
     uniq = sorted(v for v in series.cast(pl.String).unique().to_list() if v is not None)
     if len(uniq) != 2:
-        raise ValueError(
+        raise InsufficientClassesError(
             f"label column must have exactly 2 unique values; got {uniq!r}"
         )
     return (series.cast(pl.String) == uniq[1]).cast(pl.Int8)
@@ -627,7 +631,13 @@ class AUCReport:
                 row[f"n_valid_{out}"] = n_valid
                 row[f"n_outcome_missing_{out}"] = outcome_missing[out]
 
-                roc = _compute_roc(df_vo, "score", "label")
+                try:
+                    roc = _compute_roc(df_vo, "score", "label")
+                except InsufficientClassesError:
+                    row[f"auc_{out}"] = None
+                    for sl in self._target_spec:
+                        row[f"pauc_{out}_q{int(sl * 100)}"] = None
+                    continue
                 row[f"auc_{out}"] = round(_compute_auc(roc), 4)
                 # pAUC columns: one per specificity level, None if unreachable.
                 max_spec = float(
@@ -657,9 +667,12 @@ class AUCReport:
                     .rename({var: "score", out: "label"})
                     .drop_nulls(subset=["score", "label"])
                 )
-                roc_check = _compute_roc(
-                    df_vo.select(["score", "label"]), "score", "label"
-                )
+                try:
+                    roc_check = _compute_roc(
+                        df_vo.select(["score", "label"]), "score", "label"
+                    )
+                except InsufficientClassesError:
+                    continue
                 max_spec = float(
                     roc_check.filter(pl.col("threshold").is_not_null())[
                         "specificity"
@@ -1019,3 +1032,7 @@ vegaEmbed('#scatter', SCATTER, {{actions: false}}).then(function(r) {{
             with open(path, "w", encoding="utf-8") as f:
                 f.write(html)
         return html
+
+    def _repr_html_(self) -> str:
+        """Rich HTML display for Jupyter / Quarto notebooks."""
+        return self.to_html()
