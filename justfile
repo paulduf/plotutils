@@ -18,9 +18,11 @@ coverage-report:
 coverage-html:
     uv run coverage html
 
-# Generate coverage badge
+# Generate coverage and tests badges
 badge:
-    uv run coverage-badge -f -o .cccicd/badges/coverage.svg
+    uv run coverage xml -o coverage.xml
+    uv run genbadge coverage -i coverage.xml -o .cccicd/badges/coverage.svg
+    uv run genbadge tests -i junit.xml -o .cccicd/badges/tests.svg
 
 # Install dependencies
 install:
@@ -28,7 +30,7 @@ install:
 
 # Run tests, coverage, and update badge (updates snapshots to ensure consistency)
 deploy:
-    uv run coverage run -m pytest --snapshot-update
+    uv run coverage run -m pytest --snapshot-update --junitxml=junit.xml
     just coverage-report
     just badge
     @echo Deploy complete
