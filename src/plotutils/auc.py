@@ -582,6 +582,7 @@ class AUCReport:
         specificity_levels: list[float] | None = None,
         chart_width: int = 320,
         chart_height: int = 290,
+        auto_reverse: bool = True,
     ) -> None:
         self._df = df
         self._variables = variables
@@ -599,8 +600,47 @@ class AUCReport:
             plot_bivariate_boxes if kind == "box" else plot_bivariate_strip
         )
 
-        # Pre-compute all chart specs (expensive, done once).
+        # Pre-compute AUC to detect anti-correlated variables.
         self._auc_df = self._build_auc_df()
+
+        # Auto-reverse: negate variables where AUC < 0.5 for ALL outcomes.
+        self._reversed: set[str] = set()
+        if auto_reverse:
+            auc_cols = [f"auc_{out}" for out in outcomes]
+            for var in variables:
+                row = self._auc_df.filter(pl.col("variable") == var)
+                if row.is_empty():
+                    continue
+                aucs = [row[c].item() for c in auc_cols]
+                # Reverse only if all non-null AUCs are < 0.5.
+                non_null = [a for a in aucs if a is not None]
+                if non_null and all(a < 0.5 for a in non_null):
+                    self._reversed.add(var)
+
+            if self._reversed:
+                self._df = self._df.with_columns(
+                    [pl.col(var) * -1 for var in self._reversed]
+                )
+                # Recompute AUC with negated scores.
+                self._auc_df = self._build_auc_df()
+
+        # Build display names: add (+)/(-) prefixes when any variable is reversed.
+        if self._reversed:
+            self._display_names = {
+                var: f"(-) {var}" if var in self._reversed else f"(+) {var}"
+                for var in variables
+            }
+        else:
+            self._display_names = {var: var for var in variables}
+
+        # Add display_name column to _auc_df.
+        self._auc_df = self._auc_df.with_columns(
+            pl.col("variable")
+            .replace_strict(self._display_names)
+            .alias("display_name")
+        )
+
+        # Pre-compute all chart specs (expensive, done once).
         self._roc_specs = self._build_roc_specs()
         self._dist_specs = self._build_dist_specs()
 
@@ -685,7 +725,7 @@ class AUCReport:
                     label_col="label",
                     id_col=self._id_col,
                     specificity_levels=achievable,
-                    title=var,
+                    title=self._display_names[var],
                     width=self._w,
                     height=self._h,
                 )
@@ -742,7 +782,7 @@ class AUCReport:
                         label_x_col="label_x",
                         label_y_col="label_y",
                         id_col=self._id_col,
-                        title=var,
+                        title=self._display_names[var],
                         x_title=out_x.replace("_", " "),
                         color_title=out_y.replace("_", " "),
                         y_title="score",
@@ -837,12 +877,12 @@ class AUCReport:
                 ),
                 color=alt.condition(
                     click_sel,
-                    alt.Color("variable:N", legend=None),
+                    alt.Color("display_name:N", legend=None),
                     alt.value("lightgray"),
                 ),
                 size=alt.condition(click_sel, alt.value(180), alt.value(80)),
                 tooltip=[
-                    alt.Tooltip("variable:N"),
+                    alt.Tooltip("display_name:N", title="Variable"),
                     alt.Tooltip("x_auc:Q", format=".3f", title="AUC (X)"),
                     alt.Tooltip("y_auc:Q", format=".3f", title="AUC (Y)"),
                     alt.Tooltip("_sz_x:N", title="Sample size"),
@@ -984,6 +1024,7 @@ const DIST = {dist_specs_js};
 const SCATTER = {scatter_js};
 
 let activeVar = null;
+let activeDisplayName = null;
 
 function embed(id, spec) {{
   vegaEmbed('#' + id, spec, {{actions: false}});
@@ -997,8 +1038,8 @@ function update(view) {{
   // ROC charts
   const oxLabel = ox.replace(/_/g, ' ');
   const oyLabel = oy.replace(/_/g, ' ');
-  document.getElementById('lbl-roc0').textContent = 'ROC — ' + oxLabel + ' (' + activeVar + ')';
-  document.getElementById('lbl-roc1').textContent = 'ROC — ' + oyLabel + ' (' + activeVar + ')';
+  document.getElementById('lbl-roc0').textContent = 'ROC — ' + oxLabel + ' (' + activeDisplayName + ')';
+  document.getElementById('lbl-roc1').textContent = 'ROC — ' + oyLabel + ' (' + activeDisplayName + ')';
   const roc0 = ROC[activeVar + '|' + ox];
   const roc1 = ROC[activeVar + '|' + oy];
   if (roc0) embed('roc0', roc0);
@@ -1006,7 +1047,7 @@ function update(view) {{
 
   // Distribution chart
   document.getElementById('lbl-dist').textContent =
-    '{dist_kind_label} — ' + activeVar + ' score × ' + oxLabel + ' × ' + oyLabel;
+    '{dist_kind_label} — ' + activeDisplayName + ' score × ' + oxLabel + ' × ' + oyLabel;
   const dist = DIST[activeVar + '|' + ox + '|' + oy];
   if (dist) embed('dist', dist);
 }}
@@ -1017,6 +1058,7 @@ vegaEmbed('#scatter', SCATTER, {{actions: false}}).then(function(r) {{
   view.addEventListener('click', function(event, item) {{
     if (item && item.datum && item.datum.variable) {{
       activeVar = item.datum.variable;
+      activeDisplayName = item.datum.display_name || activeVar;
       update(view);
     }}
   }});

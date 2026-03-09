@@ -3,7 +3,7 @@ import pytest
 from conftest import chart_to_svg, normalize_chart_dict
 from sklearn.metrics import roc_auc_score
 
-from plotutils.auc import _compute_auc, _compute_pauc, _compute_roc, plot_roc_curve
+from plotutils.auc import AUCReport, _compute_auc, _compute_pauc, _compute_roc, plot_roc_curve
 
 # Perfect classifier: positives all score above negatives, no overlap.
 _DF_PERFECT = pl.DataFrame(
@@ -406,3 +406,73 @@ def test_compute_roc_string_label_three_values_raises():
     df = pl.DataFrame({"score": [0.9, 0.5, 0.1], "label": ["a", "b", "c"]})
     with pytest.raises(ValueError, match="2 unique values"):
         _compute_roc(df, "score", "label")
+
+
+# ---------------------------------------------------------------------------
+# AUCReport auto_reverse tests
+# ---------------------------------------------------------------------------
+
+def _make_anti_correlated_df():
+    """Build a DataFrame where 'bad_var' has AUC < 0.5 for all outcomes
+    (low scores → positive class) and 'good_var' has AUC > 0.5."""
+    return pl.DataFrame({
+        # good_var: high score → positive (AUC > 0.5)
+        "good_var": [0.9, 0.8, 0.7, 0.6, 0.2, 0.1, 0.05, 0.03],
+        # bad_var: LOW score → positive (AUC < 0.5)
+        "bad_var":  [0.1, 0.2, 0.3, 0.4, 0.8, 0.9, 0.95, 0.97],
+        "outcome_a": [1, 1, 1, 1, 0, 0, 0, 0],
+        "outcome_b": [1, 1, 1, 1, 0, 0, 0, 0],
+    })
+
+
+def test_auto_reverse_flips_auc_above_half():
+    """Anti-correlated variable should be reversed so AUC > 0.5."""
+    df = _make_anti_correlated_df()
+    report = AUCReport(
+        df, ["good_var", "bad_var"], ["outcome_a", "outcome_b"],
+        auto_reverse=True,
+    )
+    auc_df = report._auc_df
+    for out in ["outcome_a", "outcome_b"]:
+        good_auc = auc_df.filter(pl.col("variable") == "good_var")[f"auc_{out}"].item()
+        bad_auc = auc_df.filter(pl.col("variable") == "bad_var")[f"auc_{out}"].item()
+        assert good_auc > 0.5
+        assert bad_auc > 0.5
+
+
+def test_auto_reverse_false_preserves_low_auc():
+    """With auto_reverse=False, AUC < 0.5 is preserved."""
+    df = _make_anti_correlated_df()
+    report = AUCReport(
+        df, ["good_var", "bad_var"], ["outcome_a", "outcome_b"],
+        auto_reverse=False,
+    )
+    auc_df = report._auc_df
+    bad_auc = auc_df.filter(pl.col("variable") == "bad_var")["auc_outcome_a"].item()
+    assert bad_auc < 0.5
+
+
+def test_auto_reverse_display_names_with_prefix():
+    """When reversal occurs, display names get (+)/(-) prefixes."""
+    df = _make_anti_correlated_df()
+    report = AUCReport(
+        df, ["good_var", "bad_var"], ["outcome_a", "outcome_b"],
+        auto_reverse=True,
+    )
+    assert report._display_names["good_var"] == "(+) good_var"
+    assert report._display_names["bad_var"] == "(-) bad_var"
+    assert report._reversed == {"bad_var"}
+
+
+def test_auto_reverse_no_prefix_when_none_reversed():
+    """When no variable is reversed, display names have no prefix."""
+    # All variables have AUC > 0.5.
+    df = pl.DataFrame({
+        "v1": [0.9, 0.8, 0.7, 0.2, 0.1, 0.05],
+        "v2": [0.85, 0.75, 0.65, 0.25, 0.15, 0.08],
+        "outcome": [1, 1, 1, 0, 0, 0],
+    })
+    report = AUCReport(df, ["v1", "v2"], ["outcome"], auto_reverse=True)
+    assert report._display_names["v1"] == "v1"
+    assert report._display_names["v2"] == "v2"
+    assert report._reversed == set()

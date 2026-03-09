@@ -55,13 +55,19 @@ def mask_missing_data(
     return df
 
 
-def load_synthetic(*, missing: bool = False, seed: int = 42) -> Dataset:
+def load_synthetic(
+    *, missing: bool = False, anti_correlated: bool = False, seed: int = 42
+) -> Dataset:
     """Five synthetic biomarker scores with three binary outcomes.
 
     Parameters
     ----------
     missing:
         If *True*, randomly mask values in all variable and outcome columns.
+    anti_correlated:
+        If *True*, add a sixth variable ``var_anti`` that is the negation of
+        ``var_0``.  It has AUC < 0.5 for all outcomes and demonstrates the
+        ``auto_reverse`` feature of :class:`~plotutils.auc.AUCReport`.
     seed:
         Random seed for reproducibility.
     """
@@ -78,10 +84,17 @@ def load_synthetic(*, missing: bool = False, seed: int = 42) -> Dataset:
         "patient_id": [f"P{i + 1:03d}" for i in range(n)],
         **{out: lbl.tolist() for out, lbl in labels.items()},
     }
+    var_scores: dict[str, list] = {}
     for i, var in enumerate(variables):
         score = sum(strengths[i, j] * labels[out] for j, out in enumerate(outcomes))
         score += rng.normal(0, 1.0, size=n)
         data[var] = score.tolist()
+        var_scores[var] = score
+
+    if anti_correlated:
+        anti_scores = [-v for v in var_scores["var_0"]]
+        data["var_anti"] = anti_scores
+        variables = variables + ["var_anti"]
 
     df = pl.DataFrame(data)
 

@@ -37,11 +37,12 @@ parser.add_argument(
 )
 parser.add_argument(
     "--dataset",
-    choices=["synthetic", "synthetic-missing", "diabetes"],
+    choices=["synthetic", "synthetic-missing", "synthetic-reversed", "diabetes"],
     default="synthetic",
     help=(
         "Dataset: 'synthetic' (toy, 5 vars / 3 outcomes), "
-        "'synthetic-missing' (same with introduced null patterns), or "
+        "'synthetic-missing' (same with introduced null patterns), "
+        "'synthetic-reversed' (adds an anti-correlated variable to demo auto_reverse), or "
         "'diabetes' (sklearn, 10 features / 3 progression quartile outcomes). "
         "Default: synthetic."
     ),
@@ -51,6 +52,8 @@ args = parser.parse_args()
 # ── 1. Dataset ────────────────────────────────────────────────────────────────
 if args.dataset in ("synthetic", "synthetic-missing"):
     ds = load_synthetic(missing=args.dataset == "synthetic-missing")
+elif args.dataset == "synthetic-reversed":
+    ds = load_synthetic(anti_correlated=True)
 else:  # diabetes
     ds = load_binary_diabetes()
 

@@ -15,11 +15,12 @@ distribution chart for the selected variable.
 
 ## Live demos
 
-Explore the three interactive reports below.  Click any point in the
+Explore the four interactive reports below.  Click any point in the
 AUC-AUC scatter to update the linked panels.
 
 - [Synthetic dataset](#synthetic-dataset) — 5 variables, 3 outcomes, 400 patients
 - [Synthetic with missing data](#synthetic-with-missing-data) — same data with random null patterns
+- [Synthetic with auto-reverse](#synthetic-with-auto-reverse) — adds an anti-correlated variable, automatically reversed
 - [Diabetes dataset](#diabetes-dataset) — sklearn diabetes, 10 features, 3 progression thresholds
 
 ### Synthetic dataset
@@ -43,6 +44,21 @@ sample sizes and missing counts are shown in the scatter tooltip:
 
 <iframe
   src="../auc_report_missing.html"
+  width="100%"
+  height="750"
+  style="border:none; overflow:hidden;"
+  onload="var f=this;setTimeout(function(){f.style.height=f.contentDocument.documentElement.scrollHeight+'px'},1000)">
+</iframe>
+
+### Synthetic with auto-reverse
+
+6-variable dataset where `var_anti` is the negation of `var_0` (AUC < 0.5
+for all outcomes).  With `auto_reverse=True` (the default), it is
+automatically flipped and labelled `(-) var_anti` in the scatter and charts,
+while the other variables get a `(+)` prefix:
+
+<iframe
+  src="../auc_report_reversed.html"
   width="100%"
   height="750"
   style="border:none; overflow:hidden;"
@@ -95,6 +111,25 @@ draws a dashed cross-hair on the curve:
 
 ```python
 report = AUCReport(df, variables, outcomes, specificity_levels=[0.80, 0.90, 0.95])
+```
+
+### Auto-reversing anti-correlated variables
+
+By default (`auto_reverse=True`), `AUCReport` detects variables whose AUC
+is below 0.5 for **all** outcomes (i.e. anti-correlated variables — a higher
+score predicts the *negative* class).  Those variables are automatically
+negated so every displayed AUC is ≥ 0.5.
+
+Reversed variables are labelled with a `(-)` prefix in the scatter plot,
+ROC curves, and distribution charts.  Non-reversed variables get a `(+)`
+prefix (prefixes are only shown when at least one variable is reversed).
+
+```python
+# Default — anti-correlated variables are reversed automatically.
+report = AUCReport(df, variables, outcomes)
+
+# Disable — AUC < 0.5 values are shown as-is.
+report = AUCReport(df, variables, outcomes, auto_reverse=False)
 ```
 
 ### Missing data handling

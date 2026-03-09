@@ -310,6 +310,14 @@ def gen_auc_reports() -> None:
     ).to_html(path=f"{OUT}/auc_report_synthetic.html")
     print("  auc_report_synthetic.html")
 
+    # ── Synthetic with anti-correlated variable ────────────────────────
+    ds_rev = load_synthetic(anti_correlated=True)
+    AUCReport(
+        ds_rev.df, variables=ds_rev.variables, outcomes=ds_rev.outcomes,
+        id_col="patient_id", auto_reverse=True,
+    ).to_html(path=f"{OUT}/auc_report_reversed.html")
+    print("  auc_report_reversed.html")
+
     # ── Synthetic with missing data ────────────────────────────────────
     ds_miss = load_synthetic(missing=True)
     AUCReport(
