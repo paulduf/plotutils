@@ -11,6 +11,7 @@ nav:
           - Prediction Errors: plots/predictions_errors.md
       - Boxplots & Strip Plots: plots/boxplot.md
       - Raincloud: plots/raincloud.md
+      - Forest Plot: plots/forest.md
       - Parallel Coordinates: plots/parallel.md
       - Concatenation: plots/concat.md
       - ROC Curve & AUC: plots/auc.md

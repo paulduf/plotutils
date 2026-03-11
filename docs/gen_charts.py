@@ -13,6 +13,7 @@ import json
 import polars as pl
 
 from plotutils.auc import plot_roc_curve
+from plotutils.forest import plot_forest
 from plotutils.raincloud import plot_raincloud
 from plotutils.parallel import plot_parallel_coordinates
 from plotutils.boxplot import plot_bivariate_boxes, plot_bivariate_strip
@@ -335,6 +336,57 @@ def gen_auc_reports() -> None:
     print("  auc_report_diabetes.html")
 
 
+def gen_forest_basic() -> None:
+    df = pl.DataFrame(
+        {
+            "subgroup": ["Overall", "Age < 65", "Age ≥ 65", "Male", "Female"],
+            "hr": [0.78, 0.72, 0.85, 0.80, 0.75],
+            "low": [0.62, 0.55, 0.65, 0.61, 0.57],
+            "high": [0.98, 0.94, 1.11, 1.05, 0.99],
+        }
+    )
+    chart = plot_forest(
+        df,
+        center_col="hr",
+        low_col="low",
+        high_col="high",
+        label_col="subgroup",
+        x_title="Hazard Ratio",
+    )
+    _save(chart, "forest_basic.html")
+
+
+def gen_forest_effect() -> None:
+    df = pl.DataFrame(
+        {
+            "subgroup": [
+                "Overall", "Age < 65", "Age ≥ 65",
+                "Male", "Female", "High risk", "Low risk",
+            ],
+            "hr": [0.78, 0.72, 0.85, 0.80, 0.75, 0.68, 0.91],
+            "low": [0.62, 0.55, 0.65, 0.61, 0.57, 0.50, 0.72],
+            "high": [0.98, 0.94, 1.11, 1.05, 0.99, 0.92, 1.15],
+            "population": [
+                "All", "Young", "Older",
+                "Male", "Female", "High risk", "Low risk",
+            ],
+        }
+    )
+    chart = plot_forest(
+        df,
+        center_col="hr",
+        low_col="low",
+        high_col="high",
+        label_col="subgroup",
+        null_value=1.0,
+        min_effect=1.25,
+        color_col="population",
+        x_title="Hazard Ratio",
+        title="Treatment effect by subgroup",
+    )
+    _save(chart, "forest_effect.html")
+
+
 def gen_raincloud() -> None:
     df = pl.DataFrame(
         {
@@ -365,5 +417,7 @@ if __name__ == "__main__":
     gen_parallel_charts()
     gen_auc_chart()
     gen_auc_reports()
+    gen_forest_basic()
+    gen_forest_effect()
     gen_raincloud()
     print("Done.")
