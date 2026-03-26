@@ -24,6 +24,7 @@ from plotutils.uncertainty import (
     plot_deviations,
     plot_predictions_errors,
 )
+from plotutils.upset import plot_upset
 
 OUT = "docs/plots"
 
@@ -413,8 +414,35 @@ def gen_raincloud() -> None:
     _save(chart, "raincloud.html")
 
 
+def gen_upset_charts() -> None:
+    df = pl.DataFrame(
+        {
+            "Drama": [1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0],
+            "Comedy": [0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1],
+            "Action": [0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+            "Sci-Fi": [0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+        }
+    )
+    _save(plot_upset(df, title="Movie genre overlaps"), "upset_basic.html")
+    _save(
+        plot_upset(
+            df,
+            sort_by=["degree", "frequency"],
+            min_degree=1,
+            n_intersections=10,
+            title="Degree ≥ 1, sorted by degree then frequency",
+        ),
+        "upset_filtered.html",
+    )
+    _save(
+        plot_upset(df, show_set_sizes=False, title="No set-size bars"),
+        "upset_no_sizes.html",
+    )
+
+
 if __name__ == "__main__":
     print("Generating interactive charts...")
+    gen_upset_charts()
     gen_grouped_histogram()
     gen_confidence_scatter()
     gen_deviations_basic()
