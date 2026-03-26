@@ -56,7 +56,11 @@ def mask_missing_data(
 
 
 def load_synthetic(
-    *, missing: bool = False, anti_correlated: bool = False, seed: int = 42
+    *,
+    missing: bool = False,
+    anti_correlated: bool = False,
+    anti_correlated_outcomes: bool = False,
+    seed: int = 42,
 ) -> Dataset:
     """Five synthetic biomarker scores with three binary outcomes.
 
@@ -68,6 +72,10 @@ def load_synthetic(
         If *True*, add a sixth variable ``var_anti`` that is the negation of
         ``var_0``.  It has AUC < 0.5 for all outcomes and demonstrates the
         ``auto_reverse`` feature of :class:`~plotutils.auc.AUCReport`.
+    anti_correlated_outcomes:
+        If *True*, add a fourth outcome ``outcome_bad`` defined as
+        ``1 - outcome_0``.  This outcome is anti-correlated with the others
+        and demonstrates outcome-level auto-reversal.
     seed:
         Random seed for reproducibility.
     """
@@ -95,6 +103,10 @@ def load_synthetic(
         anti_scores = [-v for v in var_scores["var_0"]]
         data["var_anti"] = anti_scores
         variables = variables + ["var_anti"]
+
+    if anti_correlated_outcomes:
+        data["outcome_bad"] = [1 - v for v in data["outcome_0"]]
+        outcomes = outcomes + ["outcome_bad"]
 
     df = pl.DataFrame(data)
 

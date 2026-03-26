@@ -476,3 +476,104 @@ def test_auto_reverse_no_prefix_when_none_reversed():
     assert report._display_names["v1"] == "v1"
     assert report._display_names["v2"] == "v2"
     assert report._reversed == set()
+
+
+# ---------------------------------------------------------------------------
+# AUCReport outcome auto_reverse tests
+# ---------------------------------------------------------------------------
+
+def _make_anti_correlated_outcomes_df():
+    """DataFrame where outcome_bad = 1 - outcome_good (anti-correlated outcomes)."""
+    return pl.DataFrame({
+        "var_a": [0.9, 0.8, 0.7, 0.6, 0.2, 0.1, 0.05, 0.03],
+        "var_b": [0.85, 0.75, 0.65, 0.55, 0.25, 0.15, 0.08, 0.04],
+        "outcome_good": [1, 1, 1, 1, 0, 0, 0, 0],
+        "outcome_bad":  [0, 0, 0, 0, 1, 1, 1, 1],  # = 1 - outcome_good
+    })
+
+
+def test_auto_reverse_flips_anti_correlated_outcome():
+    """With anti-correlated outcomes, outcome reversal makes all AUCs >= 0.5."""
+    df = _make_anti_correlated_outcomes_df()
+    report = AUCReport(
+        df, ["var_a", "var_b"], ["outcome_good", "outcome_bad"],
+        auto_reverse=True,
+    )
+    auc_df = report._auc_df
+    for out in ["outcome_good", "outcome_bad"]:
+        for var in ["var_a", "var_b"]:
+            auc = auc_df.filter(pl.col("variable") == var)[f"auc_{out}"].item()
+            assert auc >= 0.5, f"{var}/{out}: AUC={auc} < 0.5"
+
+
+def test_auto_reverse_outcome_display_names_prefix():
+    """When an outcome is reversed, outcome display names get (+)/(-) prefixes."""
+    df = _make_anti_correlated_outcomes_df()
+    report = AUCReport(
+        df, ["var_a", "var_b"], ["outcome_good", "outcome_bad"],
+        auto_reverse=True,
+    )
+    assert report._reversed_outcomes == {"outcome_bad"}
+    assert report._outcome_display_names["outcome_good"] == "(+) outcome_good"
+    assert report._outcome_display_names["outcome_bad"] == "(-) outcome_bad"
+
+
+def test_auto_reverse_outcome_no_prefix_when_none_reversed():
+    """When no outcome is reversed, outcome display names have no prefix."""
+    df = _make_anti_correlated_df()  # outcomes are positively correlated
+    report = AUCReport(
+        df, ["good_var", "bad_var"], ["outcome_a", "outcome_b"],
+        auto_reverse=True,
+    )
+    assert report._reversed_outcomes == set()
+    assert report._outcome_display_names["outcome_a"] == "outcome_a"
+    assert report._outcome_display_names["outcome_b"] == "outcome_b"
+
+
+def test_auto_reverse_outcome_and_variable_combined():
+    """Both outcome reversal and variable reversal work together."""
+    df = pl.DataFrame({
+        # good_var: high score → positive (AUC > 0.5 for outcome_good)
+        "good_var": [0.9, 0.8, 0.7, 0.6, 0.2, 0.1, 0.05, 0.03],
+        # bad_var: LOW score → positive (AUC < 0.5 for all outcomes)
+        "bad_var":  [0.1, 0.2, 0.3, 0.4, 0.8, 0.9, 0.95, 0.97],
+        "outcome_good": [1, 1, 1, 1, 0, 0, 0, 0],
+        "outcome_bad":  [0, 0, 0, 0, 1, 1, 1, 1],
+    })
+    report = AUCReport(
+        df, ["good_var", "bad_var"], ["outcome_good", "outcome_bad"],
+        auto_reverse=True,
+    )
+    # outcome_bad should be reversed (anti-correlated with outcome_good)
+    assert "outcome_bad" in report._reversed_outcomes
+    # After outcome reversal, bad_var should have AUC > 0.5 for all outcomes
+    # (since outcomes are now aligned), OR be variable-reversed.
+    auc_df = report._auc_df
+    for out in ["outcome_good", "outcome_bad"]:
+        for var in ["good_var", "bad_var"]:
+            auc = auc_df.filter(pl.col("variable") == var)[f"auc_{out}"].item()
+            assert auc >= 0.5, f"{var}/{out}: AUC={auc} < 0.5"
+
+
+def test_reversed_outcomes_attribute():
+    """_reversed_outcomes contains exactly the anti-correlated outcome(s)."""
+    df = _make_anti_correlated_outcomes_df()
+    report = AUCReport(
+        df, ["var_a", "var_b"], ["outcome_good", "outcome_bad"],
+        auto_reverse=True,
+    )
+    assert report._reversed_outcomes == {"outcome_bad"}
+
+
+def test_reference_outcome_parameter():
+    """Custom reference_outcome changes which outcome gets reversed."""
+    df = _make_anti_correlated_outcomes_df()
+    # Use outcome_bad as reference → outcome_good should be reversed instead.
+    report = AUCReport(
+        df, ["var_a", "var_b"], ["outcome_good", "outcome_bad"],
+        auto_reverse=True,
+        reference_outcome="outcome_bad",
+    )
+    assert report._reversed_outcomes == {"outcome_good"}
+    assert report._outcome_display_names["outcome_good"] == "(-) outcome_good"
+    assert report._outcome_display_names["outcome_bad"] == "(+) outcome_bad"

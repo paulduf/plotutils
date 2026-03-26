@@ -65,6 +65,21 @@ while the other variables get a `(+)` prefix:
   onload="var f=this;setTimeout(function(){f.style.height=f.contentDocument.documentElement.scrollHeight+'px'},1000)">
 </iframe>
 
+### Synthetic with anti-correlated outcomes
+
+Dataset with an additional outcome `outcome_bad` defined as `1 - outcome_0`.
+With `auto_reverse=True`, the anti-correlated outcome is automatically flipped
+and labelled `(-) outcome_bad` in the scatter dropdowns and chart labels,
+while the other outcomes get a `(+)` prefix:
+
+<iframe
+  src="../auc_report_anti_outcomes.html"
+  width="100%"
+  height="750"
+  style="border:none; overflow:hidden;"
+  onload="var f=this;setTimeout(function(){f.style.height=f.contentDocument.documentElement.scrollHeight+'px'},1000)">
+</iframe>
+
 ### Diabetes dataset
 
 sklearn diabetes dataset: 10 features (age, sex, bmi, bp, s1–s6) scored
@@ -113,20 +128,27 @@ draws a dashed cross-hair on the curve:
 report = AUCReport(df, variables, outcomes, specificity_levels=[0.80, 0.90, 0.95])
 ```
 
-### Auto-reversing anti-correlated variables
+### Auto-reversing anti-correlated variables and outcomes
 
-By default (`auto_reverse=True`), `AUCReport` detects variables whose AUC
-is below 0.5 for **all** outcomes (i.e. anti-correlated variables — a higher
-score predicts the *negative* class).  Those variables are automatically
-negated so every displayed AUC is ≥ 0.5.
+By default (`auto_reverse=True`), `AUCReport` performs two alignment steps:
 
-Reversed variables are labelled with a `(-)` prefix in the scatter plot,
-ROC curves, and distribution charts.  Non-reversed variables get a `(+)`
-prefix (prefixes are only shown when at least one variable is reversed).
+1. **Outcome alignment** — outcomes that are negatively correlated with a
+   reference outcome (the first one by default, configurable via
+   `reference_outcome`) have their labels flipped (`0 ↔ 1`).  Reversed
+   outcomes are labelled with a `(-)` prefix; others get `(+)`.
+
+2. **Variable alignment** — after outcomes are aligned, variables whose AUC
+   is below 0.5 for **all** outcomes are negated.  Reversed variables are
+   labelled with a `(-)` prefix; others get `(+)`.
+
+Prefixes are only shown when at least one item in the category is reversed.
 
 ```python
-# Default — anti-correlated variables are reversed automatically.
+# Default — anti-correlated outcomes and variables are reversed automatically.
 report = AUCReport(df, variables, outcomes)
+
+# Choose a specific reference outcome for alignment.
+report = AUCReport(df, variables, outcomes, reference_outcome="survival")
 
 # Disable — AUC < 0.5 values are shown as-is.
 report = AUCReport(df, variables, outcomes, auto_reverse=False)

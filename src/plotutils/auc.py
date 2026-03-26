@@ -583,6 +583,7 @@ class AUCReport:
         chart_width: int = 320,
         chart_height: int = 290,
         auto_reverse: bool = True,
+        reference_outcome: str | None = None,
     ) -> None:
         self._df = df
         self._variables = variables
@@ -600,10 +601,32 @@ class AUCReport:
             plot_bivariate_boxes if kind == "box" else plot_bivariate_strip
         )
 
-        # Pre-compute AUC to detect anti-correlated variables.
+        # Phase 1: reverse anti-correlated outcomes (before any AUC computation).
+        self._reversed_outcomes: set[str] = set()
+        if auto_reverse and len(outcomes) > 1:
+            ref = reference_outcome if reference_outcome is not None else outcomes[0]
+            for out in outcomes:
+                if out == ref:
+                    continue
+                # Pearson correlation on non-null overlap with the reference.
+                pair = self._df.select([ref, out]).drop_nulls()
+                if len(pair) < 2:
+                    continue
+                corr = pair.select(
+                    pl.corr(pl.col(ref).cast(pl.Float64), pl.col(out).cast(pl.Float64))
+                ).item()
+                if corr is not None and corr < -0.3:
+                    self._reversed_outcomes.add(out)
+
+            if self._reversed_outcomes:
+                self._df = self._df.with_columns(
+                    [pl.col(out) * -1 + 1 for out in self._reversed_outcomes]
+                )
+
+        # Phase 2: compute AUC on (possibly outcome-aligned) data.
         self._auc_df = self._build_auc_df()
 
-        # Auto-reverse: negate variables where AUC < 0.5 for ALL outcomes.
+        # Phase 3: reverse variables where AUC < 0.5 for ALL outcomes.
         self._reversed: set[str] = set()
         if auto_reverse:
             auc_cols = [f"auc_{out}" for out in outcomes]
@@ -612,7 +635,6 @@ class AUCReport:
                 if row.is_empty():
                     continue
                 aucs = [row[c].item() for c in auc_cols]
-                # Reverse only if all non-null AUCs are < 0.5.
                 non_null = [a for a in aucs if a is not None]
                 if non_null and all(a < 0.5 for a in non_null):
                     self._reversed.add(var)
@@ -621,7 +643,6 @@ class AUCReport:
                 self._df = self._df.with_columns(
                     [pl.col(var) * -1 for var in self._reversed]
                 )
-                # Recompute AUC with negated scores.
                 self._auc_df = self._build_auc_df()
 
         # Build display names: add (+)/(-) prefixes when any variable is reversed.
@@ -633,11 +654,18 @@ class AUCReport:
         else:
             self._display_names = {var: var for var in variables}
 
+        # Build outcome display names: add (+)/(-) prefixes when any outcome is reversed.
+        if self._reversed_outcomes:
+            self._outcome_display_names = {
+                out: f"(-) {out}" if out in self._reversed_outcomes else f"(+) {out}"
+                for out in outcomes
+            }
+        else:
+            self._outcome_display_names = {out: out for out in outcomes}
+
         # Add display_name column to _auc_df.
         self._auc_df = self._auc_df.with_columns(
-            pl.col("variable")
-            .replace_strict(self._display_names)
-            .alias("display_name")
+            pl.col("variable").replace_strict(self._display_names).alias("display_name")
         )
 
         # Pre-compute all chart specs (expensive, done once).
@@ -783,8 +811,8 @@ class AUCReport:
                         label_y_col="label_y",
                         id_col=self._id_col,
                         title=self._display_names[var],
-                        x_title=out_x.replace("_", " "),
-                        color_title=out_y.replace("_", " "),
+                        x_title=self._outcome_display_names[out_x].replace("_", " "),
+                        color_title=self._outcome_display_names[out_y].replace("_", " "),
                         y_title="score",
                         width=self._w,
                         height=self._h,
@@ -807,6 +835,7 @@ class AUCReport:
             Field name template with ``{out}`` placeholder (e.g.
             ``"auc_{out}"`` or ``"n_valid_{out}"``).
         """
+
         def _f(out: str) -> str:
             return field.format(out=out)
 
@@ -817,7 +846,7 @@ class AUCReport:
 
     def _build_scatter(self) -> alt.Chart:
         outcomes = self._outcomes
-        outcome_labels = [o.replace("_", " ") for o in outcomes]
+        outcome_labels = [self._outcome_display_names[o].replace("_", " ") for o in outcomes]
         scatter_size = self._w + 20
 
         outcome_x = alt.param(
@@ -926,6 +955,7 @@ class AUCReport:
         roc_specs_js = json.dumps(self._roc_specs)
         dist_specs_js = json.dumps(self._dist_specs)
         scatter_js = json.dumps(json.loads(self._build_scatter().to_json()))
+        out_display_js = json.dumps(self._outcome_display_names)
 
         html = f"""<!DOCTYPE html>
 <html>
@@ -1022,6 +1052,7 @@ class AUCReport:
 const ROC  = {roc_specs_js};
 const DIST = {dist_specs_js};
 const SCATTER = {scatter_js};
+const OUT_DISPLAY = {out_display_js};
 
 let activeVar = null;
 let activeDisplayName = null;
@@ -1036,8 +1067,8 @@ function update(view) {{
   const oy = view.signal('outcome_y');
 
   // ROC charts
-  const oxLabel = ox.replace(/_/g, ' ');
-  const oyLabel = oy.replace(/_/g, ' ');
+  const oxLabel = (OUT_DISPLAY[ox] || ox).replace(/_/g, ' ');
+  const oyLabel = (OUT_DISPLAY[oy] || oy).replace(/_/g, ' ');
   document.getElementById('lbl-roc0').textContent = 'ROC — ' + oxLabel + ' (' + activeDisplayName + ')';
   document.getElementById('lbl-roc1').textContent = 'ROC — ' + oyLabel + ' (' + activeDisplayName + ')';
   const roc0 = ROC[activeVar + '|' + ox];
