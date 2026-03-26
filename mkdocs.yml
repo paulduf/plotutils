@@ -4,41 +4,41 @@ site_name: Altair Plot Utils
 nav:
   - Home: index.md
   - Plots:
-      - Grouped Histogram: plots/grouped_histogram.md
-      - Uncertainty:
-          - Error Bars: plots/error_bars.md
-          - Deviations: plots/deviations.md
-          - Prediction Errors: plots/predictions_errors.md
-      - Boxplots & Strip Plots: plots/boxplot.md
-      - Raincloud: plots/raincloud.md
-      - Forest Plot: plots/forest.md
-      - Parallel Coordinates: plots/parallel.md
-      - Concatenation: plots/concat.md
-      - ROC Curve & AUC: plots/auc.md
-      - AUC Report: plots/auc_report.md
+    - Grouped Histogram: plots/grouped_histogram.md
+    - Uncertainty:
+      - Error Bars: plots/error_bars.md
+      - Deviations: plots/deviations.md
+      - Prediction Errors: plots/predictions_errors.md
+    - Boxplots & Strip Plots: plots/boxplot.md
+    - Raincloud: plots/raincloud.md
+    - Forest Plot: plots/forest.md
+    - Parallel Coordinates: plots/parallel.md
+    - Concatenation: plots/concat.md
+    - UpSet Plot: plots/upset.md
+    - ROC Curve & AUC: plots/auc.md
+    - AUC Report: plots/auc_report.md
   - Dev:
-      - Altair & Polars: dev/altair_polars_onboarding.md
-      - Tooling: dev/tooling_onboarding.md
+    - Altair & Polars: dev/altair_polars_onboarding.md
+    - Tooling: dev/tooling_onboarding.md
+    - UpSet Construction: dev/upset_construction.md
 extra_javascript:
-      - https://cdn.jsdelivr.net/npm/vega@6
-      - https://cdn.jsdelivr.net/npm/vega-lite@6.1.0
-      - https://cdn.jsdelivr.net/npm/vega-embed@7
+  - https://cdn.jsdelivr.net/npm/vega@6
+  - https://cdn.jsdelivr.net/npm/vega-lite@6.1.0
+  - https://cdn.jsdelivr.net/npm/vega-embed@7
 markdown_extensions:
-      - pymdownx.highlight:
-            anchor_linenums: true
-      - pymdownx.superfences
-      - pymdownx.snippets:
-            base_path: docs
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: docs
 theme:
-      name: material
-      palette:
-            primary: light blue
+  name: windmill
 plugins:
-      - search
-      - mkdocstrings:
-          handlers:
-            python:
-              options:
-                docstring_style: numpy
-                show_root_heading: true
-                heading_level: 2
+  - search
+  - mkdocstrings:
+    handlers:
+        python:
+          options:
+            docstring_style: numpy
+            show_root_heading: true
+            heading_level: 2

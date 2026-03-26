@@ -25,4 +25,5 @@ dev = [
     "syrupy>=5.0.0",
     "vl-convert-python>=1.8.0",
     "pauc>=0.2.1",
+    "mkdocs-windmill>=1.0.5",
 ]
