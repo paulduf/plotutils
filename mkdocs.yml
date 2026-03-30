@@ -36,9 +36,9 @@ theme:
 plugins:
   - search
   - mkdocstrings:
-    handlers:
-        python:
-          options:
-            docstring_style: numpy
-            show_root_heading: true
-            heading_level: 2
+      handlers:
+          python:
+            options:
+              docstring_style: numpy
+              show_root_heading: true
+              heading_level: 2
