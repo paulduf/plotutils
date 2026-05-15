@@ -1,6 +1,11 @@
 # Documentation site: chart generation, build and serve.
 # Invoked via the `docs` module — e.g. `just docs serve`, `just docs build`.
 
+# Module files default their working directory to the directory containing
+# the module; reset to the project root so recipes can reference `docs/`,
+# `mkdocs.yml`, etc. with paths relative to the repo root.
+set working-directory := '..'
+
 # Generate interactive HTML charts into docs/plots/
 img:
     uv run python docs/gen_charts.py
