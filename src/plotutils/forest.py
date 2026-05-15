@@ -28,6 +28,7 @@ def plot_forest(
     width: int = 400,
     height: int | None = None,
     color_col: str | None = None,
+    group_col: str | None = None,
     sort_col: str | None = None,
     ascending: bool = True,
     x_title: str | None = None,
@@ -69,6 +70,14 @@ def plot_forest(
     color_col : str or None
         Optional column used to colour CI bars and center points.  When
         provided an ``alt.Color(:N)`` legend is added.
+    group_col : str or None
+        Optional column used to display multiple rows per label alongside
+        one another.  When provided, an ``alt.YOffset(:N)`` encoding dodges
+        CI bars and center points vertically within each y-band, so that
+        two or more groups (e.g. treatment arms) at the same label do not
+        overlap.  If ``color_col`` is ``None``, marks are also coloured by
+        ``group_col`` so the groups are visually distinguishable; if
+        ``color_col`` is explicitly set, it wins for the colour encoding.
     sort_col : str or None
         Column to sort rows by.  When ``None`` (default) the DataFrame row
         order is preserved.  Any numeric or string column in *df* is accepted
@@ -103,6 +112,8 @@ def plot_forest(
     color_enc: alt.Color | alt.value
     if color_col is not None:
         color_enc = alt.Color(f"{color_col}:N")
+    elif group_col is not None:
+        color_enc = alt.Color(f"{group_col}:N")
     else:
         color_enc = alt.value("steelblue")
 
@@ -133,24 +144,28 @@ def plot_forest(
 
     # ── CI bars ──────────────────────────────────────────────────────────────
 
+    ci_encoding: dict = {
+        "x": alt.X(
+            f"{low_col}:Q",
+            scale=log_scale,
+            title=x_title or center_col,
+        ),
+        "x2": alt.X2(f"{high_col}:Q"),
+        "y": alt.Y(
+            f"{label_col}:N",
+            sort=y_sort,
+            title=y_title or label_col,
+            axis=alt.Axis(labelLimit=200),
+        ),
+        "color": color_enc,
+    }
+    if group_col is not None:
+        ci_encoding["yOffset"] = alt.YOffset(f"{group_col}:N")
+
     ci_bars = (
         alt.Chart(df)
         .mark_rule(strokeWidth=1.5)
-        .encode(
-            x=alt.X(
-                f"{low_col}:Q",
-                scale=log_scale,
-                title=x_title or center_col,
-            ),
-            x2=alt.X2(f"{high_col}:Q"),
-            y=alt.Y(
-                f"{label_col}:N",
-                sort=y_sort,
-                title=y_title or label_col,
-                axis=alt.Axis(labelLimit=200),
-            ),
-            color=color_enc,
-        )
+        .encode(**ci_encoding)
     )
     layers.append(ci_bars)
 
@@ -164,16 +179,22 @@ def plot_forest(
     ]
     if color_col is not None:
         tooltip.insert(1, alt.Tooltip(f"{color_col}:N"))
+    if group_col is not None and group_col != color_col:
+        tooltip.insert(1, alt.Tooltip(f"{group_col}:N"))
+
+    point_encoding: dict = {
+        "x": alt.X(f"{center_col}:Q", scale=log_scale),
+        "y": alt.Y(f"{label_col}:N", sort=y_sort),
+        "color": color_enc,
+        "tooltip": tooltip,
+    }
+    if group_col is not None:
+        point_encoding["yOffset"] = alt.YOffset(f"{group_col}:N")
 
     center_pts = (
         alt.Chart(df)
         .mark_point(filled=True, size=60)
-        .encode(
-            x=alt.X(f"{center_col}:Q", scale=log_scale),
-            y=alt.Y(f"{label_col}:N", sort=y_sort),
-            color=color_enc,
-            tooltip=tooltip,
-        )
+        .encode(**point_encoding)
     )
     layers.append(center_pts)
 

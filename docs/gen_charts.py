@@ -397,6 +397,36 @@ def gen_forest_effect() -> None:
     _save(chart, "forest_effect.html")
 
 
+def gen_forest_grouped() -> None:
+    df = pl.DataFrame(
+        {
+            "subgroup": [
+                "Overall", "Overall",
+                "Age < 65", "Age < 65",
+                "Age ≥ 65", "Age ≥ 65",
+                "Male", "Male",
+                "Female", "Female",
+            ],
+            "treatment": ["A", "B"] * 5,
+            "hr": [0.78, 0.92, 0.72, 0.84, 0.85, 1.02, 0.80, 0.95, 0.75, 0.88],
+            "low": [0.62, 0.74, 0.55, 0.65, 0.65, 0.80, 0.61, 0.74, 0.57, 0.69],
+            "high": [0.98, 1.16, 0.94, 1.10, 1.11, 1.30, 1.05, 1.22, 0.99, 1.13],
+        }
+    )
+    chart = plot_forest(
+        df,
+        center_col="hr",
+        low_col="low",
+        high_col="high",
+        label_col="subgroup",
+        group_col="treatment",
+        min_effect=1.25,
+        x_title="Hazard Ratio",
+        title="Treatment A vs B by subgroup",
+    )
+    _save(chart, "forest_grouped.html")
+
+
 def gen_raincloud() -> None:
     df = pl.DataFrame(
         {
@@ -456,5 +486,6 @@ if __name__ == "__main__":
     gen_auc_reports()
     gen_forest_basic()
     gen_forest_effect()
+    gen_forest_grouped()
     gen_raincloud()
     print("Done.")

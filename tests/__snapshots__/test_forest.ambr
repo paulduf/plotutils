@@ -917,6 +917,240 @@
     'width': 400,
   })
 # ---
+# name: test_plot_forest_with_group_col
+  dict({
+    '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',
+    'config': dict({
+      'axis': dict({
+        'gridColor': 'gray',
+        'gridDash': list([
+          3,
+          3,
+        ]),
+        'gridOpacity': 0.5,
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'background': 'transparent',
+      'header': dict({
+        'labelFontSize': 13,
+        'titleFontSize': 14,
+      }),
+      'legend': dict({
+        'labelFontSize': 12,
+        'titleFontSize': 14,
+      }),
+      'title': dict({
+        'anchor': 'start',
+        'fontSize': 18,
+      }),
+      'view': dict({
+        'fill': 'transparent',
+        'stroke': 'transparent',
+        'strokeWidth': 0,
+      }),
+    }),
+    'datasets': dict({
+      'data-normalized-0': list([
+        dict({
+          'high': 0.94,
+          'hr': 0.72,
+          'low': 0.55,
+          'subgroup': 'Age < 65',
+          'treatment': 'A',
+        }),
+        dict({
+          'high': 0.98,
+          'hr': 0.78,
+          'low': 0.62,
+          'subgroup': 'Overall',
+          'treatment': 'A',
+        }),
+        dict({
+          'high': 0.99,
+          'hr': 0.75,
+          'low': 0.57,
+          'subgroup': 'Female',
+          'treatment': 'A',
+        }),
+        dict({
+          'high': 1.05,
+          'hr': 0.8,
+          'low': 0.61,
+          'subgroup': 'Male',
+          'treatment': 'A',
+        }),
+        dict({
+          'high': 1.06,
+          'hr': 0.81,
+          'low': 0.62,
+          'subgroup': 'Age < 65',
+          'treatment': 'B',
+        }),
+        dict({
+          'high': 1.06,
+          'hr': 0.85,
+          'low': 0.68,
+          'subgroup': 'Overall',
+          'treatment': 'B',
+        }),
+        dict({
+          'high': 1.08,
+          'hr': 0.83,
+          'low': 0.64,
+          'subgroup': 'Female',
+          'treatment': 'B',
+        }),
+        dict({
+          'high': 1.11,
+          'hr': 0.85,
+          'low': 0.65,
+          'subgroup': 'Age ≥ 65',
+          'treatment': 'A',
+        }),
+        dict({
+          'high': 1.14,
+          'hr': 0.88,
+          'low': 0.68,
+          'subgroup': 'Male',
+          'treatment': 'B',
+        }),
+        dict({
+          'high': 1.21,
+          'hr': 0.92,
+          'low': 0.7,
+          'subgroup': 'Age ≥ 65',
+          'treatment': 'B',
+        }),
+      ]),
+      'data-normalized-1': list([
+        dict({
+        }),
+      ]),
+    }),
+    'height': 260,
+    'layer': list([
+      dict({
+        'data': dict({
+          'name': 'data-normalized-1',
+        }),
+        'encoding': dict({
+          'x': dict({
+            'datum': 1.0,
+            'scale': dict({
+              'type': 'log',
+            }),
+          }),
+        }),
+        'mark': dict({
+          'color': '#333',
+          'strokeWidth': 1.2,
+          'type': 'rule',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'treatment',
+            'type': 'nominal',
+          }),
+          'x': dict({
+            'field': 'low',
+            'scale': dict({
+              'type': 'log',
+            }),
+            'title': 'hr',
+            'type': 'quantitative',
+          }),
+          'x2': dict({
+            'field': 'high',
+          }),
+          'y': dict({
+            'axis': dict({
+              'labelLimit': 200,
+            }),
+            'field': 'subgroup',
+            'sort': None,
+            'title': 'subgroup',
+            'type': 'nominal',
+          }),
+          'yOffset': dict({
+            'field': 'treatment',
+            'type': 'nominal',
+          }),
+        }),
+        'mark': dict({
+          'strokeWidth': 1.5,
+          'type': 'rule',
+        }),
+      }),
+      dict({
+        'data': dict({
+          'name': 'data-normalized-0',
+        }),
+        'encoding': dict({
+          'color': dict({
+            'field': 'treatment',
+            'type': 'nominal',
+          }),
+          'tooltip': list([
+            dict({
+              'field': 'subgroup',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'treatment',
+              'type': 'nominal',
+            }),
+            dict({
+              'field': 'hr',
+              'format': '.3f',
+              'title': 'Estimate',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'low',
+              'format': '.3f',
+              'title': 'Low',
+              'type': 'quantitative',
+            }),
+            dict({
+              'field': 'high',
+              'format': '.3f',
+              'title': 'High',
+              'type': 'quantitative',
+            }),
+          ]),
+          'x': dict({
+            'field': 'hr',
+            'scale': dict({
+              'type': 'log',
+            }),
+            'type': 'quantitative',
+          }),
+          'y': dict({
+            'field': 'subgroup',
+            'sort': None,
+            'type': 'nominal',
+          }),
+          'yOffset': dict({
+            'field': 'treatment',
+            'type': 'nominal',
+          }),
+        }),
+        'mark': dict({
+          'filled': True,
+          'size': 60,
+          'type': 'point',
+        }),
+      }),
+    ]),
+    'width': 400,
+  })
+# ---
 # name: test_plot_forest_with_min_effect
   dict({
     '$schema': 'https://vega.github.io/schema/vega-lite/v6.1.0.json',

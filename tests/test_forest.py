@@ -106,6 +106,44 @@ def test_plot_forest_sort_col(report_theme, snapshot, snapshot_svg, hr_df):
     assert chart_to_svg(chart) == snapshot_svg
 
 
+def test_plot_forest_with_group_col(report_theme, snapshot, snapshot_svg):
+    """group_col adds yOffset dodging and auto-colors by group."""
+    df = pl.DataFrame(
+        {
+            "subgroup": [
+                "Overall", "Overall",
+                "Age < 65", "Age < 65",
+                "Age ≥ 65", "Age ≥ 65",
+                "Male", "Male",
+                "Female", "Female",
+            ],
+            "treatment": ["A", "B"] * 5,
+            "hr": [0.78, 0.85, 0.72, 0.81, 0.85, 0.92, 0.80, 0.88, 0.75, 0.83],
+            "low": [0.62, 0.68, 0.55, 0.62, 0.65, 0.70, 0.61, 0.68, 0.57, 0.64],
+            "high": [0.98, 1.06, 0.94, 1.06, 1.11, 1.21, 1.05, 1.14, 0.99, 1.08],
+        }
+    )
+    chart = plot_forest(
+        df,
+        center_col="hr",
+        low_col="low",
+        high_col="high",
+        label_col="subgroup",
+        group_col="treatment",
+    )
+    chart_dict = chart.to_dict()
+    ci_layer = chart_dict["layer"][-2]
+    point_layer = chart_dict["layer"][-1]
+    # yOffset present on both data-bound layers, keyed on group_col
+    assert ci_layer["encoding"]["yOffset"]["field"] == "treatment"
+    assert point_layer["encoding"]["yOffset"]["field"] == "treatment"
+    # color falls back to group_col when color_col is not set
+    assert ci_layer["encoding"]["color"]["field"] == "treatment"
+    assert point_layer["encoding"]["color"]["field"] == "treatment"
+    assert normalize_chart_dict(chart_dict) == snapshot
+    assert chart_to_svg(chart) == snapshot_svg
+
+
 def test_plot_forest_preserves_order(report_theme, snapshot, snapshot_svg):
     """Row order in the DataFrame is preserved (sort=None on y-axis)."""
     df = pl.DataFrame(
